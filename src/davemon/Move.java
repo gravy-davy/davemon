@@ -5,7 +5,7 @@ package davemon;
 public class Move {
     
     private String name;
-    private String id; // determines what it does . creature level determines damage
+    private String id; // determines what it does. creature level determines additional damage / effect
     private Integer baseAmount;
 
     public String getName() {

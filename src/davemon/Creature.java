@@ -10,7 +10,7 @@ public class Creature {
     private Integer health;
     private Integer speed;
     private Integer level;
-    private ArrayList<Move[]> moveset;
+    private ArrayList<Move[]> moveset; // max size 4
 
     public String getName() {
         return name;

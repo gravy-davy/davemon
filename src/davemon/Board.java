@@ -19,6 +19,7 @@ public class Board extends JPanel implements ActionListener {
     private Sprite sprite;
     private final int DELAY = 10;
 
+    // this can eventually take parameters and draw images on the screen according to what area the user is in
     public Board() {
 
         initBoard();
