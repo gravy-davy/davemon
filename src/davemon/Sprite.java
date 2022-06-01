@@ -21,7 +21,7 @@ public class Sprite {
 
     private void loadImage() {
         
-        ImageIcon ii = new ImageIcon("src/davemon/assets/images/avatar.png");
+        ImageIcon ii = new ImageIcon("assets/images/avatar-remodeled.png");
         image = ii.getImage(); 
 
         w = image.getWidth(null);
