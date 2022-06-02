@@ -52,6 +52,15 @@ public class Player {
     public void addToGymBattlesCleared(int id){
         this.gymBattlesCleared.add(id);
     }
+    
+    /**
+     * 
+     * @param creature obj to add to the player's creature list
+     */
+    public void addToDavemon(Creature creature){
+        this.davemon.add(creature);
+    }
+
 
     public String getLocation() {
         return location;

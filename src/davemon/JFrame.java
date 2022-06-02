@@ -1,6 +1,6 @@
 package davemon;
 
-import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class JFrame extends javax.swing.JFrame {
@@ -8,13 +8,14 @@ public class JFrame extends javax.swing.JFrame {
     // if steps on grassy array / coordinates and user location = "roscoe warren" then generate roscoe warren mobs :)
     
     private Board board;
+    private Player player;
     
     /**
      * Creates new form JFrame
      */
     public JFrame() {
         initComponents();
-        board = new Board(this);
+        // board = new Board(this);
         setTitle("Davemon");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -24,14 +25,11 @@ public class JFrame extends javax.swing.JFrame {
     // call this whenever going into the open world. use player location as board param in future.
     public void initUI(){
         setVisible(false);
-        getContentPane().removeAll(); 
         JPanel boardPanel = new JPanel();
-        //boardPanel.add(board);
-        setContentPane(board);  
+        setContentPane(new Board(this));  
         getContentPane().revalidate();
         getContentPane().repaint();
         setVisible(true);
-        
     }
     
     /**
@@ -49,6 +47,10 @@ public class JFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -77,7 +79,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addComponent(jButton2)))
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +88,7 @@ public class JFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(135, 135, 135)
                 .addComponent(jButton2)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(556, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, "card2");
@@ -112,7 +114,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jButton1)))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(465, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +123,56 @@ public class JFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(38, 38, 38)
                 .addComponent(jButton1)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(624, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, "card3");
+
+        jLabel3.setText("Name");
+
+        jTextField1.setText("-");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Submit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(508, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(210, 210, 210))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(159, 159, 159)
+                .addComponent(jButton3)
+                .addContainerGap(487, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, "card4");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,16 +183,39 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jPanel2.hide();
+        setVisible(false);
+        setContentPane(jPanel1);
         jPanel1.show();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+        setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if(jTextField1.getText().length()>0){
+            Player player = new Player();
+            player.setName(jTextField1.getText());
+            player.setDavemon(new ArrayList<>());
+            player.setGymBattlesCleared(new ArrayList<>());
+            player.setLocation("Homestead");
+            player.setMoney(1000);
+        }else{
+            System.out.println("name not long enough");
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    // should send jpanel to hide here as a param
     public void backToMain(){
-        board = null;
         setVisible(false);
-        getContentPane().removeAll(); 
-        setContentPane(jPanel2);
-        jPanel2.show();
+        setContentPane(jPanel1);
+        jPanel1.show();
         getContentPane().revalidate();
         getContentPane().repaint();
         setVisible(true);
@@ -189,10 +260,14 @@ public class JFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     public JPanel getjPanel1() {
@@ -211,5 +286,14 @@ public class JFrame extends javax.swing.JFrame {
         this.jPanel2 = jPanel2;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    
     
 }
