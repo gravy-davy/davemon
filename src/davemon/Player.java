@@ -9,6 +9,7 @@ public class Player {
     private String name;
     private ArrayList<Creature> davemon;
     private Integer money;
+    private String location;
     
     private ArrayList<Integer> gymBattlesCleared;
 
@@ -51,5 +52,14 @@ public class Player {
     public void addToGymBattlesCleared(int id){
         this.gymBattlesCleared.add(id);
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
     
 }

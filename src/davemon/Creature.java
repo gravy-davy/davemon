@@ -11,6 +11,7 @@ public class Creature {
     private Integer speed;
     private Integer level;
     private ArrayList<Move[]> moveset; // max size 4
+    private String type;
 
     public String getName() {
         return name;
@@ -50,6 +51,14 @@ public class Creature {
 
     public void setMoveset(ArrayList<Move[]> moveset) {
         this.moveset = moveset;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
     
