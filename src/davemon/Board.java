@@ -58,7 +58,6 @@ public class Board extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-        // can just draw images based on area of user
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
             sprite.getY(), this);
         
@@ -77,18 +76,16 @@ public class Board extends JPanel implements ActionListener {
     
     private void step() {
         sprite.move();
+        
         if(location.equalsIgnoreCase("Homestead")){
             if(sprite.getX()>300 && sprite.getY()<195 && sprite.getX()<580){
                 jframe.openPanelFromWorld(jframe.getjPanel2());
                 backToMain = true;
             }
-        }else{
-            repaint(); // clear the screen and then we repaint with sprite YEET
-        
-            repaint(sprite.getX()-1, sprite.getY()-1, sprite.getWidth()+2, sprite.getHeight()+2);  
         }
         
-         
+        repaint();
+        repaint(sprite.getX()-1, sprite.getY()-1, sprite.getWidth()+2, sprite.getHeight()+2);  
     }    
 
     private class TAdapter extends KeyAdapter {
