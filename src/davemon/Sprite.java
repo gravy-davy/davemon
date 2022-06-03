@@ -22,7 +22,7 @@ public class Sprite {
     private void loadImage() {
         
         //ImageIcon ii = new ImageIcon("assets/images/avatar-remodeled.png");
-        image = Constant.WALKING_RIGHT_AVATAR.getImage();
+        image = Constant.STILL_AVATAR.getImage();
 
         w = image.getWidth(null);
         h = image.getHeight(null);
@@ -110,19 +110,23 @@ public class Sprite {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = -2;
+            image = Constant.WALKING_LEFT_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             // dx = 2;
             dx = 2;
+            image = Constant.WALKING_RIGHT_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = -2;
+            image = Constant.WALKING_UP_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 2;
+            image = Constant.WALKING_DOWN_AVATAR.getImage();
         }
     }
 
@@ -132,18 +136,22 @@ public class Sprite {
 
         if (key == KeyEvent.VK_LEFT) {
             dx = 0;
+            image = Constant.STILL_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_RIGHT) {
             dx = 0;
+            image = Constant.STILL_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_UP) {
             dy = 0;
+            image = Constant.STILL_AVATAR.getImage();
         }
 
         if (key == KeyEvent.VK_DOWN) {
             dy = 0;
+            image = Constant.STILL_AVATAR.getImage();
         }
     }
 }
