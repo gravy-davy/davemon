@@ -7,7 +7,6 @@ public class JFrame extends javax.swing.JFrame {
 
     // if steps on grassy array / coordinates and user location = "roscoe warren" then generate roscoe warren mobs :)
     
-    private Board board;
     private Player player;
     
     /**
@@ -20,16 +19,6 @@ public class JFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-    }
-    
-    // call this whenever going into the open world. use player location as board param in future.
-    public void initUI(){
-        setVisible(false);
-        JPanel boardPanel = new JPanel();
-        setContentPane(new Board(this));  
-        getContentPane().revalidate();
-        getContentPane().repaint();
-        setVisible(true);
     }
     
     /**
@@ -178,17 +167,12 @@ public class JFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        initUI();
+        switchToAnotherPanel(jPanel1,jPanel3);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        setContentPane(jPanel1);
-        jPanel1.show();
-        getContentPane().revalidate();
-        getContentPane().repaint();
-        setVisible(true);
+
+        switchToAnotherPanel(jPanel2, jPanel1);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -205,17 +189,47 @@ public class JFrame extends javax.swing.JFrame {
             player.setGymBattlesCleared(new ArrayList<>());
             player.setLocation("Homestead");
             player.setMoney(1000);
+            initBoard(player.getLocation());
         }else{
             System.out.println("name not long enough");
         }
-        
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    // should send jpanel to hide here as a param
-    public void backToMain(){
+    
+    /**
+     * Switches to a panel while the user is in the open world
+     * 
+     * @param jpanel is the panel to show 
+     */
+    public void openPanelFromWorld(JPanel jpanel){
+        setContentPane(jpanel);
+        jpanel.show();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    
+    /**
+     * Switches from one panel to another
+     * 
+     * @param currentPanel
+     * @param newPanel 
+     */
+    public void switchToAnotherPanel(JPanel currentPanel, JPanel newPanel){
+        setContentPane(newPanel);
+        currentPanel.hide();
+        newPanel.show();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    
+    
+    /**
+     * Initializes the board based on the location of the player
+     * 
+     * @param location 
+     */
+    public void initBoard(String location){
         setVisible(false);
-        setContentPane(jPanel1);
-        jPanel1.show();
+        setContentPane(new Board(this, location));  
         getContentPane().revalidate();
         getContentPane().repaint();
         setVisible(true);

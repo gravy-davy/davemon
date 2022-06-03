@@ -15,22 +15,29 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
 
+    // CORE
     private Timer timer;
     private Sprite sprite;
     private final int DELAY = 10;
+    
+    // PARAMS
     private JFrame jframe;
+    private String location;
+    
+    // CONTROL
     private boolean backToMain = false;
 
     // this can eventually take parameters and draw images on the screen according to what area the user is in
-    public Board(JFrame jframe) {
+    public Board(JFrame jframe, String location) {
         this.jframe = jframe;
+        this.location = location;
         initBoard();
     }
 
     private void initBoard() {
 
         addKeyListener(new TAdapter());
-        setBackground(Color.BLACK);
+        setBackground(Color.MAGENTA);
 	setFocusable(true);
 
         sprite = new Sprite();
@@ -55,6 +62,11 @@ public class Board extends JPanel implements ActionListener {
         // can just draw images based on area of user
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
             sprite.getY(), this);
+        
+        if(location.equalsIgnoreCase("Homestead")){
+            g2d.drawImage(sprite.getImage(), sprite.getX(), 
+            sprite.getY(), this);
+        }
     }
     
     @Override
@@ -69,8 +81,7 @@ public class Board extends JPanel implements ActionListener {
         
         sprite.move();
         if(sprite.getX()>300){
-            // x greater than 300 so backToMain. backToMain in the future will have param to load a specific panel. like a fight, for example.
-            jframe.backToMain();
+            jframe.openPanelFromWorld(jframe.getjPanel2());
             backToMain = true;
         }else{
             repaint(); // clear the screen and then we repaint with sprite YEET

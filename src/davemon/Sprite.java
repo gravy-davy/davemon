@@ -21,7 +21,8 @@ public class Sprite {
 
     private void loadImage() {
         
-        ImageIcon ii = new ImageIcon("assets/images/avatar-remodeled.png");
+        //ImageIcon ii = new ImageIcon("assets/images/avatar-remodeled.png");
+        ImageIcon ii = new ImageIcon("assets/images/avataaar.gif");
         image = ii.getImage(); 
 
         w = image.getWidth(null);
