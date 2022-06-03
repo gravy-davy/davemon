@@ -22,8 +22,7 @@ public class Sprite {
     private void loadImage() {
         
         //ImageIcon ii = new ImageIcon("assets/images/avatar-remodeled.png");
-        ImageIcon ii = new ImageIcon("assets/images/avataaar.gif");
-        image = ii.getImage(); 
+        image = Constant.WALKING_RIGHT_AVATAR.getImage();
 
         w = image.getWidth(null);
         h = image.getHeight(null);

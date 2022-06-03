@@ -43,7 +43,6 @@ public class JFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
-        setPreferredSize(new java.awt.Dimension(800, 800));
         setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -82,7 +81,7 @@ public class JFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, "card2");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("FUTURE FIGHT PANEL");
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +102,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jButton1)))
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

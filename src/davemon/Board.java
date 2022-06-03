@@ -27,7 +27,6 @@ public class Board extends JPanel implements ActionListener {
     // CONTROL
     private boolean backToMain = false;
 
-    // this can eventually take parameters and draw images on the screen according to what area the user is in
     public Board(JFrame jframe, String location) {
         this.jframe = jframe;
         this.location = location;
@@ -64,8 +63,7 @@ public class Board extends JPanel implements ActionListener {
             sprite.getY(), this);
         
         if(location.equalsIgnoreCase("Homestead")){
-            g2d.drawImage(sprite.getImage(), sprite.getX(), 
-            sprite.getY(), this);
+            g2d.drawImage(Constant.GRASS.getImage(), 300, 0, this);
         }
     }
     
@@ -78,11 +76,12 @@ public class Board extends JPanel implements ActionListener {
     }
     
     private void step() {
-        
         sprite.move();
-        if(sprite.getX()>300){
-            jframe.openPanelFromWorld(jframe.getjPanel2());
-            backToMain = true;
+        if(location.equalsIgnoreCase("Homestead")){
+            if(sprite.getX()>300 && sprite.getY()<195 && sprite.getX()<580){
+                jframe.openPanelFromWorld(jframe.getjPanel2());
+                backToMain = true;
+            }
         }else{
             repaint(); // clear the screen and then we repaint with sprite YEET
         
