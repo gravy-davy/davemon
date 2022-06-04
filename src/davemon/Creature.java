@@ -16,6 +16,7 @@ public class Creature {
   
     private ImageIcon image;
     private Integer health;
+    private Integer maxHealth;
     private Integer speed;
     private String type; // like grass/fire/dark etc
     private Integer evolutionLevel; // level needed to evolve
@@ -114,6 +115,14 @@ public class Creature {
 
     public void setImage(ImageIcon image) {
         this.image = image;
+    }
+
+    public Integer getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(Integer maxHealth) {
+        this.maxHealth = maxHealth;
     }
     
     

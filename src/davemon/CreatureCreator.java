@@ -26,6 +26,7 @@ public class CreatureCreator {
             
             // can make these random range for diff creatures
             c.setHealth(90);
+            c.setMaxHealth(90);
             c.setSpeed(65);
             
             c.setImage(Constant.CREATURE_UNIRU);
