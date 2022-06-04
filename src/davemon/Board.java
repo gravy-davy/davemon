@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -79,7 +80,14 @@ public class Board extends JPanel implements ActionListener {
         
         if(location.equalsIgnoreCase("Homestead")){
             if(sprite.getX()>300 && sprite.getY()<195 && sprite.getX()<580){
+                
+                
+                ImageIcon img = new ImageIcon(jframe.getPlayer().getActiveDavemon().get(0).getImage().getImage());
+                jframe.getPlayerCreatureIcon().setIcon(img);
                 jframe.openPanelFromWorld(jframe.getjPanel2());
+                
+                // NEW FIGHT OBJECT SHOULD BE RIGHT HERE AFTER CREATING THE ENEMY DAVEMON AND SETTING THE PANEL
+                
                 backToMain = true;
             }
         }

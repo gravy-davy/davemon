@@ -8,9 +8,9 @@ public class Player {
     
     private String name;
     private ArrayList<Creature> davemon;
+    private ArrayList<Creature> activeDavemon; // using in fights, max size here is 4
     private Integer money;
     private String location;
-    
     private ArrayList<Integer> gymBattlesCleared;
 
     public String getName() {
@@ -69,6 +69,17 @@ public class Player {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public ArrayList<Creature> getActiveDavemon() {
+        return activeDavemon;
+    }
+
+    public void setActiveDavemon(ArrayList<Creature> activeDavemon) {
+        this.activeDavemon = activeDavemon;
+    }
     
+    public void addToActiveDavemon(Creature c){
+        this.activeDavemon.add(c);
+    }
     
 }
