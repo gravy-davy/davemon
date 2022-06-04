@@ -52,6 +52,7 @@ public class JFrame extends javax.swing.JFrame {
         enemyCreatureHealth = new javax.swing.JLabel();
         enemyCreatureMaxHealth = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        enemyCreatureName = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -132,6 +133,8 @@ public class JFrame extends javax.swing.JFrame {
 
         jLabel9.setText("/");
 
+        enemyCreatureName.setText("jLabel10");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,32 +155,34 @@ public class JFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(playerCreatureHealth)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel7)
-                        .addGap(39, 39, 39)
-                        .addComponent(playerCreatureMaxHealth))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(move1button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(move2button))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(enemyCreatureHealth)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(enemyCreatureHealth))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(playerCreatureHealth)))
                                 .addGap(28, 28, 28)
-                                .addComponent(jLabel9)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enemyCreatureMaxHealth)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(move3button)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(move4button)))))
+                                .addComponent(move4button))
+                            .addComponent(playerCreatureMaxHealth)))
+                    .addComponent(enemyCreatureName))
                 .addGap(43, 43, 43))
         );
         jPanel2Layout.setVerticalGroup(
@@ -195,12 +200,14 @@ public class JFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(40, 40, 40)
+                        .addComponent(enemyCreatureName)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(enemyCreatureHealth)
-                            .addComponent(enemyCreatureMaxHealth)
-                            .addComponent(jLabel9))))
+                            .addComponent(jLabel9)
+                            .addComponent(enemyCreatureMaxHealth))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -208,17 +215,17 @@ public class JFrame extends javax.swing.JFrame {
                         .addGap(241, 241, 241))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(playerCreatureHealth)
+                            .addComponent(jLabel7)
+                            .addComponent(playerCreatureMaxHealth))
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(move1button)
                             .addComponent(move2button)
                             .addComponent(move3button)
                             .addComponent(move4button))
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(playerCreatureHealth)
-                            .addComponent(playerCreatureMaxHealth)
-                            .addComponent(jLabel7))
-                        .addGap(268, 268, 268))))
+                        .addGap(351, 351, 351))))
         );
 
         getContentPane().add(jPanel2, "card3");
@@ -406,6 +413,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel enemyCreatureHealth;
     private javax.swing.JLabel enemyCreatureIcon;
     private javax.swing.JLabel enemyCreatureMaxHealth;
+    private javax.swing.JLabel enemyCreatureName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -533,6 +541,14 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setEnemyCreatureMaxHealth(JLabel enemyCreatureMaxHealth) {
         this.enemyCreatureMaxHealth = enemyCreatureMaxHealth;
+    }
+
+    public JLabel getEnemyCreatureName() {
+        return enemyCreatureName;
+    }
+
+    public void setEnemyCreatureName(JLabel enemyCreatureName) {
+        this.enemyCreatureName = enemyCreatureName;
     }
 
     

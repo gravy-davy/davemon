@@ -125,6 +125,7 @@ public class Board extends JPanel implements ActionListener {
         ImageIcon enemyImg = new ImageIcon(enemyCreature.getImage().getImage());
         jframe.getEnemyCreatureIcon().setIcon(enemyImg);
         jframe.getEnemyCreatureIcon().setBorder(BorderFactory.createLineBorder(Color.black));
+        jframe.getEnemyCreatureName().setText(enemyCreature.getName());
         jframe.getEnemyCreatureHealth().setText(enemyCreature.getHealth().toString());
         jframe.getEnemyCreatureMaxHealth().setText(enemyCreature.getMaxHealth().toString());
     }
