@@ -24,9 +24,10 @@ public class CreatureCreator {
             c.setEvolutionLevel(25);
             c.setType("Water");
             
-            // can make these random range for diff creatures
-            c.setHealth(90);
-            c.setMaxHealth(90);
+            // in this case, 40 is the minimum health
+            c.setHealthPerLevel(1);
+            c.setHealth(32 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
             c.setSpeed(65);
             
             c.setImage(Constant.CREATURE_UNIRU);
@@ -48,6 +49,62 @@ public class CreatureCreator {
             c.getMoveset().add(m2);
             c.getMoveset().add(m1);
             
+        } else if(name.equalsIgnoreCase("Irax")){
+            c.setEvolutionLevel(32);
+            c.setType("Metal");
+            
+            // in this case, 40 is the minimum health
+            c.setHealthPerLevel(3);
+            c.setHealth(50 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(30);
+            
+            c.setImage(Constant.CREATURE_IRAX);
+            
+            Move m1 = new Move();
+            m1.setName("Bite"); // makes opponent creature need to flip a coin when they attack
+            m1.setTimesUsed(0);
+            m1.setMaxUses(25);
+            m1.setBaseAmount(15);
+            m1.setType("Physical");
+            
+            Move m2 = new Move();
+            m2.setName("Shield");
+            m2.setTimesUsed(0);
+            m2.setMaxUses(10);
+            m2.setBaseAmount(10);
+            m2.setType("Physical");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Mowl")){
+            c.setEvolutionLevel(32);
+            c.setType("Physical");
+            
+            // in this case, 40 is the minimum health
+            c.setHealthPerLevel(1);
+            c.setHealth(30 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(90);
+            
+            c.setImage(Constant.CREATURE_MOWL);
+            
+            Move m1 = new Move();
+            m1.setName("Bite"); // makes opponent creature need to flip a coin when they attack
+            m1.setTimesUsed(0);
+            m1.setMaxUses(25);
+            m1.setBaseAmount(15);
+            m1.setType("Physical");
+            
+            Move m2 = new Move();
+            m2.setName("Shield");
+            m2.setTimesUsed(0);
+            m2.setMaxUses(10);
+            m2.setBaseAmount(10);
+            m2.setType("Physical");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
