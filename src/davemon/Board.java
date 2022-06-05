@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -31,6 +32,10 @@ public class Board extends JPanel implements ActionListener {
     
     // CONTROL
     private boolean backToMain = false;
+    
+    // FIGHT
+    private Fight fight;
+    private Trainer trainer;
 
     public Board(JFrame jframe, String location) {
         this.jframe = jframe;
@@ -81,7 +86,6 @@ public class Board extends JPanel implements ActionListener {
     
     private void step() {
         sprite.move();
-        
         if(location.equalsIgnoreCase("Homestead")){
             if(sprite.getX()>300 && sprite.getY()<195 && sprite.getX()<580){
                 
@@ -95,11 +99,26 @@ public class Board extends JPanel implements ActionListener {
                     enemyCreature = cc.getCreature("Mowl", rando.nextInt(3)+1);
                 }
                 
+                trainer = new Trainer();
+                trainer.setActiveDavemon(new ArrayList<>());
+                trainer.setName("Wild");
+                trainer.addToActiveDavemon(enemyCreature);
+                
                 setFightPanel(enemyCreature);
                 
                 jframe.openPanelFromWorld(jframe.getjPanel2());
                 
                 // NEW FIGHT OBJECT SHOULD BE RIGHT HERE AFTER CREATING THE ENEMY DAVEMON AND SETTING THE PANEL
+                
+                fight = new Fight(jframe.getPlayer());
+                
+                fight.speedCheck(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0));
+                if(fight.getTurn()==0){
+                    // enemy is attacking
+                    enemyAtk();
+                }
+                
+                // determine who won based on whether player surrendered, or they have no active davemon left
                 
                 backToMain = true;
             }
@@ -108,6 +127,69 @@ public class Board extends JPanel implements ActionListener {
         repaint();
         repaint(sprite.getX()-1, sprite.getY()-1, sprite.getWidth()+2, sprite.getHeight()+2);  
     }    
+    
+    
+    // enemies can change stuff based on their name
+    public void enemyAtk(){
+        Random rando = new Random();
+        int moveSeed = rando.nextInt(trainer.getActiveDavemon().get(0).getMoveset().size());
+        String move = trainer.getActiveDavemon().get(0).getMoveset().get(moveSeed).toString();
+        fight.attack(trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0).getMoveset().get(moveSeed));
+        
+        // IF someone switches, remake the fight object like this: fight = new Fight(jframe.getPlayer());
+        
+        setFightPanel(trainer.getActiveDavemon().get(0));
+        jframe.getContentPane().repaint();
+        // need to see if fight is over here
+    }
+    
+    /**
+     * 
+     * @param moveId is the move to use in an attack from player creature's moveset
+     */
+    public void playerAtk(int moveId){
+        fight.attack(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(moveId));
+        // need to see if fight is over here
+        
+        // repaint right here
+        System.out.println("ENEMY POKE HEALTH: " + trainer.getActiveDavemon().get(0).getHealth());
+        setFightPanel(trainer.getActiveDavemon().get(0));
+        jframe.getContentPane().repaint();
+        enemyAtk();
+        
+        
+    }
+    
+    /**
+     * 
+     * @param p player
+     * @param t trainer
+     * @return 1 for player defeat, 2 for trainer defeat, 0 for still fighting
+     */
+    public int didSomeoneLose(Player p, Trainer t){
+        int counter = 0;
+        for(Creature c : p.getActiveDavemon()){
+            if(c.getHealth() <= 0){
+                counter++;
+            }
+        }
+        
+        if(counter==p.getActiveDavemon().size()){
+            return 1;
+        }
+        
+        int enemyCounter = 0;
+        for(Creature c : t.getActiveDavemon()){
+            if(c.getHealth() <= 0){
+                enemyCounter++;
+            }
+        }
+        if(enemyCounter==t.getActiveDavemon().size()){
+            return 2;
+        }
+        
+        return 0;
+    }
     
     public void setFightPanel(Creature enemyCreature){
         // when player subs in a davemon, they should be in spot 0 in the array list. so swap current davemon aka 0 spot with new subbed in davemon.

@@ -38,6 +38,7 @@ public class CreatureCreator {
             m1.setMaxUses(10);
             m1.setBaseAmount(50);
             m1.setType("Mind");
+            m1.setAccuracy(25);
             
             Move m2 = new Move();
             m2.setName("Stab");
@@ -45,6 +46,7 @@ public class CreatureCreator {
             m2.setMaxUses(20);
             m2.setBaseAmount(20);
             m2.setType("Physical");
+            m2.setAccuracy(50);
             
             c.getMoveset().add(m2);
             c.getMoveset().add(m1);
@@ -67,13 +69,15 @@ public class CreatureCreator {
             m1.setMaxUses(25);
             m1.setBaseAmount(15);
             m1.setType("Physical");
+            m1.setAccuracy(60);
             
             Move m2 = new Move();
             m2.setName("Shield");
             m2.setTimesUsed(0);
             m2.setMaxUses(10);
-            m2.setBaseAmount(10);
+            m2.setBaseAmount(20);
             m2.setType("Physical");
+            m2.setAccuracy(90);
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
@@ -93,15 +97,17 @@ public class CreatureCreator {
             m1.setName("Bite"); // makes opponent creature need to flip a coin when they attack
             m1.setTimesUsed(0);
             m1.setMaxUses(25);
-            m1.setBaseAmount(15);
+            m1.setBaseAmount(10);
             m1.setType("Physical");
+            m1.setAccuracy(70);
             
             Move m2 = new Move();
-            m2.setName("Shield");
+            m2.setName("Quick Attack");
             m2.setTimesUsed(0);
             m2.setMaxUses(10);
             m2.setBaseAmount(10);
             m2.setType("Physical");
+            m2.setAccuracy(70);
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);

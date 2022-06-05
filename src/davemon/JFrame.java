@@ -10,6 +10,7 @@ public class JFrame extends javax.swing.JFrame {
     // if steps on grassy array / coordinates and user location = "roscoe warren" then generate roscoe warren mobs :)
     
     private Player player;
+    private Board board;
     
     /**
      * Creates new form JFrame
@@ -110,8 +111,18 @@ public class JFrame extends javax.swing.JFrame {
         });
 
         move1button.setText("Move1");
+        move1button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                move1buttonActionPerformed(evt);
+            }
+        });
 
         move2button.setText("Move2");
+        move2button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                move2buttonActionPerformed(evt);
+            }
+        });
 
         move3button.setText("Move3");
 
@@ -322,6 +333,18 @@ public class JFrame extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void move1buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move1buttonActionPerformed
+        // TODO add your handling code here:
+        // player attack
+        board.playerAtk(0);
+        // enemy attack is called from the player attack method
+    }//GEN-LAST:event_move1buttonActionPerformed
+
+    private void move2buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move2buttonActionPerformed
+        // TODO add your handling code here:
+        board.playerAtk(1);
+    }//GEN-LAST:event_move2buttonActionPerformed
     
     public void createPlayer(){
         player = new Player();
@@ -366,8 +389,10 @@ public class JFrame extends javax.swing.JFrame {
      * @param location 
      */
     public void initBoard(String location){
+        // put it in the panel, like the board
         setVisible(false);
-        setContentPane(new Board(this, location));  
+        board = new Board(this, location);
+        setContentPane(board);  
         getContentPane().revalidate();
         getContentPane().repaint();
         setVisible(true);

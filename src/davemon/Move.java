@@ -5,11 +5,20 @@ package davemon;
 public class Move {
     
     private String name;        // determines what it does
-    private Integer baseAmount; // damage / effect / other amount
+    private Integer baseAmount; // damage / effect / other amount. ex: 50 for 50 damage
+    private Integer accuracy;   // flat percent chance of a move hitting. like 20% for a giant hit, for ex.
     private String type;        // type of effect, like fire for damage
     
     private Integer maxUses;
     private Integer timesUsed;
+
+    public Integer getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(Integer accuracy) {
+        this.accuracy = accuracy;
+    }
 
     public String getName() {
         return name;
