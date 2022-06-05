@@ -107,23 +107,23 @@ public class Sprite {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
             dx = -2;
             image = Constant.WALKING_LEFT_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
             // dx = 2;
             dx = 2;
             image = Constant.WALKING_RIGHT_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
             dy = -2;
             image = Constant.WALKING_UP_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
             dy = 2;
             image = Constant.WALKING_DOWN_AVATAR.getImage();
         }
@@ -133,22 +133,22 @@ public class Sprite {
         
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
             dx = 0;
             image = Constant.STILL_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
             dx = 0;
             image = Constant.STILL_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_UP) {
+        if (key == KeyEvent.VK_UP || key == KeyEvent.VK_W) {
             dy = 0;
             image = Constant.STILL_AVATAR.getImage();
         }
 
-        if (key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
             dy = 0;
             image = Constant.STILL_AVATAR.getImage();
         }
