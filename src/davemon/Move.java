@@ -8,6 +8,7 @@ public class Move {
     private Integer baseAmount; // damage / effect / other amount. ex: 50 for 50 damage
     private Integer accuracy;   // flat percent chance of a move hitting. like 20% for a giant hit, for ex.
     private String type;        // type of effect, like fire for damage
+    private Integer duration;
     
     private Integer maxUses;
     private Integer timesUsed;
@@ -58,6 +59,14 @@ public class Move {
 
     public void setTimesUsed(Integer timesUsed) {
         this.timesUsed = timesUsed;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
     
     

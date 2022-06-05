@@ -18,9 +18,16 @@ public class Creature {
     private Integer health;
     private Integer maxHealth;
     private Integer healthPerLevel;
+    private Integer physicalDef;
+    private Integer specialDef;
     private Integer speed;
     private String type; // like grass/fire/dark etc
     private Integer evolutionLevel; // level needed to evolve
+    
+    private Integer tempMaxHealth;
+    private Integer tempPhysicalDef;
+    private Integer tempSpecialDef;
+    private Integer tempSpeed;
 
     public String getName() {
         return name;
@@ -132,6 +139,54 @@ public class Creature {
 
     public void setHealthPerLevel(Integer healthPerLevel) {
         this.healthPerLevel = healthPerLevel;
+    }
+
+    public Integer getPhysicalDef() {
+        return physicalDef;
+    }
+
+    public void setPhysicalDef(Integer physicalDef) {
+        this.physicalDef = physicalDef;
+    }
+
+    public Integer getSpecialDef() {
+        return specialDef;
+    }
+
+    public void setSpecialDef(Integer specialDef) {
+        this.specialDef = specialDef;
+    }
+
+    public Integer getTempMaxHealth() {
+        return tempMaxHealth;
+    }
+
+    public void setTempMaxHealth(Integer tempMaxHealth) {
+        this.tempMaxHealth = tempMaxHealth;
+    }
+
+    public Integer getTempPhysicalDef() {
+        return tempPhysicalDef;
+    }
+
+    public void setTempPhysicalDef(Integer tempPhysicalDef) {
+        this.tempPhysicalDef = tempPhysicalDef;
+    }
+
+    public Integer getTempSpecialDef() {
+        return tempSpecialDef;
+    }
+
+    public void setTempSpecialDef(Integer tempSpecialDef) {
+        this.tempSpecialDef = tempSpecialDef;
+    }
+
+    public Integer getTempSpeed() {
+        return tempSpeed;
+    }
+
+    public void setTempSpeed(Integer tempSpeed) {
+        this.tempSpeed = tempSpeed;
     }
     
     

@@ -29,16 +29,24 @@ public class CreatureCreator {
             c.setHealth(32 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
             c.setSpeed(65);
+            c.setPhysicalDef(10);
+            c.setSpecialDef(20);
+            
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
             
             c.setImage(Constant.CREATURE_UNIRU);
             
             Move m1 = new Move();
-            m1.setName("Confuse"); // makes opponent creature need to flip a coin when they attack
+            m1.setName("Confuse"); // reduces accuracy of opponent
             m1.setTimesUsed(0);
             m1.setMaxUses(10);
-            m1.setBaseAmount(50);
+            m1.setBaseAmount(25);
             m1.setType("Mind");
-            m1.setAccuracy(25);
+            m1.setAccuracy(50);
+            m1.setDuration(3);
             
             Move m2 = new Move();
             m2.setName("Stab");
@@ -60,6 +68,13 @@ public class CreatureCreator {
             c.setHealth(50 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
             c.setSpeed(30);
+            c.setPhysicalDef(40);
+            c.setSpecialDef(5);
+            
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
             
             c.setImage(Constant.CREATURE_IRAX);
             
@@ -72,12 +87,13 @@ public class CreatureCreator {
             m1.setAccuracy(60);
             
             Move m2 = new Move();
-            m2.setName("Shield");
+            m2.setName("Harden");
             m2.setTimesUsed(0);
             m2.setMaxUses(10);
             m2.setBaseAmount(20);
             m2.setType("Physical");
             m2.setAccuracy(90);
+            m2.setDuration(3);
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
@@ -90,6 +106,13 @@ public class CreatureCreator {
             c.setHealth(30 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
             c.setSpeed(90);
+            c.setPhysicalDef(10);
+            c.setSpecialDef(10);
+            
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
             
             c.setImage(Constant.CREATURE_MOWL);
             

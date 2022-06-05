@@ -1,6 +1,7 @@
 
 package davemon;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Fight {
@@ -21,7 +22,7 @@ public class Fight {
     }
     
     public void speedCheck(Creature playerCreature, Creature enemyCreature){
-        if(playerCreature.getSpeed()>=enemyCreature.getSpeed()){
+        if(playerCreature.getTempSpeed()>=enemyCreature.getTempSpeed()){
             turn = 1;
         }else{
             turn = 0;
@@ -42,98 +43,170 @@ public class Fight {
         
         // make accuracy check its own method
         if(move.getName().equalsIgnoreCase("Bite")){
-            String hitOrMiss = hitOrMiss(move);
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
-                Effect shield = checkForShield(defendingCreature);
-                if(shield!=null){
-                    int remainder = shield.getValue() - move.getBaseAmount();
-                    shield.setValue(shield.getValue() - move.getBaseAmount());
-                    if(remainder<0){
-                        remainder = remainder * -1;
-                        defendingCreature.setHealth(defendingCreature.getHealth() - remainder);
-                        defendingCreature.getEffects().remove(shield);
-                    }
+                int dmg = move.getBaseAmount();
+                int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                int totalDmg = dmg - def;
+                if(totalDmg>0){
+                    defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                 }else{
-                    defendingCreature.setHealth(defendingCreature.getHealth() - move.getBaseAmount());
+                    System.out.println("BLOCKED");
                 }
-                
+
             }else{
                 // miss
             }
         }else if(move.getName().equalsIgnoreCase("Quick Attack")){
-            String hitOrMiss = hitOrMiss(move);
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
                 int dmg = move.getBaseAmount();
-                if(attackingCreature.getSpeed()>=defendingCreature.getSpeed()){
+                if(attackingCreature.getTempSpeed()>=defendingCreature.getTempSpeed()){
                     dmg = dmg * 2;
+                }else{
+                    dmg = dmg / 2;
                 }
                 
-                Effect shield = checkForShield(defendingCreature);
-                if(shield!=null){
-                    int remainder = shield.getValue() - dmg;
-                    shield.setValue(shield.getValue() - dmg);
-                    if(remainder<0){
-                        remainder = remainder * -1;
-                        defendingCreature.setHealth(defendingCreature.getHealth() - remainder);
-                        defendingCreature.getEffects().remove(shield);
-                    }
+                int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                int totalDmg = dmg - def;
+                
+                if(totalDmg>0){
+                    defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                 }else{
-                    defendingCreature.setHealth(defendingCreature.getHealth() - dmg);
+                    System.out.println("BLOCKED");
                 }
+
             }else{
                 
             }
         }else if(move.getName().equalsIgnoreCase("Stab")){
-            String hitOrMiss = hitOrMiss(move);
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
-                Effect shield = checkForShield(defendingCreature);
-                if(shield!=null){
-                    int remainder = shield.getValue() - move.getBaseAmount();
-                    shield.setValue(shield.getValue() - move.getBaseAmount());
-                    if(remainder<0){
-                        remainder = remainder * -1;
-                        defendingCreature.setHealth(defendingCreature.getHealth() - remainder);
-                        defendingCreature.getEffects().remove(shield);
-                    }
+                int dmg = move.getBaseAmount();
+                int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                int totalDmg = dmg - def;
+                
+                if(totalDmg>0){
+                    defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                 }else{
-                    defendingCreature.setHealth(defendingCreature.getHealth() - move.getBaseAmount());
+                    System.out.println("BLOCKED");
                 }
             }else{
                 
             }
             
-        }else if(move.getName().equalsIgnoreCase("Shield")){
-            String hitOrMiss = hitOrMiss(move);
+        }else if(move.getName().equalsIgnoreCase("Harden")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){
+                // the effect is just so it gets removed once the duration is over. it gets increased here on activation.
+                
+                if(!doesAlreadyHaveEffect("Harden", attackingCreature)){
+                    Effect e = new Effect();
+                    e.setName("Harden");
+                    e.setDuration(move.getDuration());
+                    e.setValue(move.getBaseAmount());
+                    attackingCreature.addEffect(e);
+                    System.out.println("phys def before harden = " + attackingCreature.getTempPhysicalDef());
+                    attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
+                    System.out.println("phys def after harden = " + attackingCreature.getTempPhysicalDef());
+                }else{
+                    System.out.println("already has harden");
+                }
+                
+            }else{
+                
+            }
+        }else if(move.getName().equalsIgnoreCase("Confuse")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 Effect e = new Effect();
-                e.setName("Shield");
-                e.setDuration(999);
+                e.setName("Confuse");
+                e.setDuration(move.getDuration());
                 e.setValue(move.getBaseAmount());
+                defendingCreature.addEffect(e);
             }else{
                 
             }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
+        // apply poison / dot effects here so after the creature does their turn they eat a bleed, for ex.
+        decrementActiveEffects(attackingCreature);
+    }
+    
+    
+    public void applyEndOfTurnEffects(Creature c){
+        
+        for(Effect e : c.getEffects()){
+            
+        }
         
     }
     
-    public Effect checkForShield(Creature c){
+    public boolean doesAlreadyHaveEffect(String effName, Creature c){
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Shield")){
+            if(e.getName().equalsIgnoreCase(effName)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public void decrementActiveEffects(Creature c){
+        
+        ArrayList<Effect> deadEffects = new ArrayList<>();
+        
+        for(Effect e : c.getEffects()){
+            System.out.println("EFFECT NAME: " + e.getName());
+            e.setDuration(e.getDuration()-1);
+            if(e.getDuration()<=0){
+                deadEffects.add(e);
+            }
+        }
+        
+        // if effect is harden/shield, remove defense from effect
+        for(Effect e : deadEffects){
+            if(c.getEffects().contains(e)){
+                if(e.getName().equalsIgnoreCase("Harden")){
+                    c.setTempPhysicalDef(c.getTempPhysicalDef()-e.getValue());
+                    System.out.println("def without harden is = " + c.getTempPhysicalDef());
+                }
+                c.getEffects().remove(e);
+            }
+        }
+        
+    }
+    
+    public Effect checkForAccuracyDebuff(Creature c){
+        for(Effect e : c.getEffects()){
+            if(e.getName().equalsIgnoreCase("Confuse")){
                 return e;
             }
         }
         return null;
     }
     
+    
     // gotta check for confuses here
-    public String hitOrMiss(Move move){
+    public String hitOrMiss(Move move, Creature c){
         Random rando = new Random();
-        int accSeed = rando.nextInt(move.getAccuracy());
-        int randSeed = rando.nextInt(100 - move.getAccuracy());
+        Effect accDebuff = checkForAccuracyDebuff(c);
+        int accSeed;
+        if(accDebuff!=null){
+            System.out.println("accuracy without debuff: " + move.getAccuracy());
+            int debAcc = move.getAccuracy() - accDebuff.getValue();
+            System.out.println("accuracy after debuff = " + debAcc);
+            if(debAcc<0){
+                debAcc = 1;
+            }
+            accSeed = rando.nextInt(debAcc);
+        }else{
+            accSeed = rando.nextInt(move.getAccuracy());
+        }
+        int randSeed = rando.nextInt(100 - accSeed);
         if(accSeed>=randSeed){
             System.out.println("hit with a " + move.getName());
             return "Hit";
