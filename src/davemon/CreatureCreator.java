@@ -19,10 +19,14 @@ public class CreatureCreator {
         c.setCurrentXp(0);
         c.setXpNeeded(25 * level);
         c.setEffects(new ArrayList<>());
+        c.setResistances(new ArrayList<>());
+        c.setWeaknesses(new ArrayList<>());
         
         if(name.equalsIgnoreCase("Uniru")){
             c.setEvolutionLevel(25);
             c.setType("Water");
+            c.addToResistances("Mind");
+            c.addToWeaknesses("Lightning");
             
             // in this case, 40 is the minimum health
             c.setHealthPerLevel(1);
@@ -31,7 +35,11 @@ public class CreatureCreator {
             c.setSpeed(65);
             c.setPhysicalDef(10);
             c.setSpecialDef(20);
+            c.setPhysicalAtk(30);
+            c.setSpecialAtk(30);
             
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
             c.setTempMaxHealth(c.getMaxHealth());
             c.setTempPhysicalDef(c.getPhysicalDef());
             c.setTempSpecialDef(c.getSpecialDef());
@@ -43,7 +51,7 @@ public class CreatureCreator {
             m1.setName("Confuse"); // reduces accuracy of opponent
             m1.setTimesUsed(0);
             m1.setMaxUses(10);
-            m1.setBaseAmount(25);
+            m1.setBaseAmount(25); // debuff amount
             m1.setType("Mind");
             m1.setAccuracy(50);
             m1.setDuration(3);
@@ -52,7 +60,7 @@ public class CreatureCreator {
             m2.setName("Stab");
             m2.setTimesUsed(0);
             m2.setMaxUses(20);
-            m2.setBaseAmount(20);
+            m2.setBaseAmount(20); // max damage, reachable by physical atk roll
             m2.setType("Physical");
             m2.setAccuracy(50);
             
@@ -62,6 +70,8 @@ public class CreatureCreator {
         } else if(name.equalsIgnoreCase("Irax")){
             c.setEvolutionLevel(32);
             c.setType("Metal");
+            c.addToResistances("Physical");
+            c.addToWeaknesses("Mind");
             
             // in this case, 40 is the minimum health
             c.setHealthPerLevel(3);
@@ -70,7 +80,11 @@ public class CreatureCreator {
             c.setSpeed(30);
             c.setPhysicalDef(40);
             c.setSpecialDef(5);
+            c.setPhysicalAtk(25);
+            c.setSpecialAtk(10);
             
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
             c.setTempMaxHealth(c.getMaxHealth());
             c.setTempPhysicalDef(c.getPhysicalDef());
             c.setTempSpecialDef(c.getSpecialDef());
@@ -100,6 +114,8 @@ public class CreatureCreator {
         }else if(name.equalsIgnoreCase("Mowl")){
             c.setEvolutionLevel(32);
             c.setType("Physical");
+            c.addToResistances("Grass");
+            c.addToWeaknesses("Physical");
             
             // in this case, 40 is the minimum health
             c.setHealthPerLevel(1);
@@ -108,7 +124,11 @@ public class CreatureCreator {
             c.setSpeed(90);
             c.setPhysicalDef(10);
             c.setSpecialDef(10);
+            c.setPhysicalAtk(20);
+            c.setSpecialAtk(15);
             
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
             c.setTempMaxHealth(c.getMaxHealth());
             c.setTempPhysicalDef(c.getPhysicalDef());
             c.setTempSpecialDef(c.getSpecialDef());

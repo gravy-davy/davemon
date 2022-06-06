@@ -13,6 +13,9 @@ public class Creature {
     private Integer xpNeeded;
     private ArrayList<Move> moveset; // max size 4
     private ArrayList<Effect> effects; // active effects. can be cleared by doc.
+    
+    private ArrayList<String> resistances;
+    private ArrayList<String> weaknesses;
   
     private ImageIcon image;
     private Integer health;
@@ -21,6 +24,9 @@ public class Creature {
     private Integer physicalDef;
     private Integer specialDef;
     private Integer speed;
+    private Integer physicalAtk;
+    private Integer specialAtk;
+    
     private String type; // like grass/fire/dark etc
     private Integer evolutionLevel; // level needed to evolve
     
@@ -28,6 +34,8 @@ public class Creature {
     private Integer tempPhysicalDef;
     private Integer tempSpecialDef;
     private Integer tempSpeed;
+    private Integer tempPhysicalAtk;
+    private Integer tempSpecialAtk;
 
     public String getName() {
         return name;
@@ -188,7 +196,61 @@ public class Creature {
     public void setTempSpeed(Integer tempSpeed) {
         this.tempSpeed = tempSpeed;
     }
+
+    public Integer getPhysicalAtk() {
+        return physicalAtk;
+    }
+
+    public void setPhysicalAtk(Integer physicalAtk) {
+        this.physicalAtk = physicalAtk;
+    }
+
+    public Integer getSpecialAtk() {
+        return specialAtk;
+    }
+
+    public void setSpecialAtk(Integer specialAtk) {
+        this.specialAtk = specialAtk;
+    }
+
+    public Integer getTempPhysicalAtk() {
+        return tempPhysicalAtk;
+    }
+
+    public void setTempPhysicalAtk(Integer tempPhysicalAtk) {
+        this.tempPhysicalAtk = tempPhysicalAtk;
+    }
+
+    public Integer getTempSpecialAtk() {
+        return tempSpecialAtk;
+    }
+
+    public void setTempSpecialAtk(Integer tempSpecialAtk) {
+        this.tempSpecialAtk = tempSpecialAtk;
+    }
+
+    public ArrayList<String> getResistances() {
+        return resistances;
+    }
+
+    public void setResistances(ArrayList<String> resistances) {
+        this.resistances = resistances;
+    }
+
+    public ArrayList<String> getWeaknesses() {
+        return weaknesses;
+    }
+
+    public void setWeaknesses(ArrayList<String> weaknesses) {
+        this.weaknesses = weaknesses;
+    }
     
+    public void addToResistances(String str){
+        this.resistances.add(str);
+    }
     
+    public void addToWeaknesses(String str){
+        this.weaknesses.add(str);
+    }
     
 }

@@ -12,6 +12,10 @@ public class Player {
     private Integer money;
     private String location;
     private ArrayList<Integer> gymBattlesCleared;
+    
+    // items
+    private Integer daveballs;
+    private Integer healthPotions;
 
     public String getName() {
         return name;

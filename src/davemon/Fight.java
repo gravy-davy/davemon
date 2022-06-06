@@ -41,13 +41,26 @@ public class Fight {
     public void attack(Creature attackingCreature, Creature defendingCreature, Move move){
         Random rando = new Random();
         
-        // make accuracy check its own method
+        // can use some ifs for other moves with the same exact flow. like a stronger bite can be with bite flow.
         if(move.getName().equalsIgnoreCase("Bite")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
-                int dmg = move.getBaseAmount();
+                int dmg = rando.nextInt(attackingCreature.getTempPhysicalAtk());
+                int maxDmg = move.getBaseAmount();
+                if(dmg>maxDmg){
+                    dmg = maxDmg;
+                }
+                
+                if(defendingCreature.getWeaknesses().contains("Physical")){
+                    dmg = dmg * 2;
+                }else if(defendingCreature.getResistances().contains("Physical")){
+                    dmg = dmg / 2;
+                }
+                
+                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
@@ -62,7 +75,19 @@ public class Fight {
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
-                int dmg = move.getBaseAmount();
+                int dmg = rando.nextInt(attackingCreature.getTempPhysicalAtk());
+                int maxDmg = move.getBaseAmount();
+                if(dmg>maxDmg){
+                    dmg = maxDmg;
+                }
+                
+                if(defendingCreature.getWeaknesses().contains("Physical")){
+                    dmg = dmg * 2;
+                }else if(defendingCreature.getResistances().contains("Physical")){
+                    dmg = dmg / 2;
+                }
+                
+                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 if(attackingCreature.getTempSpeed()>=defendingCreature.getTempSpeed()){
                     dmg = dmg * 2;
                 }else{
@@ -70,6 +95,7 @@ public class Fight {
                 }
                 
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 
                 if(totalDmg>0){
@@ -84,8 +110,21 @@ public class Fight {
         }else if(move.getName().equalsIgnoreCase("Stab")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
-                int dmg = move.getBaseAmount();
+                int dmg = rando.nextInt(attackingCreature.getTempPhysicalAtk());
+                int maxDmg = move.getBaseAmount();
+                if(dmg>maxDmg){
+                    dmg = maxDmg;
+                }
+                
+                if(defendingCreature.getWeaknesses().contains("Physical")){
+                    dmg = dmg * 2;
+                }else if(defendingCreature.getResistances().contains("Physical")){
+                    dmg = dmg / 2;
+                }
+                
+                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
+                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 
                 if(totalDmg>0){
