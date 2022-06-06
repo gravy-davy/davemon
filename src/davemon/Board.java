@@ -198,6 +198,7 @@ public class Board extends JPanel implements ActionListener {
         jframe.getPlayerCreatureIcon().setBorder(BorderFactory.createLineBorder(Color.black));
         jframe.getPlayerCreatureHealth().setText(jframe.getPlayer().getActiveDavemon().get(0).getHealth().toString());
         jframe.getPlayerCreatureMaxHealth().setText(jframe.getPlayer().getActiveDavemon().get(0).getMaxHealth().toString());
+        jframe.getPlayerCreatureLevel().setText(jframe.getPlayer().getActiveDavemon().get(0).getLevel().toString());
 
         // each davemon should have at least 1 move, after that, try/catch to print the other moves. if caught, hide the button.
         jframe.getMove1button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(0).getName());
@@ -210,6 +211,28 @@ public class Board extends JPanel implements ActionListener {
         jframe.getEnemyCreatureName().setText(enemyCreature.getName());
         jframe.getEnemyCreatureHealth().setText(enemyCreature.getHealth().toString());
         jframe.getEnemyCreatureMaxHealth().setText(enemyCreature.getMaxHealth().toString());
+        jframe.getEnemyCreatureLevel().setText(enemyCreature.getLevel().toString());
+        
+        if(enemyCreature.getEffects().isEmpty()){
+            System.out.println("enemy has no effects");
+            jframe.getEnemyCreatureEffects().setText("Effects: none");
+        }else{
+            jframe.getEnemyCreatureEffects().setText("Effects: ");
+            for(Effect e : enemyCreature.getEffects()){
+                jframe.getEnemyCreatureEffects().setText(jframe.getEnemyCreatureEffects().getText() + " - " + e.getName() + " / " + e.getDuration().toString() + "\n");
+            }
+        }
+        
+        if(jframe.getPlayer().getActiveDavemon().get(0).getEffects().isEmpty()){
+            jframe.getPlayerCreatureEffectsLabel().setText("Effects: none");
+        }else{
+            jframe.getPlayerCreatureEffectsLabel().setText("Effects: ");
+            for(Effect e : jframe.getPlayer().getActiveDavemon().get(0).getEffects()){
+                jframe.getPlayerCreatureEffectsLabel().setText(jframe.getPlayerCreatureEffectsLabel().getText() + " - " + e.getName() + " / " + e.getDuration().toString() + "\n");
+            }
+        }
+        
+        
     }
 
     private class TAdapter extends KeyAdapter {
