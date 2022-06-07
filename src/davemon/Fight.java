@@ -147,11 +147,19 @@ public class Fight {
                     e.setDuration(move.getDuration());
                     e.setValue(move.getBaseAmount());
                     attackingCreature.addEffect(e);
-                    System.out.println("phys def before harden = " + attackingCreature.getTempPhysicalDef());
                     attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
-                    System.out.println("phys def after harden = " + attackingCreature.getTempPhysicalDef());
                 }else{
                     System.out.println("already has harden");
+                    Effect e = findEffectToBeReplaced("Harden", attackingCreature);
+                    if(e!=null){
+                        System.out.println("removed effect: " + e.getName());
+                        attackingCreature.getEffects().remove(e);
+                    }
+                    Effect eff = new Effect();
+                    eff.setName("Harden");
+                    eff.setDuration(move.getDuration());
+                    eff.setValue(move.getBaseAmount());
+                    attackingCreature.addEffect(eff);
                 }
                 
             }else{
@@ -160,11 +168,27 @@ public class Fight {
         }else if(move.getName().equalsIgnoreCase("Confuse")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
-                Effect e = new Effect();
-                e.setName("Confuse");
-                e.setDuration(move.getDuration());
-                e.setValue(move.getBaseAmount());
-                defendingCreature.addEffect(e);
+                
+                if(!doesAlreadyHaveEffect("Confuse", defendingCreature)){
+                    Effect e = new Effect();
+                    e.setName("Confuse");
+                    e.setDuration(move.getDuration());
+                    e.setValue(move.getBaseAmount());
+                    defendingCreature.addEffect(e);
+                }else{
+                    Effect e = findEffectToBeReplaced("Confuse", defendingCreature);
+                    if(e!=null){
+                        System.out.println("removed effect: " + e.getName());
+                        defendingCreature.getEffects().remove(e);
+                    }
+                    Effect eff = new Effect();
+                    eff.setName("Confuse");
+                    eff.setDuration(move.getDuration());
+                    eff.setValue(move.getBaseAmount());
+                    defendingCreature.addEffect(eff);
+                }
+                
+                
             }else{
                 
             }
@@ -173,6 +197,15 @@ public class Fight {
         move.setTimesUsed(move.getTimesUsed()+1);
         // apply poison / dot effects here so after the creature does their turn they eat a bleed, for ex.
         decrementActiveEffects(attackingCreature);
+    }
+    
+    public Effect findEffectToBeReplaced(String effName, Creature creature){
+        for(Effect e : creature.getEffects()){
+            if(e.getName().equalsIgnoreCase(effName)){
+                return e;
+            }
+        }
+        return null;
     }
     
     
