@@ -85,5 +85,15 @@ public class Player {
     public void addToActiveDavemon(Creature c){
         this.activeDavemon.add(c);
     }
+
+    public Integer getDaveballs() {
+        return daveballs;
+    }
+
+    public void setDaveballs(Integer daveballs) {
+        this.daveballs = daveballs;
+    }
+    
+    
     
 }

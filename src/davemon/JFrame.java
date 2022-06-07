@@ -11,6 +11,7 @@ public class JFrame extends javax.swing.JFrame {
     
     private Player player;
     private Board board;
+    private boolean hasUsedBag;
     
     /**
      * Creates new form JFrame
@@ -60,6 +61,8 @@ public class JFrame extends javax.swing.JFrame {
         playerCreatureLevel = new javax.swing.JLabel();
         playerCreatureEffectsLabel = new javax.swing.JLabel();
         enemyCreatureEffects = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        daveballsLeft = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -93,7 +96,7 @@ public class JFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addComponent(jButton2)))
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,6 +167,15 @@ public class JFrame extends javax.swing.JFrame {
 
         enemyCreatureEffects.setText("Effects:");
 
+        jButton4.setText("Throw Daveball");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        daveballsLeft.setText("Daveballs:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -177,11 +189,18 @@ public class JFrame extends javax.swing.JFrame {
                         .addGap(338, 338, 338)
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
+                        .addGap(21, 21, 21)
+                        .addComponent(daveballsLeft)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(playerCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(playerCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +276,6 @@ public class JFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(playerCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(241, 241, 241))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(playerCreatureHealth)
@@ -277,7 +293,14 @@ public class JFrame extends javax.swing.JFrame {
                             .addComponent(move2button)
                             .addComponent(move3button)
                             .addComponent(move4button))
-                        .addGap(308, 308, 308))))
+                        .addGap(308, 308, 308))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(playerCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(daveballsLeft))
+                        .addGap(125, 125, 125))))
         );
 
         getContentPane().add(jPanel2, "card3");
@@ -305,7 +328,7 @@ public class JFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(319, Short.MAX_VALUE)
+                .addContainerGap(324, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +381,6 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         if(jTextField1.getText().length()>0){
             createPlayer();
             // add creature
@@ -376,16 +398,32 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void move1buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move1buttonActionPerformed
-        // TODO add your handling code here:
-        // player attack
+       // player attack
         board.playerAtk(0);
+        hasUsedBag = false;
         // enemy attack is called from the player attack method
     }//GEN-LAST:event_move1buttonActionPerformed
 
     private void move2buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move2buttonActionPerformed
-        // TODO add your handling code here:
         board.playerAtk(1);
+        hasUsedBag = false;
     }//GEN-LAST:event_move2buttonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(player.getDaveballs()>=1){
+            board.catchCreature();
+            player.setDaveballs(player.getDaveballs()-1);
+        }else{
+            System.out.println("You don't have enough Daveballs!");
+        }
+        
+        // just testing this part, this should probably be somewhere else.
+        int didSomeoneLose = board.didSomeoneLose(player, board.getTrainer());
+        if(didSomeoneLose==2){
+            System.out.println("You won the match.");
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     public void createPlayer(){
         player = new Player();
@@ -395,6 +433,7 @@ public class JFrame extends javax.swing.JFrame {
         player.setActiveDavemon(new ArrayList<>());
         player.setLocation("Homestead");
         player.setMoney(1000);
+        player.setDaveballs(3);
     }
     
     /**
@@ -476,6 +515,7 @@ public class JFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel daveballsLeft;
     private javax.swing.JLabel enemyCreatureEffects;
     private javax.swing.JLabel enemyCreatureHealth;
     private javax.swing.JLabel enemyCreatureIcon;
@@ -485,6 +525,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -653,6 +694,14 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setEnemyCreatureEffects(JLabel enemyCreatureEffects) {
         this.enemyCreatureEffects = enemyCreatureEffects;
+    }
+
+    public JLabel getDaveballsLeft() {
+        return daveballsLeft;
+    }
+
+    public void setDaveballsLeft(JLabel daveballsLeft) {
+        this.daveballsLeft = daveballsLeft;
     }
 
     

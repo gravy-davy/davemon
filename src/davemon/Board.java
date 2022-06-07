@@ -199,6 +199,7 @@ public class Board extends JPanel implements ActionListener {
         jframe.getPlayerCreatureHealth().setText(jframe.getPlayer().getActiveDavemon().get(0).getHealth().toString());
         jframe.getPlayerCreatureMaxHealth().setText(jframe.getPlayer().getActiveDavemon().get(0).getMaxHealth().toString());
         jframe.getPlayerCreatureLevel().setText(jframe.getPlayer().getActiveDavemon().get(0).getLevel().toString());
+        jframe.getDaveballsLeft().setText("Daveballs: " + jframe.getPlayer().getDaveballs().toString());
 
         // each davemon should have at least 1 move, after that, try/catch to print the other moves. if caught, hide the button.
         jframe.getMove1button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(0).getName());
@@ -212,7 +213,7 @@ public class Board extends JPanel implements ActionListener {
         jframe.getEnemyCreatureHealth().setText(enemyCreature.getHealth().toString());
         jframe.getEnemyCreatureMaxHealth().setText(enemyCreature.getMaxHealth().toString());
         jframe.getEnemyCreatureLevel().setText(enemyCreature.getLevel().toString());
-        
+
         if(enemyCreature.getEffects().isEmpty()){
             System.out.println("enemy has no effects");
             jframe.getEnemyCreatureEffects().setText("Effects: none");
@@ -234,6 +235,38 @@ public class Board extends JPanel implements ActionListener {
         
         
     }
+    
+    public void catchCreature(){
+        if(trainer.getName().equalsIgnoreCase("Wild")){
+            double hpPercent = trainer.getActiveDavemon().get(0).getHealth() / trainer.getActiveDavemon().get(0).getMaxHealth();
+            
+            int seed;
+            Random rando = new Random();
+            
+            if(hpPercent <= 0.5 && hpPercent>.25){
+                seed = rando.nextInt(100);
+                if(seed<=30){
+                    // catch
+                    System.out.println("You caught the Davemon!");
+                    jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
+                    // switch to another panel right here to exit the fight
+                }else{
+                    System.out.println("Failed to catch the Davemon.");
+                }
+            }else if(hpPercent<.25){
+                seed = rando.nextInt(100);
+                if(seed<=50){
+                    // catch
+                    System.out.println("You caught the Davemon!");
+                    jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
+                }else{
+                    System.out.println("Failed to catch the Davemon.");
+                }
+            }else{
+                System.out.println("Failed to catch the Davemon.");
+            }
+        }
+    }
 
     private class TAdapter extends KeyAdapter {
 
@@ -247,4 +280,10 @@ public class Board extends JPanel implements ActionListener {
             sprite.keyPressed(e);
         }
     }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+    
+    
 }
