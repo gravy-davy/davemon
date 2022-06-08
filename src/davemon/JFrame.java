@@ -411,8 +411,8 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(player.getDaveballs()>=1){
-            board.catchCreature();
             player.setDaveballs(player.getDaveballs()-1);
+            board.catchCreature();
         }else{
             System.out.println("You don't have enough Daveballs!");
         }
@@ -420,7 +420,8 @@ public class JFrame extends javax.swing.JFrame {
         // just testing this part, this should probably be somewhere else.
         int didSomeoneLose = board.didSomeoneLose(player, board.getTrainer());
         if(didSomeoneLose==2){
-            System.out.println("You won the match.");
+            System.out.println("You won the match by catching the enemy Davemon!");
+            initBoard(player.getLocation());
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed

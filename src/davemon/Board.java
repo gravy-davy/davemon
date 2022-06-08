@@ -149,13 +149,23 @@ public class Board extends JPanel implements ActionListener {
      */
     public void playerAtk(int moveId){
         fight.attack(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(moveId));
-        // need to see if fight is over here
-        
-        // repaint right here
-        System.out.println("ENEMY POKE HEALTH: " + trainer.getActiveDavemon().get(0).getHealth());
         setFightPanel(trainer.getActiveDavemon().get(0));
         jframe.getContentPane().repaint();
-        enemyAtk();
+        
+        // if killed enemy davemon, check if enemy trainer has more davemon. if they do, put that one in and speedcheck and new fight.
+        
+        int lost = didSomeoneLose(jframe.getPlayer(), trainer);
+        if(lost==2){
+            System.out.println("Player won the entire duel."); // entire duel as in beat ALL enemy davemon.
+            jframe.initBoard(jframe.getPlayer().getLocation());
+        }else if(lost==1){
+            System.out.println("Enemy won the entire duel.");
+            jframe.initBoard(jframe.getPlayer().getLocation());
+        }else{
+            // if current davemon hp is 0, enemy must pick a new one from their inventory, just set it the active davemon 0. 
+            // if player davemon hp is 0, open another panel with active davemon for player to pick. if they pick 0 hp one from active list, just say you cant do that or sumn
+            enemyAtk();
+        }
         
         
     }
@@ -215,7 +225,6 @@ public class Board extends JPanel implements ActionListener {
         jframe.getEnemyCreatureLevel().setText(enemyCreature.getLevel().toString());
 
         if(enemyCreature.getEffects().isEmpty()){
-            System.out.println("enemy has no effects");
             jframe.getEnemyCreatureEffects().setText("Effects: none");
         }else{
             jframe.getEnemyCreatureEffects().setText("Effects: ");
@@ -252,6 +261,8 @@ public class Board extends JPanel implements ActionListener {
                     // switch to another panel right here to exit the fight
                 }else{
                     System.out.println("Failed to catch the Davemon.");
+                    setFightPanel(trainer.getActiveDavemon().get(0));
+                    jframe.getContentPane().repaint();
                 }
             }else if(hpPercent<.25){
                 seed = rando.nextInt(100);
@@ -261,9 +272,13 @@ public class Board extends JPanel implements ActionListener {
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
                 }else{
                     System.out.println("Failed to catch the Davemon.");
+                    setFightPanel(trainer.getActiveDavemon().get(0));
+                    jframe.getContentPane().repaint();
                 }
             }else{
-                System.out.println("Failed to catch the Davemon.");
+                System.out.println("Failed to catch the Davemon that has more than 50% hp.");
+                setFightPanel(trainer.getActiveDavemon().get(0));
+                jframe.getContentPane().repaint();
             }
         }
     }
