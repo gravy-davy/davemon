@@ -1,8 +1,10 @@
 package davemon;
 
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JFrame extends javax.swing.JFrame {
@@ -64,6 +66,9 @@ public class JFrame extends javax.swing.JFrame {
         daveballsLeft = new javax.swing.JLabel();
         enemySummaryLabel = new javax.swing.JLabel();
         playerSummaryLabel = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -179,6 +184,27 @@ public class JFrame extends javax.swing.JFrame {
 
         playerSummaryLabel.setText("jLabel2");
 
+        jButton5.setText("davemon1");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("davemon2");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("davemon3");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -201,50 +227,58 @@ public class JFrame extends javax.swing.JFrame {
                             .addComponent(playerSummaryLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(playerCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(54, 54, 54)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(enemyCreatureEffects, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(move1button)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(move2button)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(move3button)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(move4button))
-                                    .addComponent(playerCreatureEffectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enemyCreatureName)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(playerCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(54, 54, 54)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enemyCreatureEffects, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(playerCreatureEffectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enemyCreatureName)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel10)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(enemyCreatureLevel))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel8)
+                                                        .addGap(35, 35, 35)
+                                                        .addComponent(enemyCreatureHealth)))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel9)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(enemyCreatureMaxHealth))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel11)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(playerCreatureLevel))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel6)
+                                                        .addGap(25, 25, 25)
+                                                        .addComponent(playerCreatureHealth)))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel7)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(playerCreatureMaxHealth))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(move1button)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(move2button)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(move3button)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(move4button))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(enemyCreatureLevel))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(enemyCreatureHealth)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(enemyCreatureMaxHealth))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(playerCreatureLevel))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(25, 25, 25)
-                                                .addComponent(playerCreatureHealth)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(playerCreatureMaxHealth)))))
+                                        .addComponent(jButton5)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jButton6)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jButton7)))))
                         .addGap(67, 67, 67))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -299,7 +333,10 @@ public class JFrame extends javax.swing.JFrame {
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton4)
-                                    .addComponent(daveballsLeft))
+                                    .addComponent(daveballsLeft)
+                                    .addComponent(jButton5)
+                                    .addComponent(jButton6)
+                                    .addComponent(jButton7))
                                 .addGap(125, 125, 125))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -428,6 +465,48 @@ public class JFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(player.getActiveDavemon().size()>=2 && player.getActiveDavemon().get(1)!=null && player.getActiveDavemon().get(1).getHealth()>=0){
+            System.out.println("swapped to davemon 1");
+            // swap 1 with current davemon 0
+            Creature oldC = player.getActiveDavemon().get(0);
+            Creature newC = player.getActiveDavemon().get(1);
+            
+            player.getActiveDavemon().set(0, newC);
+            player.getActiveDavemon().set(1, oldC);
+        }else{
+            JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if(player.getActiveDavemon().size()>=3 && player.getActiveDavemon().get(2)!=null && player.getActiveDavemon().get(2).getHealth()>=0){
+            System.out.println("swapped to davemon 2");
+            
+            Creature oldC = player.getActiveDavemon().get(0);
+            Creature newC = player.getActiveDavemon().get(2);
+            
+            player.getActiveDavemon().set(0, newC);
+            player.getActiveDavemon().set(2, oldC);
+        }else{
+            JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if(player.getActiveDavemon().size()>=4 && player.getActiveDavemon().get(3)!=null && player.getActiveDavemon().get(3).getHealth()>=0){
+            System.out.println("swapped to davemon 3");
+            
+            Creature oldC = player.getActiveDavemon().get(0);
+            Creature newC = player.getActiveDavemon().get(3);
+            
+            player.getActiveDavemon().set(0, newC);
+            player.getActiveDavemon().set(3, oldC);
+        }else{
+            JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
     
     public void createPlayer(){
         player = new Player();
@@ -531,6 +610,9 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
