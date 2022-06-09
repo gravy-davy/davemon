@@ -131,6 +131,7 @@ public class Board extends JPanel implements ActionListener {
     
     // enemies can change stuff based on their name
     public void enemyAtk(){
+        fight.setMoveSummary("");
         Random rando = new Random();
         int moveSeed = rando.nextInt(trainer.getActiveDavemon().get(0).getMoveset().size());
         String move = trainer.getActiveDavemon().get(0).getMoveset().get(moveSeed).toString();
@@ -138,6 +139,7 @@ public class Board extends JPanel implements ActionListener {
         
         // IF someone switches, remake the fight object like this: fight = new Fight(jframe.getPlayer());
         
+        jframe.getEnemySummaryLabel().setText("<html><br/>" + fight.getMoveSummary() + "</html>");
         setFightPanel(trainer.getActiveDavemon().get(0));
         jframe.getContentPane().repaint();
         // need to see if fight is over here
@@ -148,10 +150,12 @@ public class Board extends JPanel implements ActionListener {
      * @param moveId is the move to use in an attack from player creature's moveset
      */
     public void playerAtk(int moveId){
+        fight.setMoveSummary("");
         fight.attack(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(moveId));
         setFightPanel(trainer.getActiveDavemon().get(0));
         jframe.getContentPane().repaint();
         
+        jframe.getPlayerSummaryLabel().setText("<html><br/>" + fight.getMoveSummary() + "</html>");
         // if killed enemy davemon, check if enemy trainer has more davemon. if they do, put that one in and speedcheck and new fight.
         
         int lost = didSomeoneLose(jframe.getPlayer(), trainer);
@@ -167,7 +171,8 @@ public class Board extends JPanel implements ActionListener {
             enemyAtk();
         }
         
-        
+
+        //jframe.getTurnSummaryLabel().setText("<html>" + myString.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
     }
     
     /**
@@ -223,7 +228,7 @@ public class Board extends JPanel implements ActionListener {
         jframe.getEnemyCreatureHealth().setText(enemyCreature.getHealth().toString());
         jframe.getEnemyCreatureMaxHealth().setText(enemyCreature.getMaxHealth().toString());
         jframe.getEnemyCreatureLevel().setText(enemyCreature.getLevel().toString());
-
+        
         if(enemyCreature.getEffects().isEmpty()){
             jframe.getEnemyCreatureEffects().setText("Effects: none");
         }else{

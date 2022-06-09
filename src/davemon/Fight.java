@@ -12,6 +12,8 @@ public class Fight {
     private Integer turn; // 0 for enemy, 1 for player turn
     private boolean isFightOver;
     
+    private String moveSummary;
+    
     // enemy creature fight. panels essentially are used to modify this object.
     // fight panel creates a fight object and just calls these methods.
     // might have to pass the jframe in here or can just repaint it in the board class
@@ -19,6 +21,7 @@ public class Fight {
     public Fight(Player p) {
         this.p = p;
         isFightOver = false;
+        moveSummary = "";
     }
     
     public void speedCheck(Creature playerCreature, Creature enemyCreature){
@@ -40,6 +43,7 @@ public class Fight {
     
     public void attack(Creature attackingCreature, Creature defendingCreature, Move move){
         Random rando = new Random();
+        String flavorText = "";
         
         // can use some ifs for other moves with the same exact flow. like a stronger bite can be with bite flow.
         if(move.getName().equalsIgnoreCase("Bite")){
@@ -51,25 +55,28 @@ public class Fight {
                 if(dmg>maxDmg){
                     dmg = maxDmg;
                 }
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 
                 if(defendingCreature.getWeaknesses().contains("Physical")){
                     dmg = dmg * 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
                 }else if(defendingCreature.getResistances().contains("Physical")){
                     dmg = dmg / 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
                 
-                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
-                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
+                    flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
                 }else{
-                    System.out.println("BLOCKED");
+                    flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
                 }
 
             }else{
                 // miss
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
         }else if(move.getName().equalsIgnoreCase("Quick Attack")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
@@ -81,31 +88,36 @@ public class Fight {
                     dmg = maxDmg;
                 }
                 
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
+                
                 if(defendingCreature.getWeaknesses().contains("Physical")){
                     dmg = dmg * 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
                 }else if(defendingCreature.getResistances().contains("Physical")){
                     dmg = dmg / 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
                 
-                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 if(attackingCreature.getTempSpeed()>=defendingCreature.getTempSpeed()){
                     dmg = dmg * 2;
+                    flavorText = flavorText + attackingCreature.getName() + " damage DOUBLED since it has higher speed! ";
                 }else{
                     dmg = dmg / 2;
+                    flavorText = flavorText + attackingCreature.getName() + " damage HALVED since it has lower speed! ";
                 }
                 
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
-                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
+                    flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
                 }else{
-                    System.out.println("BLOCKED");
+                    flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
                 }
 
             }else{
-                
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
         }else if(move.getName().equalsIgnoreCase("Stab")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
@@ -116,24 +128,27 @@ public class Fight {
                     dmg = maxDmg;
                 }
                 
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
+                
                 if(defendingCreature.getWeaknesses().contains("Physical")){
                     dmg = dmg * 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
                 }else if(defendingCreature.getResistances().contains("Physical")){
                     dmg = dmg / 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
                 
-                System.out.println("dmg roll = " + dmg + " / " + maxDmg);
                 int def = rando.nextInt(defendingCreature.getTempPhysicalDef());
-                System.out.println("def = " + def);
                 int totalDmg = dmg - def;
                 
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
+                    flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
                 }else{
-                    System.out.println("BLOCKED");
+                    flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
                 }
             }else{
-                
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             
         }else if(move.getName().equalsIgnoreCase("Harden")){
@@ -149,10 +164,8 @@ public class Fight {
                     attackingCreature.addEffect(e);
                     attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
                 }else{
-                    System.out.println("already has harden");
                     Effect e = findEffectToBeReplaced("Harden", attackingCreature);
                     if(e!=null){
-                        System.out.println("removed effect: " + e.getName());
                         attackingCreature.getEffects().remove(e);
                     }
                     Effect eff = new Effect();
@@ -161,9 +174,9 @@ public class Fight {
                     eff.setValue(move.getBaseAmount());
                     attackingCreature.addEffect(eff);
                 }
-                
+                flavorText = flavorText + attackingCreature.getName() + " used Harden on itself! ";
             }else{
-                
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
         }else if(move.getName().equalsIgnoreCase("Confuse")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
@@ -178,7 +191,6 @@ public class Fight {
                 }else{
                     Effect e = findEffectToBeReplaced("Confuse", defendingCreature);
                     if(e!=null){
-                        System.out.println("removed effect: " + e.getName());
                         defendingCreature.getEffects().remove(e);
                     }
                     Effect eff = new Effect();
@@ -188,15 +200,16 @@ public class Fight {
                     defendingCreature.addEffect(eff);
                 }
                 
-                
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
             }else{
-                
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
         // apply poison / dot effects here so after the creature does their turn they eat a bleed, for ex.
         decrementActiveEffects(attackingCreature);
+        moveSummary = flavorText;
     }
     
     public Effect findEffectToBeReplaced(String effName, Creature creature){
@@ -232,7 +245,6 @@ public class Fight {
         ArrayList<Effect> deadEffects = new ArrayList<>();
         
         for(Effect e : c.getEffects()){
-            System.out.println("EFFECT NAME: " + e.getName());
             e.setDuration(e.getDuration()-1);
             if(e.getDuration()<=0){
                 deadEffects.add(e);
@@ -244,7 +256,6 @@ public class Fight {
             if(c.getEffects().contains(e)){
                 if(e.getName().equalsIgnoreCase("Harden")){
                     c.setTempPhysicalDef(c.getTempPhysicalDef()-e.getValue());
-                    System.out.println("def without harden is = " + c.getTempPhysicalDef());
                 }
                 c.getEffects().remove(e);
             }
@@ -268,9 +279,7 @@ public class Fight {
         Effect accDebuff = checkForAccuracyDebuff(c);
         int accSeed;
         if(accDebuff!=null){
-            System.out.println("accuracy without debuff: " + move.getAccuracy());
             int debAcc = move.getAccuracy() - accDebuff.getValue();
-            System.out.println("accuracy after debuff = " + debAcc);
             if(debAcc<0){
                 debAcc = 1;
             }
@@ -280,10 +289,8 @@ public class Fight {
         }
         int randSeed = rando.nextInt(100 - accSeed);
         if(accSeed>=randSeed){
-            System.out.println("hit with a " + move.getName());
             return "Hit";
         }else{
-            System.out.println("missed with a " + move.getName());
             return "Miss";
         }
     }
@@ -303,8 +310,13 @@ public class Fight {
     public void setIsFightOver(boolean isFightOver) {
         this.isFightOver = isFightOver;
     }
-    
-    
-    
+
+    public String getMoveSummary() {
+        return moveSummary;
+    }
+
+    public void setMoveSummary(String moveSummary) {
+        this.moveSummary = moveSummary;
+    }
     
 }
