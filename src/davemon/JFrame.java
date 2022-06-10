@@ -1,7 +1,6 @@
 package davemon;
 
 import java.util.ArrayList;
-import javafx.scene.control.Alert;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -180,9 +179,9 @@ public class JFrame extends javax.swing.JFrame {
 
         daveballsLeft.setText("Daveballs:");
 
-        enemySummaryLabel.setText("jLabel12");
+        enemySummaryLabel.setText("-");
 
-        playerSummaryLabel.setText("jLabel2");
+        playerSummaryLabel.setText("-");
 
         jButton5.setText("davemon1");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -454,13 +453,13 @@ public class JFrame extends javax.swing.JFrame {
             player.setDaveballs(player.getDaveballs()-1);
             board.catchCreature();
         }else{
-            System.out.println("You don't have enough Daveballs!");
+            JOptionPane.showMessageDialog(null, "You don't have enough Daveballs!");
         }
         
         // just testing this part, this should probably be somewhere else.
         int didSomeoneLose = board.didSomeoneLose(player, board.getTrainer());
         if(didSomeoneLose==2){
-            System.out.println("You won the match by catching the enemy Davemon!");
+            JOptionPane.showMessageDialog(null, "You won the match by catching the enemy Davemon!");
             initBoard(player.getLocation());
         }
         
@@ -475,6 +474,8 @@ public class JFrame extends javax.swing.JFrame {
             
             player.getActiveDavemon().set(0, newC);
             player.getActiveDavemon().set(1, oldC);
+            board.refreshFightPanel();
+            board.enemyAtk();
         }else{
             JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
         }
@@ -489,6 +490,8 @@ public class JFrame extends javax.swing.JFrame {
             
             player.getActiveDavemon().set(0, newC);
             player.getActiveDavemon().set(2, oldC);
+            board.refreshFightPanel();
+            board.enemyAtk();
         }else{
             JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
         }
@@ -503,6 +506,8 @@ public class JFrame extends javax.swing.JFrame {
             
             player.getActiveDavemon().set(0, newC);
             player.getActiveDavemon().set(3, oldC);
+            board.enemyAtk();
+            board.refreshFightPanel();
         }else{
             JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
         }
@@ -516,7 +521,7 @@ public class JFrame extends javax.swing.JFrame {
         player.setActiveDavemon(new ArrayList<>());
         player.setLocation("Homestead");
         player.setMoney(1000);
-        player.setDaveballs(3);
+        player.setDaveballs(10);
     }
     
     /**

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -41,6 +42,8 @@ public class Board extends JPanel implements ActionListener {
         this.jframe = jframe;
         this.location = location;
         initBoard();
+        jframe.getPlayerSummaryLabel().setText("-");
+        jframe.getEnemySummaryLabel().setText("-");
     }
 
     private void initBoard() {
@@ -150,6 +153,16 @@ public class Board extends JPanel implements ActionListener {
      * @param moveId is the move to use in an attack from player creature's moveset
      */
     public void playerAtk(int moveId){
+        
+        checkForLoser();
+        
+        if(jframe.getPlayer().getActiveDavemon().get(0).getHealth()<=0){
+            JOptionPane.showMessageDialog(null, "You must swap to another Davemon, this one has feinted.");
+            return;
+        }
+        
+        
+        
         fight.setMoveSummary("");
         fight.attack(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(moveId));
         setFightPanel(trainer.getActiveDavemon().get(0));
@@ -157,22 +170,29 @@ public class Board extends JPanel implements ActionListener {
         
         jframe.getPlayerSummaryLabel().setText("<html><br/>" + fight.getMoveSummary() + "</html>");
         // if killed enemy davemon, check if enemy trainer has more davemon. if they do, put that one in and speedcheck and new fight.
-        
+        int keepGoing = checkForLoser();
+        if(keepGoing!=0){
+            // if current enemy davemon hp is 0, enemy must pick a new one from their inventory, just set it the active davemon 0. 
+        }else{
+            enemyAtk();
+        }
+    }
+    
+    // 0 = keep going, 1 stop
+    public int checkForLoser(){
         int lost = didSomeoneLose(jframe.getPlayer(), trainer);
         if(lost==2){
             System.out.println("Player won the entire duel."); // entire duel as in beat ALL enemy davemon.
             jframe.initBoard(jframe.getPlayer().getLocation());
+            JOptionPane.showMessageDialog(null, "You won the duel!");
+            return 1;
         }else if(lost==1){
             System.out.println("Enemy won the entire duel.");
             jframe.initBoard(jframe.getPlayer().getLocation());
-        }else{
-            // if current davemon hp is 0, enemy must pick a new one from their inventory, just set it the active davemon 0. 
-            // if player davemon hp is 0, open another panel with active davemon for player to pick. if they pick 0 hp one from active list, just say you cant do that or sumn
-            enemyAtk();
+            JOptionPane.showMessageDialog(null, "Enemy won the duel.");
+            return 1;
         }
-        
-
-        //jframe.getTurnSummaryLabel().setText("<html>" + myString.replaceAll("<","&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br/>") + "</html>");
+        return 0;
     }
     
     /**
@@ -194,16 +214,25 @@ public class Board extends JPanel implements ActionListener {
         }
         
         int enemyCounter = 0;
-        for(Creature c : t.getActiveDavemon()){
-            if(c.getHealth() <= 0){
-                enemyCounter++;
+        
+        if(null!= t.getActiveDavemon() && !t.getActiveDavemon().isEmpty()){
+            for(Creature c : t.getActiveDavemon()){
+                if(c.getHealth() <= 0){
+                    enemyCounter++;
+                }
+            }
+            if(enemyCounter==t.getActiveDavemon().size()){
+                return 2;
             }
         }
-        if(enemyCounter==t.getActiveDavemon().size()){
-            return 2;
-        }
+        
         
         return 0;
+    }
+    
+    public void refreshFightPanel(){
+        setFightPanel(trainer.getActiveDavemon().get(0));
+        jframe.getContentPane().repaint();
     }
     
     public void setFightPanel(Creature enemyCreature){
@@ -263,9 +292,11 @@ public class Board extends JPanel implements ActionListener {
                     // catch
                     System.out.println("You caught the Davemon!");
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
-                    // switch to another panel right here to exit the fight
+                    jframe.getPlayer().addToActiveDavemon(trainer.getActiveDavemon().get(0)); // REMOVE THIS LATER, JUST FOR TESTING MULTIPLE DAVEMON
+                    jframe.initBoard(jframe.getPlayer().getLocation());
                 }else{
                     System.out.println("Failed to catch the Davemon.");
+                    JOptionPane.showMessageDialog(null, "You don't have enough Daveballs!");
                     setFightPanel(trainer.getActiveDavemon().get(0));
                     jframe.getContentPane().repaint();
                 }
@@ -275,6 +306,8 @@ public class Board extends JPanel implements ActionListener {
                     // catch
                     System.out.println("You caught the Davemon!");
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
+                    jframe.getPlayer().addToActiveDavemon(trainer.getActiveDavemon().get(0)); // REMOVE THIS LATER, JUST FOR TESTING MULTIPLE DAVEMON
+                    jframe.initBoard(jframe.getPlayer().getLocation());
                 }else{
                     System.out.println("Failed to catch the Davemon.");
                     setFightPanel(trainer.getActiveDavemon().get(0));
