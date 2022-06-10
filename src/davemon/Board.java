@@ -111,8 +111,6 @@ public class Board extends JPanel implements ActionListener {
                 
                 jframe.openPanelFromWorld(jframe.getjPanel2());
                 
-                // NEW FIGHT OBJECT SHOULD BE RIGHT HERE AFTER CREATING THE ENEMY DAVEMON AND SETTING THE PANEL
-                
                 fight = new Fight(jframe.getPlayer());
                 
                 fight.speedCheck(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0));
@@ -120,8 +118,6 @@ public class Board extends JPanel implements ActionListener {
                     // enemy is attacking
                     enemyAtk();
                 }
-                
-                // determine who won based on whether player surrendered, or they have no active davemon left
                 
                 backToMain = true;
             }
@@ -140,9 +136,12 @@ public class Board extends JPanel implements ActionListener {
         String move = trainer.getActiveDavemon().get(0).getMoveset().get(moveSeed).toString();
         fight.attack(trainer.getActiveDavemon().get(0), jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0).getMoveset().get(moveSeed));
         
-        // IF someone switches, remake the fight object like this: fight = new Fight(jframe.getPlayer());
+        // IF someone switches, remake the fight object like this: fight = new Fight(jframe.getPlayer());. or just set the new active davemon to 0 index.
         
         jframe.getEnemySummaryLabel().setText("<html><br/>" + fight.getMoveSummary() + "</html>");
+        
+        checkForLoser();
+        
         setFightPanel(trainer.getActiveDavemon().get(0));
         jframe.getContentPane().repaint();
         // need to see if fight is over here
@@ -157,7 +156,7 @@ public class Board extends JPanel implements ActionListener {
         checkForLoser();
         
         if(jframe.getPlayer().getActiveDavemon().get(0).getHealth()<=0){
-            JOptionPane.showMessageDialog(null, "You must swap to another Davemon, this one has feinted.");
+            JOptionPane.showMessageDialog(null, "You must swap to another Davemon, this one has fainted.");
             return;
         }
         
@@ -185,6 +184,7 @@ public class Board extends JPanel implements ActionListener {
             System.out.println("Player won the entire duel."); // entire duel as in beat ALL enemy davemon.
             jframe.initBoard(jframe.getPlayer().getLocation());
             JOptionPane.showMessageDialog(null, "You won the duel!");
+            // can add rewards based on trainer player beat here. like beating some gym leader gives their badge, for ex.
             return 1;
         }else if(lost==1){
             System.out.println("Enemy won the entire duel.");

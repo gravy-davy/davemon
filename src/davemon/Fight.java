@@ -144,6 +144,17 @@ public class Fight {
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                     flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
+                    
+                    int bleedSeed = rando.nextInt(100);
+                    if(bleedSeed<=90){
+                        Effect e = new Effect();
+                        e.setDuration(3);
+                        e.setName("Bleed");
+                        e.setValue(move.getBaseAmount()/3);
+                        flavorText = flavorText + " Bleed effect has been applied on " + defendingCreature.getName() + "! ";
+                        defendingCreature.getEffects().add(e);
+                    }
+                    
                 }else{
                     flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
                 }
@@ -207,7 +218,8 @@ public class Fight {
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
-        // apply poison / dot effects here so after the creature does their turn they eat a bleed, for ex.
+        // active status effects proc at the end of the attacking character's turn
+        applyEndOfTurnEffects(attackingCreature);
         decrementActiveEffects(attackingCreature);
         moveSummary = flavorText;
     }
@@ -225,7 +237,9 @@ public class Fight {
     public void applyEndOfTurnEffects(Creature c){
         
         for(Effect e : c.getEffects()){
-            
+            if(e.getName().equalsIgnoreCase("Bleed")){
+                c.setHealth(c.getHealth()-e.getValue());
+            }
         }
         
     }
