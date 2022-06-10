@@ -14,6 +14,9 @@ public class Constant {
     public static final ImageIcon WALKING_UP_AVATAR = new ImageIcon("assets/images/avataaar_up.gif");
     public static final ImageIcon WALKING_DOWN_AVATAR = new ImageIcon("assets/images/avataaar_down.gif");
     
+    // map sizes should be 850 width and 912 height
+    public static final ImageIcon MAP_TEST = new ImageIcon("assets/images/map_test.png");
+    
     // creature photos should be 225x225
     public static final ImageIcon CREATURE_UNIRU = new ImageIcon("assets/images/creature_uniru.jpg");
     public static final ImageIcon CREATURE_IRAX = new ImageIcon("assets/images/creature_irax.jpg");

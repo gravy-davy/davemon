@@ -24,6 +24,7 @@ public class JFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        System.out.println("jframe size = " + getSize());
     }
     
     /**

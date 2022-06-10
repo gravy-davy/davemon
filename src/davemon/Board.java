@@ -71,12 +71,14 @@ public class Board extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(sprite.getImage(), sprite.getX(), 
-            sprite.getY(), this);
         
         if(location.equalsIgnoreCase("Homestead")){
-            g2d.drawImage(Constant.GRASS.getImage(), 300, 0, this);
+            g2d.drawImage(Constant.MAP_TEST.getImage(),0,0,this);
+            //g2d.drawImage(Constant.GRASS.getImage(), 300, 0, this);
         }
+        
+        g2d.drawImage(sprite.getImage(), sprite.getX(), 
+            sprite.getY(), this);
     }
     
     @Override

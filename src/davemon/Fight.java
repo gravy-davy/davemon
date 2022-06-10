@@ -193,25 +193,30 @@ public class Fight {
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
-                if(!doesAlreadyHaveEffect("Confuse", defendingCreature)){
-                    Effect e = new Effect();
-                    e.setName("Confuse");
-                    e.setDuration(move.getDuration());
-                    e.setValue(move.getBaseAmount());
-                    defendingCreature.addEffect(e);
+                if(defendingCreature.getResistances().contains("Mind")){
+                    flavorText = flavorText + defendingCreature.getName() + " resisted " + move.getName() + "! ";
                 }else{
-                    Effect e = findEffectToBeReplaced("Confuse", defendingCreature);
-                    if(e!=null){
-                        defendingCreature.getEffects().remove(e);
+                    if(!doesAlreadyHaveEffect("Confuse", defendingCreature)){
+                        Effect e = new Effect();
+                        e.setName("Confuse");
+                        e.setDuration(move.getDuration());
+                        e.setValue(move.getBaseAmount());
+                        defendingCreature.addEffect(e);
+                    }else{
+                        Effect e = findEffectToBeReplaced("Confuse", defendingCreature);
+                        if(e!=null){
+                            defendingCreature.getEffects().remove(e);
+                        }
+                        Effect eff = new Effect();
+                        eff.setName("Confuse");
+                        eff.setDuration(move.getDuration());
+                        eff.setValue(move.getBaseAmount());
+                        defendingCreature.addEffect(eff);
                     }
-                    Effect eff = new Effect();
-                    eff.setName("Confuse");
-                    eff.setDuration(move.getDuration());
-                    eff.setValue(move.getBaseAmount());
-                    defendingCreature.addEffect(eff);
+                    flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 }
                 
-                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
+                
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
