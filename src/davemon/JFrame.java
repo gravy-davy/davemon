@@ -425,6 +425,11 @@ public class JFrame extends javax.swing.JFrame {
         activeDavemon0Name.setText("jLabel2");
 
         jButton8.setText("Remove");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         activeDavemon1Name.setText("jLabel2");
 
@@ -433,14 +438,34 @@ public class JFrame extends javax.swing.JFrame {
         activeDavemon3Name.setText("jLabel2");
 
         jButton9.setText("Remove");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Remove");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Remove");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         rosterDavemon0Name.setText("jLabel2");
 
         jButton12.setText("Add");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         rosterDavemon1Name.setText("jLabel2");
 
@@ -449,10 +474,25 @@ public class JFrame extends javax.swing.JFrame {
         rosterDavemon3Name.setText("jLabel2");
 
         jButton13.setText("Add");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Add");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setText("Add");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Next page");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -741,6 +781,71 @@ public class JFrame extends javax.swing.JFrame {
         pageNumber = 0;
         initBoard(player.getLocation());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        removeFromActiveDavemonViaButton(0);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        removeFromActiveDavemonViaButton(1);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        removeFromActiveDavemonViaButton(2);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        removeFromActiveDavemonViaButton(3);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        addToActiveDavemonViaButton(0);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        addToActiveDavemonViaButton(1);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        addToActiveDavemonViaButton(2);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        addToActiveDavemonViaButton(3);
+    }//GEN-LAST:event_jButton15ActionPerformed
+    
+    public void removeFromActiveDavemonViaButton(int offset){
+        try{
+            if(null != player.getActiveDavemon().get(offset)){
+                player.getDavemon().add(player.getActiveDavemon().get(offset));
+                player.getActiveDavemon().remove(offset);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Davemon doesn't exist!");
+        }
+        setupBankPanel();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+    
+    public void addToActiveDavemonViaButton(int offset){
+        try{
+            int index = pageNumber * 4 + offset;
+            if(null != player.getDavemon().get(index)){
+                if(player.getActiveDavemon().size()>=4){
+                    JOptionPane.showMessageDialog(null, "You can only have 4 active Davemon at once!");
+                }else{
+                    player.addToActiveDavemon(player.getDavemon().get(index));
+                    player.getDavemon().remove(index);
+                }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Davemon doesn't exist!");
+        }
+        setupBankPanel();
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
     
     public void createPlayer(){
         player = new Player();
