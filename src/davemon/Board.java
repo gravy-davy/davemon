@@ -126,11 +126,11 @@ public class Board extends JPanel implements ActionListener {
                 
                 backToMain = true;
             }else if(sprite.getX()>=512 && sprite.getX()<=546 && sprite.getY()==526){
-                System.out.println("CATER TRAINER");
                 trainer = tc.createTrainer("Cater");
-                
                 setTrainerDialogPanel();
-                
+            }else if(sprite.getX()>=592 && sprite.getX()<=738 && sprite.getY()>=174 && sprite.getY()<=418){
+                jframe.setupBankPanel();
+                jframe.openPanelFromWorld(jframe.getBankPanel());
             }
         }
         
@@ -341,7 +341,6 @@ public class Board extends JPanel implements ActionListener {
                     // catch
                     System.out.println("You caught the Davemon!");
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
-                    jframe.getPlayer().addToActiveDavemon(trainer.getActiveDavemon().get(0)); // REMOVE THIS LATER, JUST FOR TESTING MULTIPLE DAVEMON
                     jframe.initBoard(jframe.getPlayer().getLocation());
                 }else{
                     System.out.println("Failed to catch the Davemon.");
@@ -355,7 +354,6 @@ public class Board extends JPanel implements ActionListener {
                     // catch
                     System.out.println("You caught the Davemon!");
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
-                    jframe.getPlayer().addToActiveDavemon(trainer.getActiveDavemon().get(0)); // REMOVE THIS LATER, JUST FOR TESTING MULTIPLE DAVEMON
                     jframe.initBoard(jframe.getPlayer().getLocation());
                 }else{
                     System.out.println("Failed to catch the Davemon.");

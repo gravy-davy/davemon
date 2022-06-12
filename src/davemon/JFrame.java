@@ -5,16 +5,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class JFrame extends javax.swing.JFrame {
-
-    // if steps on grassy array / coordinates and user location = "roscoe warren" then generate roscoe warren mobs :)
     
     private Player player;
     private Board board;
     private boolean hasUsedBag;
-    private Integer pageNumber; // page number for showing davemon in bank
+    private Integer pageNumber; // page number for showing davemon in bank. it should start at 0. reset to 0 when player leaves bank menu.
     
     /**
      * Creates new form JFrame
@@ -26,6 +23,7 @@ public class JFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        pageNumber = 0;
     }
     
     /**
@@ -95,6 +93,7 @@ public class JFrame extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         trainerDialogPanel = new javax.swing.JPanel();
         trainerFullPic = new javax.swing.JLabel();
         jButton18 = new javax.swing.JButton();
@@ -456,8 +455,25 @@ public class JFrame extends javax.swing.JFrame {
         jButton15.setText("Add");
 
         jButton16.setText("Next page");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("Prev page");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bankPanelLayout = new javax.swing.GroupLayout(bankPanel);
         bankPanel.setLayout(bankPanelLayout);
@@ -492,15 +508,22 @@ public class JFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bankPanelLayout.createSequentialGroup()
                 .addContainerGap(314, Short.MAX_VALUE)
-                .addComponent(jButton17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton16)
-                .addGap(313, 313, 313))
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bankPanelLayout.createSequentialGroup()
+                        .addComponent(jButton17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton16)
+                        .addGap(313, 313, 313))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bankPanelLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(62, 62, 62))))
         );
         bankPanelLayout.setVerticalGroup(
             bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bankPanelLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addGap(36, 36, 36)
+                .addComponent(jButton1)
+                .addGap(37, 37, 37)
                 .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(activeDavemon0Name)
                     .addComponent(jButton8))
@@ -693,6 +716,31 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         board.trainerFightSetup();
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        int minForNextPage = (pageNumber+1) * 4;
+        if(player.getDavemon().size()>=minForNextPage){
+            pageNumber++;
+            setupBankPanel();
+            getContentPane().revalidate();
+            getContentPane().repaint();
+        }else{
+            JOptionPane.showMessageDialog(null, "Not enough Davemon to see another page!");
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        if(pageNumber!=0){
+            pageNumber--;
+        }else{
+            JOptionPane.showMessageDialog(null, "You are already on page 0.");
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pageNumber = 0;
+        initBoard(player.getLocation());
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void createPlayer(){
         player = new Player();
@@ -747,6 +795,62 @@ public class JFrame extends javax.swing.JFrame {
         setVisible(true);
     }
     
+    public void setupBankPanel(){
+        if(player.getActiveDavemon().size()>=1){
+            activeDavemon0Name.setText(player.getActiveDavemon().get(0).getName());
+        }else{
+            activeDavemon0Name.setText("-");
+        }
+        
+        if(player.getActiveDavemon().size()>=2){
+            activeDavemon1Name.setText(player.getActiveDavemon().get(1).getName());
+        }else{
+            activeDavemon1Name.setText("-");
+        }
+        
+        if(player.getActiveDavemon().size()>=3){
+            activeDavemon2Name.setText(player.getActiveDavemon().get(2).getName());
+        }else{
+            activeDavemon2Name.setText("-");
+        }
+        
+        if(player.getActiveDavemon().size()>=4){
+            activeDavemon3Name.setText(player.getActiveDavemon().get(3).getName());
+        }else{
+            activeDavemon3Name.setText("-");
+        }
+        
+        
+        try{
+            int index = pageNumber * 4 + 0;
+            rosterDavemon0Name.setText(player.getDavemon().get(index).getName());
+        }catch(Exception e){
+            rosterDavemon0Name.setText("-");
+        }
+        
+        try{
+            int index = pageNumber * 4 + 1;
+            rosterDavemon1Name.setText(player.getDavemon().get(index).getName());
+        }catch(Exception e){
+            rosterDavemon1Name.setText("-");
+        }
+        
+        try{
+            int index = pageNumber * 4 + 2;
+            rosterDavemon2Name.setText(player.getDavemon().get(index).getName());
+        }catch(Exception e){
+            rosterDavemon2Name.setText("-");
+        }
+        
+        try{
+            int index = pageNumber * 4 + 3;
+            rosterDavemon3Name.setText(player.getDavemon().get(index).getName());
+        }catch(Exception e){
+            rosterDavemon3Name.setText("-");
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -797,6 +901,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel enemyCreatureMaxHealth;
     private javax.swing.JLabel enemyCreatureName;
     private javax.swing.JLabel enemySummaryLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -1049,8 +1154,12 @@ public class JFrame extends javax.swing.JFrame {
         this.trainerDialogText = trainerDialogText;
     }
 
-    
+    public JPanel getBankPanel() {
+        return bankPanel;
+    }
 
-    
+    public void setBankPanel(JPanel bankPanel) {
+        this.bankPanel = bankPanel;
+    }
     
 }
