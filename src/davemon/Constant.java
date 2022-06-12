@@ -17,9 +17,18 @@ public class Constant {
     // map sizes should be 850 width and 912 height
     public static final ImageIcon MAP_TEST = new ImageIcon("assets/images/map_test.png");
     
+    // TRAINER full photos should be 275 width and 435 height
+    public static final ImageIcon TRAINER_CATER_FULL = new ImageIcon("assets/images/trainer_cater_full.jpg");
+    
+    // TRAINER logo photos should be 116 width and 106 height
+    public static final ImageIcon TRAINER_WILD_LOGO = new ImageIcon("assets/images/trainer_wild_logo.png");
+    public static final ImageIcon TRAINER_CATER_LOGO = new ImageIcon("assets/images/trainer_cater_logo.PNG");
+    
     // creature photos should be 225x225
     public static final ImageIcon CREATURE_UNIRU = new ImageIcon("assets/images/creature_uniru.jpg");
     public static final ImageIcon CREATURE_IRAX = new ImageIcon("assets/images/creature_irax.jpg");
     public static final ImageIcon CREATURE_MOWL = new ImageIcon("assets/images/creature_mowl.jpg");
+    public static final ImageIcon CREATURE_GIRAPOD = new ImageIcon("assets/images/creature_girapod.jpg");
+    public static final ImageIcon CREATURE_GNUKE = new ImageIcon("assets/images/creature_gnuke.jpg");
     
 }

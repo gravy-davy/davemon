@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class Player {
     
     private String name;
-    private ArrayList<Creature> davemon;
+    private ArrayList<Creature> davemon; // other davemon in the bank/roster, but not in the active davemon
     private ArrayList<Creature> activeDavemon; // using in fights, max size here is 4
     private Integer money;
     private String location;
-    private ArrayList<Integer> gymBattlesCleared;
+    private ArrayList<Integer> gymBattlesCleared; // this will hold trainer IDs so player doesnt get rewarded for beating them more than once.
     
     // items
     private Integer daveballs;

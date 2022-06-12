@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class JFrame extends javax.swing.JFrame {
 
@@ -13,6 +14,7 @@ public class JFrame extends javax.swing.JFrame {
     private Player player;
     private Board board;
     private boolean hasUsedBag;
+    private Integer pageNumber; // page number for showing davemon in bank
     
     /**
      * Creates new form JFrame
@@ -24,7 +26,6 @@ public class JFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        System.out.println("jframe size = " + getSize());
     }
     
     /**
@@ -40,7 +41,6 @@ public class JFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         playerCreatureIcon = new javax.swing.JLabel();
         enemyCreatureIcon = new javax.swing.JLabel();
         move1button = new javax.swing.JButton();
@@ -69,12 +69,37 @@ public class JFrame extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        tranerFightLogo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        bankPanel = new javax.swing.JPanel();
+        activeDavemon0Name = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        activeDavemon1Name = new javax.swing.JLabel();
+        activeDavemon2Name = new javax.swing.JLabel();
+        activeDavemon3Name = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        rosterDavemon0Name = new javax.swing.JLabel();
+        jButton12 = new javax.swing.JButton();
+        rosterDavemon1Name = new javax.swing.JLabel();
+        rosterDavemon2Name = new javax.swing.JLabel();
+        rosterDavemon3Name = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        trainerDialogPanel = new javax.swing.JPanel();
+        trainerFullPic = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        trainerDialogText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -115,13 +140,6 @@ public class JFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, "card2");
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         move1button.setText("Move1");
         move1button.addActionListener(new java.awt.event.ActionListener() {
@@ -216,80 +234,81 @@ public class JFrame extends javax.swing.JFrame {
                 .addComponent(jButton4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(67, 67, 67)
+                .addContainerGap()
+                .addComponent(tranerFightLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(enemySummaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(playerSummaryLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(playerCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(enemyCreatureEffects, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(playerCreatureEffectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enemyCreatureName)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(playerCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(enemyCreatureIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(54, 54, 54)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(enemyCreatureEffects, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(playerCreatureEffectsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(enemyCreatureName)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel10)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(enemyCreatureLevel))
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel8)
-                                                        .addGap(35, 35, 35)
-                                                        .addComponent(enemyCreatureHealth)))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel9)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(enemyCreatureMaxHealth))
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(enemyCreatureLevel))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel11)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(playerCreatureLevel))
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(jLabel6)
-                                                        .addGap(25, 25, 25)
-                                                        .addComponent(playerCreatureHealth)))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel7)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(playerCreatureMaxHealth))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(move1button)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(move2button)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(move3button)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(move4button))))
+                                                .addComponent(jLabel8)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(enemyCreatureHealth)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(enemyCreatureMaxHealth))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton5)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jButton6)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jButton7)))))
-                        .addGap(67, 67, 67))))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(playerCreatureLevel))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(playerCreatureHealth)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(playerCreatureMaxHealth))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(move1button)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(move2button)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(move3button)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(move4button))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton6)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton7)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(playerSummaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(enemySummaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(enemySummaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(playerSummaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(enemySummaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(playerSummaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tranerFightLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -404,6 +423,169 @@ public class JFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, "card4");
 
+        activeDavemon0Name.setText("jLabel2");
+
+        jButton8.setText("Remove");
+
+        activeDavemon1Name.setText("jLabel2");
+
+        activeDavemon2Name.setText("jLabel2");
+
+        activeDavemon3Name.setText("jLabel2");
+
+        jButton9.setText("Remove");
+
+        jButton10.setText("Remove");
+
+        jButton11.setText("Remove");
+
+        rosterDavemon0Name.setText("jLabel2");
+
+        jButton12.setText("Add");
+
+        rosterDavemon1Name.setText("jLabel2");
+
+        rosterDavemon2Name.setText("jLabel2");
+
+        rosterDavemon3Name.setText("jLabel2");
+
+        jButton13.setText("Add");
+
+        jButton14.setText("Add");
+
+        jButton15.setText("Add");
+
+        jButton16.setText("Next page");
+
+        jButton17.setText("Prev page");
+
+        javax.swing.GroupLayout bankPanelLayout = new javax.swing.GroupLayout(bankPanel);
+        bankPanel.setLayout(bankPanelLayout);
+        bankPanelLayout.setHorizontalGroup(
+            bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bankPanelLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(activeDavemon3Name, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(activeDavemon2Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(activeDavemon1Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(activeDavemon0Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton8)
+                        .addComponent(jButton9))
+                    .addComponent(jButton10)
+                    .addComponent(jButton11)
+                    .addGroup(bankPanelLayout.createSequentialGroup()
+                        .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rosterDavemon3Name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(rosterDavemon2Name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rosterDavemon1Name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rosterDavemon0Name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton12)
+                            .addComponent(jButton13)
+                            .addComponent(jButton14)
+                            .addComponent(jButton15))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bankPanelLayout.createSequentialGroup()
+                .addContainerGap(314, Short.MAX_VALUE)
+                .addComponent(jButton17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton16)
+                .addGap(313, 313, 313))
+        );
+        bankPanelLayout.setVerticalGroup(
+            bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bankPanelLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(activeDavemon0Name)
+                    .addComponent(jButton8))
+                .addGap(34, 34, 34)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(activeDavemon1Name)
+                    .addComponent(jButton9))
+                .addGap(44, 44, 44)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(activeDavemon2Name)
+                    .addComponent(jButton10))
+                .addGap(39, 39, 39)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(activeDavemon3Name)
+                    .addComponent(jButton11))
+                .addGap(139, 139, 139)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rosterDavemon0Name)
+                    .addComponent(jButton12))
+                .addGap(50, 50, 50)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rosterDavemon1Name)
+                    .addComponent(jButton13))
+                .addGap(51, 51, 51)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rosterDavemon2Name)
+                    .addComponent(jButton14))
+                .addGap(61, 61, 61)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rosterDavemon3Name)
+                    .addComponent(jButton15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton16)
+                    .addComponent(jButton17))
+                .addGap(55, 55, 55))
+        );
+
+        getContentPane().add(bankPanel, "card5");
+
+        jButton18.setText("Fight");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jButton19.setText("No");
+
+        javax.swing.GroupLayout trainerDialogPanelLayout = new javax.swing.GroupLayout(trainerDialogPanel);
+        trainerDialogPanel.setLayout(trainerDialogPanelLayout);
+        trainerDialogPanelLayout.setHorizontalGroup(
+            trainerDialogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trainerDialogPanelLayout.createSequentialGroup()
+                .addGroup(trainerDialogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(trainerDialogPanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(trainerDialogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(trainerDialogText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(trainerDialogPanelLayout.createSequentialGroup()
+                                .addComponent(trainerFullPic, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE))))
+                    .addGroup(trainerDialogPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton19)
+                        .addGap(94, 94, 94)
+                        .addComponent(jButton18)))
+                .addGap(51, 51, 51))
+        );
+        trainerDialogPanelLayout.setVerticalGroup(
+            trainerDialogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trainerDialogPanelLayout.createSequentialGroup()
+                .addContainerGap(194, Short.MAX_VALUE)
+                .addComponent(trainerFullPic, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(trainerDialogText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(trainerDialogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton18)
+                    .addComponent(jButton19))
+                .addGap(34, 34, 34))
+        );
+
+        getContentPane().add(trainerDialogPanel, "card6");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -413,12 +595,6 @@ public class JFrame extends javax.swing.JFrame {
         switchToAnotherPanel(jPanel1,jPanel3);
         
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        switchToAnotherPanel(jPanel2, jPanel1);
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(jTextField1.getText().length()>0){
@@ -513,6 +689,10 @@ public class JFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Davemon is out of hp!");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        board.trainerFightSetup();
+    }//GEN-LAST:event_jButton18ActionPerformed
     
     public void createPlayer(){
         player = new Player();
@@ -604,6 +784,11 @@ public class JFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel activeDavemon0Name;
+    private javax.swing.JLabel activeDavemon1Name;
+    private javax.swing.JLabel activeDavemon2Name;
+    private javax.swing.JLabel activeDavemon3Name;
+    private javax.swing.JPanel bankPanel;
     private javax.swing.JLabel daveballsLeft;
     private javax.swing.JLabel enemyCreatureEffects;
     private javax.swing.JLabel enemyCreatureHealth;
@@ -612,13 +797,24 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel enemyCreatureMaxHealth;
     private javax.swing.JLabel enemyCreatureName;
     private javax.swing.JLabel enemySummaryLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -643,6 +839,14 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel playerCreatureLevel;
     private javax.swing.JLabel playerCreatureMaxHealth;
     private javax.swing.JLabel playerSummaryLabel;
+    private javax.swing.JLabel rosterDavemon0Name;
+    private javax.swing.JLabel rosterDavemon1Name;
+    private javax.swing.JLabel rosterDavemon2Name;
+    private javax.swing.JLabel rosterDavemon3Name;
+    private javax.swing.JPanel trainerDialogPanel;
+    private javax.swing.JLabel trainerDialogText;
+    private javax.swing.JLabel trainerFullPic;
+    private javax.swing.JLabel tranerFightLogo;
     // End of variables declaration//GEN-END:variables
 
     public JPanel getjPanel1() {
@@ -811,6 +1015,38 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setPlayerSummaryLabel(JLabel playerSummaryLabel) {
         this.playerSummaryLabel = playerSummaryLabel;
+    }
+
+    public JPanel getTrainerDialogPanel() {
+        return trainerDialogPanel;
+    }
+
+    public void setTrainerDialogPanel(JPanel trainerDialogPanel) {
+        this.trainerDialogPanel = trainerDialogPanel;
+    }
+
+    public JLabel getTrainerFullPic() {
+        return trainerFullPic;
+    }
+
+    public void setTrainerFullPic(JLabel trainerFullPic) {
+        this.trainerFullPic = trainerFullPic;
+    }
+
+    public JLabel getTranerFightLogo() {
+        return tranerFightLogo;
+    }
+
+    public void setTranerFightLogo(JLabel tranerFightLogo) {
+        this.tranerFightLogo = tranerFightLogo;
+    }
+
+    public JLabel getTrainerDialogText() {
+        return trainerDialogText;
+    }
+
+    public void setTrainerDialogText(JLabel trainerDialogText) {
+        this.trainerDialogText = trainerDialogText;
     }
 
     

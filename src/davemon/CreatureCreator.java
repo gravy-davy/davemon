@@ -154,6 +154,92 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Girapod")){
+            c.setEvolutionLevel(28);
+            c.setType("Grass");
+            c.addToResistances("Grass");
+            c.addToWeaknesses("Fire");
+            
+            // in this case, 40 is the minimum health
+            c.setHealthPerLevel(1);
+            c.setHealth(35 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(85);
+            c.setPhysicalDef(15);
+            c.setSpecialDef(20);
+            c.setPhysicalAtk(10);
+            c.setSpecialAtk(25);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_GIRAPOD);
+            
+            Move m1 = new Move();
+            m1.setName("Bite"); 
+            m1.setTimesUsed(0);
+            m1.setMaxUses(35);
+            m1.setBaseAmount(10);
+            m1.setType("Physical");
+            m1.setAccuracy(90);
+            
+            Move m2 = new Move();
+            m2.setName("Heal");
+            m2.setTimesUsed(0);
+            m2.setMaxUses(10);
+            m2.setBaseAmount(20);
+            m2.setType("Grass");
+            m2.setAccuracy(70);
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Gnuke")){
+            c.setEvolutionLevel(35);
+            c.setType("Water");
+            c.addToResistances("Water");
+            c.addToWeaknesses("Lightning");
+            
+            // in this case, 40 is the minimum health
+            c.setHealthPerLevel(2);
+            c.setHealth(41 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(55);
+            c.setPhysicalDef(17);
+            c.setSpecialDef(25);
+            c.setPhysicalAtk(22);
+            c.setSpecialAtk(22);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_GNUKE);
+            
+            Move m1 = new Move();
+            m1.setName("Water gun"); 
+            m1.setTimesUsed(0);
+            m1.setMaxUses(20);
+            m1.setBaseAmount(10);
+            m1.setType("Water");
+            m1.setAccuracy(90);
+            
+            Move m2 = new Move();
+            m2.setName("Water cannon");
+            m2.setTimesUsed(0);
+            m2.setMaxUses(10);
+            m2.setBaseAmount(50);
+            m2.setType("Water");
+            m2.setAccuracy(50);
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;

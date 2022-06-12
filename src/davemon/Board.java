@@ -26,6 +26,7 @@ public class Board extends JPanel implements ActionListener {
     private final int DELAY = 10;
     
     private final CreatureCreator cc = new CreatureCreator();
+    private final TrainerCreator tc = new TrainerCreator();
     
     // PARAMS
     private JFrame jframe;
@@ -71,7 +72,8 @@ public class Board extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-        
+        // when outlining a map's coordinates, uncomment the line below and walk along the walls of buildings
+        // System.out.println("sprite x and y coords: " + sprite.getX() + " - " + sprite.getY());
         if(location.equalsIgnoreCase("Homestead")){
             g2d.drawImage(Constant.MAP_TEST.getImage(),0,0,this);
             //g2d.drawImage(Constant.GRASS.getImage(), 300, 0, this);
@@ -92,7 +94,7 @@ public class Board extends JPanel implements ActionListener {
     private void step() {
         sprite.move();
         if(location.equalsIgnoreCase("Homestead")){
-            if(sprite.getX()>300 && sprite.getY()<195 && sprite.getX()<580){
+            if(sprite.getX()>72 && sprite.getX()<294 && sprite.getY()>480 && sprite.getY()<680){
                 
                 // if grass procs a fight, then do all this code. otherwise nothing.
                 Random rando = new Random();
@@ -108,6 +110,7 @@ public class Board extends JPanel implements ActionListener {
                 trainer.setActiveDavemon(new ArrayList<>());
                 trainer.setName("Wild");
                 trainer.addToActiveDavemon(enemyCreature);
+                trainer.setLogo(Constant.TRAINER_WILD_LOGO);
                 
                 setFightPanel(enemyCreature);
                 
@@ -122,6 +125,12 @@ public class Board extends JPanel implements ActionListener {
                 }
                 
                 backToMain = true;
+            }else if(sprite.getX()>=512 && sprite.getX()<=546 && sprite.getY()==526){
+                System.out.println("CATER TRAINER");
+                trainer = tc.createTrainer("Cater");
+                
+                setTrainerDialogPanel();
+                
             }
         }
         
@@ -130,8 +139,35 @@ public class Board extends JPanel implements ActionListener {
     }    
     
     
+    public void setTrainerDialogPanel(){
+        jframe.getTrainerFullPic().setIcon(trainer.getFullLogo());
+        jframe.getTrainerFullPic().setBorder(BorderFactory.createLineBorder(Color.black));
+        jframe.getTrainerDialogText().setText(trainer.getIntroText());
+        
+        jframe.openPanelFromWorld(jframe.getTrainerDialogPanel());
+    }
+    
+    // this should remain the same the rest of the way
+    public void trainerFightSetup(){
+        setFightPanel(trainer.getActiveDavemon().get(0)); // can make this random if hp > 0 later  
+        jframe.openPanelFromWorld(jframe.getjPanel2());
+
+        fight = new Fight(jframe.getPlayer());
+
+        fight.speedCheck(jframe.getPlayer().getActiveDavemon().get(0), trainer.getActiveDavemon().get(0));
+        if(fight.getTurn()==0){
+            // enemy is attacking
+            enemyAtk();
+        }
+
+        backToMain = true;
+    }
+    
+    
     // enemies can change stuff based on their name
     public void enemyAtk(){
+        // check to see if they need to swap davemon here and at the end
+        doesTrainerSwap();
         fight.setMoveSummary("");
         Random rando = new Random();
         int moveSeed = rando.nextInt(trainer.getActiveDavemon().get(0).getMoveset().size());
@@ -142,11 +178,19 @@ public class Board extends JPanel implements ActionListener {
         
         jframe.getEnemySummaryLabel().setText("<html><br/>" + fight.getMoveSummary() + "</html>");
         
+        doesTrainerSwap();
         checkForLoser();
         
         setFightPanel(trainer.getActiveDavemon().get(0));
         jframe.getContentPane().repaint();
         // need to see if fight is over here
+    }
+    
+    public void doesTrainerSwap(){
+        if(trainer.getActiveDavemon().get(0).getHealth()<=0 && trainer.getActiveDavemon().size()>1){
+            // swap it
+            trainer.getActiveDavemon().remove(0);
+        }
     }
     
     /**
@@ -239,6 +283,9 @@ public class Board extends JPanel implements ActionListener {
     
     public void setFightPanel(Creature enemyCreature){
         // when player subs in a davemon, they should be in spot 0 in the array list. so swap current davemon aka 0 spot with new subbed in davemon.
+        
+        jframe.getTranerFightLogo().setIcon(trainer.getLogo());
+        jframe.getTranerFightLogo().setBorder(BorderFactory.createLineBorder(Color.black));
         ImageIcon img = new ImageIcon(jframe.getPlayer().getActiveDavemon().get(0).getImage().getImage());
         jframe.getPlayerCreatureIcon().setIcon(img);
         jframe.getPlayerCreatureIcon().setBorder(BorderFactory.createLineBorder(Color.black));

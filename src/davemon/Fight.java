@@ -220,6 +220,56 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
+        }else if(move.getName().equalsIgnoreCase("Heal")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){
+                // the effect is just so it gets removed once the duration is over. it gets increased here on activation.
+                
+                int heal = move.getBaseAmount();
+                int newHealth = heal + attackingCreature.getHealth();
+                
+                if(newHealth>attackingCreature.getTempMaxHealth()){
+                    newHealth = attackingCreature.getTempMaxHealth();
+                }
+                
+                
+                attackingCreature.setHealth(newHealth);
+                flavorText = flavorText + attackingCreature.getName() + " used Heal on itself! ";
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
+        }else if(move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){
+                // hit
+                int dmg = rando.nextInt(attackingCreature.getTempSpecialAtk());
+                int maxDmg = move.getBaseAmount();
+                if(dmg>maxDmg){
+                    dmg = maxDmg;
+                }
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
+                
+                if(defendingCreature.getWeaknesses().contains("Water")){
+                    dmg = dmg * 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
+                }else if(defendingCreature.getResistances().contains("Water")){
+                    dmg = dmg / 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
+                }
+                
+                int def = rando.nextInt(defendingCreature.getTempSpecialDef());
+                int totalDmg = dmg - def;
+                if(totalDmg>0){
+                    defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
+                    flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
+                }else{
+                    flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
+                }
+
+            }else{
+                // miss
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
