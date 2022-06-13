@@ -17,6 +17,9 @@ public class Trainer {
     private String victoryText;
     private String defeatText;
     
+    private Creature rewardCreature;
+    private Integer rewardMoney;
+    
     public String getName() {
         return name;
     }
@@ -83,6 +86,22 @@ public class Trainer {
 
     public void setDefeatText(String defeatText) {
         this.defeatText = defeatText;
+    }
+
+    public Creature getRewardCreature() {
+        return rewardCreature;
+    }
+
+    public void setRewardCreature(Creature rewardCreature) {
+        this.rewardCreature = rewardCreature;
+    }
+
+    public Integer getRewardMoney() {
+        return rewardMoney;
+    }
+
+    public void setRewardMoney(Integer rewardMoney) {
+        this.rewardMoney = rewardMoney;
     }
     
     

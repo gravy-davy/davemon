@@ -38,6 +38,7 @@ public class Board extends JPanel implements ActionListener {
     // FIGHT
     private Fight fight;
     private Trainer trainer;
+    private Integer levelOfLastCreature; // for xp 
 
     public Board(JFrame jframe, String location) {
         this.jframe = jframe;
@@ -126,8 +127,12 @@ public class Board extends JPanel implements ActionListener {
                 
                 backToMain = true;
             }else if(sprite.getX()>=512 && sprite.getX()<=546 && sprite.getY()==526){
-                trainer = tc.createTrainer("Cater");
-                setTrainerDialogPanel();
+                if(jframe.getPlayer().getGymBattlesCleared().contains(1)){
+                    System.out.println("already fought this trainer");
+                }else{
+                    trainer = tc.createTrainer("Cater");
+                    setTrainerDialogPanel();
+                }  
             }else if(sprite.getX()>=592 && sprite.getX()<=738 && sprite.getY()>=174 && sprite.getY()<=418){
                 jframe.setupBankPanel();
                 jframe.openPanelFromWorld(jframe.getBankPanel());
@@ -189,6 +194,7 @@ public class Board extends JPanel implements ActionListener {
     public void doesTrainerSwap(){
         if(trainer.getActiveDavemon().get(0).getHealth()<=0 && trainer.getActiveDavemon().size()>1){
             // swap it
+            levelOfLastCreature = trainer.getActiveDavemon().get(0).getLevel();
             trainer.getActiveDavemon().remove(0);
         }
     }
@@ -231,6 +237,9 @@ public class Board extends JPanel implements ActionListener {
             jframe.initBoard(jframe.getPlayer().getLocation());
             JOptionPane.showMessageDialog(null, "You won the duel!");
             // can add rewards based on trainer player beat here. like beating some gym leader gives their badge, for ex.
+            // also xp gained = level of enemy creature * 5 
+            getTrainerReward();
+            getXpIncrease();
             return 1;
         }else if(lost==1){
             System.out.println("Enemy won the entire duel.");
@@ -239,6 +248,24 @@ public class Board extends JPanel implements ActionListener {
             return 1;
         }
         return 0;
+    }
+    
+    public void getXpIncrease(){
+        int inc = levelOfLastCreature * 5;
+        jframe.getPlayer().getActiveDavemon().get(0).incXp(inc);
+    }
+    
+    public void getTrainerReward(){
+        if(null != trainer.getRewardCreature()){
+            jframe.getPlayer().addToDavemon(trainer.getRewardCreature());
+        }
+        if(null != trainer.getRewardMoney()){
+            jframe.getPlayer().setMoney(jframe.getPlayer().getMoney()+trainer.getRewardMoney());
+        }
+        if(null != trainer.getId()){
+            jframe.getPlayer().getGymBattlesCleared().add(trainer.getId()); // so they cant be fought again
+        }
+        
     }
     
     /**

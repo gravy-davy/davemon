@@ -30,6 +30,9 @@ public class TrainerCreator {
             Creature c2;
             c2 = cc.getCreature("Gnuke", rando.nextInt(3)+1);
             trainer.addToActiveDavemon(c2);
+            
+            trainer.setRewardCreature(c1);
+            trainer.setRewardMoney(50);
         }
         
         return trainer;

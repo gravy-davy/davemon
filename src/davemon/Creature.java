@@ -36,6 +36,26 @@ public class Creature {
     private Integer tempSpeed;
     private Integer tempPhysicalAtk;
     private Integer tempSpecialAtk;
+    
+    public void incXp(int inc){
+        currentXp = currentXp + inc;
+        System.out.println("gained " + inc + " xp for winning the fight. now has: " + currentXp + " out of " + xpNeeded);
+        if(currentXp>=xpNeeded && level<100){
+            System.out.println("leveled up");
+            level++;
+            xpNeeded = xpNeeded * 2;
+            currentXp = 0;
+            maxHealth = maxHealth + healthPerLevel;
+            if(evolutionLevel==level){
+                System.out.println("creature evolved cuz they hit their evo level aka " + evolutionLevel);
+                evolve();
+            }
+        }
+    }
+    
+    public void evolve(){
+        // if uniru, then make a new evolved davemon using the creature creator. just wipe old moveset all good. tms included.
+    }
 
     public String getName() {
         return name;
