@@ -293,7 +293,7 @@ public class Board extends JPanel implements ActionListener {
         
         int enemyCounter = 0;
         
-        if(null!= t.getActiveDavemon() && !t.getActiveDavemon().isEmpty()){
+        if(null!=t && !t.getActiveDavemon().isEmpty()){
             for(Creature c : t.getActiveDavemon()){
                 if(c.getHealth() <= 0){
                     enemyCounter++;
