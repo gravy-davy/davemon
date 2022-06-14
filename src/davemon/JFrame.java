@@ -99,6 +99,9 @@ public class JFrame extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         trainerDialogText = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -649,6 +652,45 @@ public class JFrame extends javax.swing.JFrame {
 
         getContentPane().add(trainerDialogPanel, "card6");
 
+        jButton20.setText("Heal all Davemon");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
+        jButton21.setText("Leave");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(355, 355, 355)
+                .addComponent(jButton20)
+                .addContainerGap(333, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton21)
+                .addGap(359, 359, 359))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(jButton20)
+                .addGap(152, 152, 152)
+                .addComponent(jButton21)
+                .addContainerGap(507, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel4, "card7");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -813,6 +855,23 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         addToActiveDavemonViaButton(3);
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+
+        for(Creature c : player.getActiveDavemon()){
+            c.setHealth(c.getMaxHealth());
+        }
+        
+        for(Creature c : player.getDavemon()){
+            c.setHealth(c.getMaxHealth());
+        }
+        
+        JOptionPane.showMessageDialog(null, "All of your Davemon have been healed to full HP!");
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        initBoard(player.getLocation());
+    }//GEN-LAST:event_jButton21ActionPerformed
     
     public void removeFromActiveDavemonViaButton(int offset){
         try{
@@ -1018,6 +1077,8 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1038,6 +1099,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton move1button;
     private javax.swing.JButton move2button;
@@ -1266,5 +1328,15 @@ public class JFrame extends javax.swing.JFrame {
     public void setBankPanel(JPanel bankPanel) {
         this.bankPanel = bankPanel;
     }
+
+    public JPanel getjPanel4() {
+        return jPanel4;
+    }
+
+    public void setjPanel4(JPanel jPanel4) {
+        this.jPanel4 = jPanel4;
+    }
+    
+    
     
 }

@@ -96,7 +96,6 @@ public class Board extends JPanel implements ActionListener {
         sprite.move();
         if(location.equalsIgnoreCase("Homestead")){
             if(sprite.getX()>72 && sprite.getX()<294 && sprite.getY()>480 && sprite.getY()<680){
-                
                 // if grass procs a fight, then do all this code. otherwise nothing.
                 Random rando = new Random();
                 int seed = rando.nextInt(5);
@@ -112,6 +111,7 @@ public class Board extends JPanel implements ActionListener {
                 trainer.setName("Wild");
                 trainer.addToActiveDavemon(enemyCreature);
                 trainer.setLogo(Constant.TRAINER_WILD_LOGO);
+                levelOfLastCreature = trainer.getActiveDavemon().get(0).getLevel();
                 
                 setFightPanel(enemyCreature);
                 
@@ -132,10 +132,15 @@ public class Board extends JPanel implements ActionListener {
                 }else{
                     trainer = tc.createTrainer("Cater");
                     setTrainerDialogPanel();
-                }  
+                }
+                backToMain = true;
             }else if(sprite.getX()>=592 && sprite.getX()<=738 && sprite.getY()>=174 && sprite.getY()<=418){
                 jframe.setupBankPanel();
                 jframe.openPanelFromWorld(jframe.getBankPanel());
+                backToMain = true;
+            }else if(sprite.getX()>=52 && sprite.getX()<=300 && sprite.getY()>=140 && sprite.getY()<=356){
+                jframe.openPanelFromWorld(jframe.getjPanel4());
+                backToMain = true;
             }
         }
         
