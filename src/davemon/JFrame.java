@@ -814,6 +814,9 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         if(pageNumber!=0){
             pageNumber--;
+            setupBankPanel();
+            getContentPane().revalidate();
+            getContentPane().repaint();
         }else{
             JOptionPane.showMessageDialog(null, "You are already on page 0.");
         }

@@ -17,6 +17,9 @@ public class Player {
     private Integer daveballs;
     private Integer healthPotions;
 
+    // add training moves aka tms to their davemon later
+    // tm object cuz itll have requirements
+    
     public String getName() {
         return name;
     }

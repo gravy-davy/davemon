@@ -12,6 +12,7 @@ public class CreatureCreator {
     
     public Creature getCreature(String name, int level){
         Creature c = new Creature();
+        MoveCreator mc = new MoveCreator();
         
         c.setName(name);
         c.setMoveset(new ArrayList<>());
@@ -47,22 +48,8 @@ public class CreatureCreator {
             
             c.setImage(Constant.CREATURE_UNIRU);
             
-            Move m1 = new Move();
-            m1.setName("Confuse"); // reduces accuracy of opponent
-            m1.setTimesUsed(0);
-            m1.setMaxUses(10);
-            m1.setBaseAmount(25); // debuff amount
-            m1.setType("Mind");
-            m1.setAccuracy(50);
-            m1.setDuration(3);
-            
-            Move m2 = new Move();
-            m2.setName("Stab");
-            m2.setTimesUsed(0);
-            m2.setMaxUses(20);
-            m2.setBaseAmount(20); // max damage, reachable by physical atk roll
-            m2.setType("Physical");
-            m2.setAccuracy(50);
+            Move m1 = mc.makeMove("Confuse");
+            Move m2 = mc.makeMove("Stab");
             
             c.getMoveset().add(m2);
             c.getMoveset().add(m1);
@@ -92,22 +79,8 @@ public class CreatureCreator {
             
             c.setImage(Constant.CREATURE_IRAX);
             
-            Move m1 = new Move();
-            m1.setName("Bite"); // makes opponent creature need to flip a coin when they attack
-            m1.setTimesUsed(0);
-            m1.setMaxUses(25);
-            m1.setBaseAmount(15);
-            m1.setType("Physical");
-            m1.setAccuracy(60);
-            
-            Move m2 = new Move();
-            m2.setName("Harden");
-            m2.setTimesUsed(0);
-            m2.setMaxUses(10);
-            m2.setBaseAmount(20);
-            m2.setType("Physical");
-            m2.setAccuracy(90);
-            m2.setDuration(3);
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Harden");
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
@@ -136,21 +109,8 @@ public class CreatureCreator {
             
             c.setImage(Constant.CREATURE_MOWL);
             
-            Move m1 = new Move();
-            m1.setName("Bite"); // makes opponent creature need to flip a coin when they attack
-            m1.setTimesUsed(0);
-            m1.setMaxUses(25);
-            m1.setBaseAmount(10);
-            m1.setType("Physical");
-            m1.setAccuracy(70);
-            
-            Move m2 = new Move();
-            m2.setName("Quick Attack");
-            m2.setTimesUsed(0);
-            m2.setMaxUses(10);
-            m2.setBaseAmount(10);
-            m2.setType("Physical");
-            m2.setAccuracy(70);
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Quick attack");
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
@@ -179,21 +139,8 @@ public class CreatureCreator {
             
             c.setImage(Constant.CREATURE_GIRAPOD);
             
-            Move m1 = new Move();
-            m1.setName("Bite"); 
-            m1.setTimesUsed(0);
-            m1.setMaxUses(35);
-            m1.setBaseAmount(10);
-            m1.setType("Physical");
-            m1.setAccuracy(90);
-            
-            Move m2 = new Move();
-            m2.setName("Heal");
-            m2.setTimesUsed(0);
-            m2.setMaxUses(10);
-            m2.setBaseAmount(20);
-            m2.setType("Grass");
-            m2.setAccuracy(70);
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Heal");
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
@@ -222,21 +169,8 @@ public class CreatureCreator {
             
             c.setImage(Constant.CREATURE_GNUKE);
             
-            Move m1 = new Move();
-            m1.setName("Water gun"); 
-            m1.setTimesUsed(0);
-            m1.setMaxUses(20);
-            m1.setBaseAmount(10);
-            m1.setType("Water");
-            m1.setAccuracy(90);
-            
-            Move m2 = new Move();
-            m2.setName("Water cannon");
-            m2.setTimesUsed(0);
-            m2.setMaxUses(10);
-            m2.setBaseAmount(50);
-            m2.setType("Water");
-            m2.setAccuracy(50);
+            Move m1 = mc.makeMove("Water gun");
+            Move m2 = mc.makeMove("Water cannon");
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);

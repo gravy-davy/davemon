@@ -45,6 +45,7 @@ public class Fight {
         Random rando = new Random();
         String flavorText = "";
         
+        System.out.println("move name = " + move.getName());
         // can use some ifs for other moves with the same exact flow. like a stronger bite can be with bite flow.
         if(move.getName().equalsIgnoreCase("Bite")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
