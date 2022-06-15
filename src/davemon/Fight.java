@@ -45,7 +45,7 @@ public class Fight {
         Random rando = new Random();
         String flavorText = "";
         
-        // can use some ifs for other moves with the same exact flow. like a stronger bite can be with bite flow.
+        // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
         if(move.getName().equalsIgnoreCase("Bite")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
@@ -57,10 +57,10 @@ public class Fight {
                 }
                 flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 
-                if(defendingCreature.getWeaknesses().contains("Physical")){
+                if(defendingCreature.getWeaknesses().contains(move.getType())){
                     dmg = dmg * 2;
                     flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
-                }else if(defendingCreature.getResistances().contains("Physical")){
+                }else if(defendingCreature.getResistances().contains(move.getType())){
                     dmg = dmg / 2;
                     flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
@@ -189,34 +189,32 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
-        }else if(move.getName().equalsIgnoreCase("Confuse")){
+        }else if(move.getName().equalsIgnoreCase("Confuse") || move.getName().equalsIgnoreCase("Shock")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
-                if(defendingCreature.getResistances().contains("Mind")){
+                if(defendingCreature.getResistances().contains(move.getType())){
                     flavorText = flavorText + defendingCreature.getName() + " resisted " + move.getName() + "! ";
                 }else{
-                    if(!doesAlreadyHaveEffect("Confuse", defendingCreature)){
+                    if(!doesAlreadyHaveEffect(move.getName(), defendingCreature)){
                         Effect e = new Effect();
-                        e.setName("Confuse");
+                        e.setName(move.getName());
                         e.setDuration(move.getDuration());
                         e.setValue(move.getBaseAmount());
                         defendingCreature.addEffect(e);
                     }else{
-                        Effect e = findEffectToBeReplaced("Confuse", defendingCreature);
+                        Effect e = findEffectToBeReplaced(move.getName(), defendingCreature);
                         if(e!=null){
                             defendingCreature.getEffects().remove(e);
                         }
                         Effect eff = new Effect();
-                        eff.setName("Confuse");
+                        eff.setName(move.getName());
                         eff.setDuration(move.getDuration());
                         eff.setValue(move.getBaseAmount());
                         defendingCreature.addEffect(eff);
                     }
                     flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 }
-                
-                
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
@@ -238,7 +236,8 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
-        }else if(move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon")){
+            // special basic attacks go here
+        }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -249,10 +248,10 @@ public class Fight {
                 }
                 flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 
-                if(defendingCreature.getWeaknesses().contains("Water")){
+                if(defendingCreature.getWeaknesses().contains(move.getType())){
                     dmg = dmg * 2;
                     flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
-                }else if(defendingCreature.getResistances().contains("Water")){
+                }else if(defendingCreature.getResistances().contains(move.getType())){
                     dmg = dmg / 2;
                     flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
@@ -341,6 +340,15 @@ public class Fight {
         return null;
     }
     
+    public Effect checkForShock(Creature c){
+        for(Effect e : c.getEffects()){
+            if(e.getName().equalsIgnoreCase("Shock")){
+                return e;
+            }
+        }
+        return null;
+    }
+    
     
     // gotta check for confuses here
     public String hitOrMiss(Move move, Creature c){
@@ -360,6 +368,10 @@ public class Fight {
         if(accSeed>=randSeed){
             return "Hit";
         }else{
+            Effect shock = checkForShock(c);
+            if(shock!=null){
+                c.setHealth(c.getHealth()-shock.getValue());
+            }
             return "Miss";
         }
     }

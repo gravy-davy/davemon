@@ -30,5 +30,8 @@ public class Constant {
     public static final ImageIcon CREATURE_MOWL = new ImageIcon("assets/images/creature_mowl.jpg");
     public static final ImageIcon CREATURE_GIRAPOD = new ImageIcon("assets/images/creature_girapod.jpg");
     public static final ImageIcon CREATURE_GNUKE = new ImageIcon("assets/images/creature_gnuke.jpg");
+    public static final ImageIcon CREATURE_GRIFFIN = new ImageIcon("assets/images/creature_griffin.png");
+    public static final ImageIcon CREATURE_GREAT_GRIFFIN = new ImageIcon("assets/images/creature_great_griffin.jpg");
+    public static final ImageIcon CREATURE_HYEROS = new ImageIcon("assets/images/creature_hyeros.jpg");
     
 }

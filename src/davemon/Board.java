@@ -132,8 +132,8 @@ public class Board extends JPanel implements ActionListener {
                 }else{
                     trainer = tc.createTrainer("Cater");
                     setTrainerDialogPanel();
-                }
-                backToMain = true;
+                    backToMain = true;
+                }    
             }else if(sprite.getX()>=592 && sprite.getX()<=738 && sprite.getY()>=174 && sprite.getY()<=418){
                 jframe.setupBankPanel();
                 jframe.openPanelFromWorld(jframe.getBankPanel());

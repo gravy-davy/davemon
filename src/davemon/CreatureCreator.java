@@ -29,7 +29,6 @@ public class CreatureCreator {
             c.addToResistances("Mind");
             c.addToWeaknesses("Lightning");
             
-            // in this case, 40 is the minimum health
             c.setHealthPerLevel(1);
             c.setHealth(32 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
@@ -60,7 +59,6 @@ public class CreatureCreator {
             c.addToResistances("Physical");
             c.addToWeaknesses("Mind");
             
-            // in this case, 40 is the minimum health
             c.setHealthPerLevel(3);
             c.setHealth(50 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
@@ -90,7 +88,6 @@ public class CreatureCreator {
             c.addToResistances("Grass");
             c.addToWeaknesses("Physical");
             
-            // in this case, 40 is the minimum health
             c.setHealthPerLevel(1);
             c.setHealth(30 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
@@ -120,7 +117,6 @@ public class CreatureCreator {
             c.addToResistances("Grass");
             c.addToWeaknesses("Fire");
             
-            // in this case, 40 is the minimum health
             c.setHealthPerLevel(1);
             c.setHealth(35 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
@@ -150,7 +146,6 @@ public class CreatureCreator {
             c.addToResistances("Water");
             c.addToWeaknesses("Lightning");
             
-            // in this case, 40 is the minimum health
             c.setHealthPerLevel(2);
             c.setHealth(41 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
@@ -171,6 +166,65 @@ public class CreatureCreator {
             
             Move m1 = mc.makeMove("Water gun");
             Move m2 = mc.makeMove("Water cannon");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Griffin")){
+            c.setEvolutionLevel(45);
+            c.setType("Flying");
+            c.addToResistances("Light");
+            c.addToResistances("Flying");
+            c.addToWeaknesses("Dark");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(45 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(100);
+            c.setPhysicalDef(20);
+            c.setSpecialDef(35);
+            c.setPhysicalAtk(15);
+            c.setSpecialAtk(30);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_GRIFFIN);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Light beam");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Hyeros")){
+            c.setEvolutionLevel(47);
+            c.setType("Lightning");
+            c.addToResistances("Lightning");
+            c.addToWeaknesses("Metal");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(37 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(132);
+            c.setPhysicalDef(16);
+            c.setSpecialDef(20);
+            c.setPhysicalAtk(18);
+            c.setSpecialAtk(50);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_HYEROS);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Shock");
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);

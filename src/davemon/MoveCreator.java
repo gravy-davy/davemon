@@ -66,6 +66,21 @@ public class MoveCreator {
             move.setBaseAmount(50);
             move.setType("Water");
             move.setAccuracy(50);
+        }else if(moveName.equalsIgnoreCase("Light beam")){
+            move.setName("Light beam");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Light");
+            move.setAccuracy(65);
+        }else if(moveName.equalsIgnoreCase("Shock")){
+            move.setName("Shock");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Lightning");
+            move.setAccuracy(60);
+            move.setDuration(5);
         }
      
         return move;
