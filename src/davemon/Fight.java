@@ -130,10 +130,10 @@ public class Fight {
                 
                 flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
                 
-                if(defendingCreature.getWeaknesses().contains("Physical")){
+                if(defendingCreature.getWeaknesses().contains(move.getType())){
                     dmg = dmg * 2;
                     flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
-                }else if(defendingCreature.getResistances().contains("Physical")){
+                }else if(defendingCreature.getResistances().contains(move.getType())){
                     dmg = dmg / 2;
                     flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
                 }
@@ -145,13 +145,13 @@ public class Fight {
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                     flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
                     
-                    int bleedSeed = rando.nextInt(100);
-                    if(bleedSeed<=90){
+                    int effectSeed = rando.nextInt(100);
+                    if(effectSeed<=move.getEffectChance()){
                         Effect e = new Effect();
-                        e.setDuration(3);
-                        e.setName("Bleed");
-                        e.setValue(move.getBaseAmount()/3);
-                        flavorText = flavorText + " Bleed effect has been applied on " + defendingCreature.getName() + "! ";
+                        e.setDuration(move.getDuration());
+                        e.setName(move.getEffectName());
+                        e.setValue(move.getEffectAmount());
+                        flavorText = flavorText + " " + e.getName() + " effect has been applied on " + defendingCreature.getName() + "! ";
                         defendingCreature.getEffects().add(e);
                     }
                     
@@ -269,6 +269,49 @@ public class Fight {
                 // miss
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
+            // special attacks w/ chance of end of turn effect here. stackables.
+        }else if(move.getName().equalsIgnoreCase("Fire claw")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){
+                int dmg = rando.nextInt(attackingCreature.getTempSpecialAtk());
+                int maxDmg = move.getBaseAmount();
+                if(dmg>maxDmg){
+                    dmg = maxDmg;
+                }
+                
+                flavorText = flavorText + attackingCreature.getName() + " hit " + defendingCreature.getName() + " with a " + move.getName() + ". ";
+                
+                if(defendingCreature.getWeaknesses().contains(move.getType())){
+                    dmg = dmg * 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to the damage! ";
+                }else if(defendingCreature.getResistances().contains(move.getType())){
+                    dmg = dmg / 2;
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
+                }
+                
+                int def = rando.nextInt(defendingCreature.getTempSpecialDef());
+                int totalDmg = dmg - def;
+                
+                if(totalDmg>0){
+                    defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
+                    flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
+                    
+                    int effectSeed = rando.nextInt(100);
+                    if(effectSeed<=move.getEffectChance()){
+                        Effect e = new Effect();
+                        e.setDuration(move.getDuration());
+                        e.setName(move.getEffectName());
+                        e.setValue(move.getEffectAmount());
+                        flavorText = flavorText + " " + e.getName() + " effect has been applied on " + defendingCreature.getName() + "! ";
+                        defendingCreature.getEffects().add(e);
+                    } 
+                }else{
+                    flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
+                }
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
+            
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
@@ -291,7 +334,7 @@ public class Fight {
     public void applyEndOfTurnEffects(Creature c){
         
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Bleed")){
+            if(e.getName().equalsIgnoreCase("Bleed") || e.getName().equalsIgnoreCase("Burn")){
                 c.setHealth(c.getHealth()-e.getValue());
             }
         }

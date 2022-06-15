@@ -23,6 +23,10 @@ public class MoveCreator {
             move.setBaseAmount(25); // max damage, reachable by physical atk roll
             move.setType("Physical");
             move.setAccuracy(60);
+            move.setDuration(3);
+            move.setEffectChance(50);
+            move.setEffectAmount(6);
+            move.setEffectName("Bleed");
         }else if(moveName.equalsIgnoreCase("Bite")){
             move.setName("Bite"); // makes opponent creature need to flip a coin when they attack
             move.setTimesUsed(0);
@@ -81,6 +85,17 @@ public class MoveCreator {
             move.setType("Lightning");
             move.setAccuracy(60);
             move.setDuration(5);
+        }else if(moveName.equalsIgnoreCase("Fire claw")){
+            move.setName("Fire claw");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(20);
+            move.setType("Fire");
+            move.setAccuracy(68);
+            move.setDuration(4);
+            move.setEffectChance(30);
+            move.setEffectAmount(6);
+            move.setEffectName("Burn");
         }
      
         return move;

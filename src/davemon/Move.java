@@ -8,8 +8,14 @@ public class Move {
     private Integer baseAmount; // damage / effect / other amount. ex: 50 for 50 damage
     private Integer accuracy;   // flat percent chance of a move hitting. like 20% for a giant hit, for ex.
     private String type;        // type of effect, like fire for damage
-    private Integer duration;
     
+    // effect stuff
+    private Integer duration;
+    private Integer effectChance;
+    private Integer effectAmount;
+    private String effectName;
+    
+    // maybe wont be used, will probably just be annoying.
     private Integer maxUses;
     private Integer timesUsed;
 
@@ -67,6 +73,30 @@ public class Move {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public Integer getEffectChance() {
+        return effectChance;
+    }
+
+    public void setEffectChance(Integer effectChance) {
+        this.effectChance = effectChance;
+    }
+
+    public Integer getEffectAmount() {
+        return effectAmount;
+    }
+
+    public void setEffectAmount(Integer effectAmount) {
+        this.effectAmount = effectAmount;
+    }
+
+    public String getEffectName() {
+        return effectName;
+    }
+
+    public void setEffectName(String effectName) {
+        this.effectName = effectName;
     }
     
     
