@@ -818,6 +818,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="No"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton19ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="trainerDialogText">
         </Component>
@@ -873,6 +876,78 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
           </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="trainerDialogOutro">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="card8"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jButton22" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="trainerDialogOutroFullImage" min="-2" pref="275" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="trainerRewardText" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="trainerOutroText" min="-2" pref="697" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                          <Component id="trainerDialogOutroFullImage" min="-2" pref="435" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="363" max="-2" attributes="0"/>
+                          <Component id="trainerRewardText" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="trainerOutroText" min="-2" pref="108" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jButton22" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="trainerDialogOutroFullImage">
+        </Component>
+        <Component class="javax.swing.JLabel" name="trainerOutroText">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel12"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton22">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ok"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="trainerRewardText">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="rewards"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

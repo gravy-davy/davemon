@@ -234,12 +234,34 @@ public class Board extends JPanel implements ActionListener {
         }
     }
     
+    public void setTrainerOutroPanel(){
+        jframe.getTrainerDialogOutroFullImage().setIcon(trainer.getFullLogo());
+        jframe.getTrainerOutroText().setText(trainer.getDefeatText());
+        
+        String rewardText = "";
+        if(trainer.getRewardMoney()>0){
+            rewardText = "You got $" + trainer.getRewardMoney() + " for winning the duel!";
+        }
+        
+        if(null != trainer.getRewardCreature()){
+            rewardText = rewardText + " You also got " + trainer.getRewardCreature().getName() + " for winning!";
+        }
+        
+        jframe.getTrainerRewardText().setText(rewardText);
+    }
+    
     // 0 = keep going, 1 stop
     public int checkForLoser(){
         int lost = didSomeoneLose(jframe.getPlayer(), trainer);
         if(lost==2){
             System.out.println("Player won the entire duel."); // entire duel as in beat ALL enemy davemon.
-            jframe.initBoard(jframe.getPlayer().getLocation());
+            // if not wild, goto outro panel
+            if(!trainer.getName().equalsIgnoreCase("Wild")){
+                setTrainerOutroPanel();
+                jframe.switchToAnotherPanel(this, jframe.getTrainerDialogOutro());
+            }else{
+                jframe.initBoard(jframe.getPlayer().getLocation());
+            }
             JOptionPane.showMessageDialog(null, "You won the duel!");
             // can add rewards based on trainer player beat here. like beating some gym leader gives their badge, for ex.
             // also xp gained = level of enemy creature * 5 
@@ -371,11 +393,10 @@ public class Board extends JPanel implements ActionListener {
                 seed = rando.nextInt(100);
                 if(seed<=30){
                     // catch
-                    System.out.println("You caught the Davemon!");
+                    JOptionPane.showMessageDialog(null, "You caught the " + trainer.getActiveDavemon().get(0).getName());
                     jframe.getPlayer().addToDavemon(trainer.getActiveDavemon().get(0));
                     jframe.initBoard(jframe.getPlayer().getLocation());
                 }else{
-                    System.out.println("Failed to catch the Davemon.");
                     JOptionPane.showMessageDialog(null, "You don't have enough Daveballs!");
                     setFightPanel(trainer.getActiveDavemon().get(0));
                     jframe.getContentPane().repaint();

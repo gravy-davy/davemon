@@ -102,6 +102,11 @@ public class JFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
+        trainerDialogOutro = new javax.swing.JPanel();
+        trainerDialogOutroFullImage = new javax.swing.JLabel();
+        trainerOutroText = new javax.swing.JLabel();
+        jButton22 = new javax.swing.JButton();
+        trainerRewardText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -615,6 +620,11 @@ public class JFrame extends javax.swing.JFrame {
         });
 
         jButton19.setText("No");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout trainerDialogPanelLayout = new javax.swing.GroupLayout(trainerDialogPanel);
         trainerDialogPanel.setLayout(trainerDialogPanelLayout);
@@ -691,6 +701,52 @@ public class JFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, "card7");
 
+        trainerOutroText.setText("jLabel12");
+
+        jButton22.setText("Ok");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        trainerRewardText.setText("rewards");
+
+        javax.swing.GroupLayout trainerDialogOutroLayout = new javax.swing.GroupLayout(trainerDialogOutro);
+        trainerDialogOutro.setLayout(trainerDialogOutroLayout);
+        trainerDialogOutroLayout.setHorizontalGroup(
+            trainerDialogOutroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trainerDialogOutroLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(trainerDialogOutroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton22)
+                    .addGroup(trainerDialogOutroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(trainerDialogOutroLayout.createSequentialGroup()
+                            .addComponent(trainerDialogOutroFullImage, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(trainerRewardText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(trainerOutroText, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        trainerDialogOutroLayout.setVerticalGroup(
+            trainerDialogOutroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trainerDialogOutroLayout.createSequentialGroup()
+                .addGroup(trainerDialogOutroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(trainerDialogOutroLayout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(trainerDialogOutroFullImage, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(trainerDialogOutroLayout.createSequentialGroup()
+                        .addGap(363, 363, 363)
+                        .addComponent(trainerRewardText, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(trainerOutroText, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButton22)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(trainerDialogOutro, "card8");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -751,7 +807,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if(player.getActiveDavemon().size()>=2 && player.getActiveDavemon().get(1)!=null && player.getActiveDavemon().get(1).getHealth()>=0){
-            System.out.println("swapped to davemon 1");
             // swap 1 with current davemon 0
             Creature oldC = player.getActiveDavemon().get(0);
             Creature newC = player.getActiveDavemon().get(1);
@@ -767,7 +822,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if(player.getActiveDavemon().size()>=3 && player.getActiveDavemon().get(2)!=null && player.getActiveDavemon().get(2).getHealth()>=0){
-            System.out.println("swapped to davemon 2");
             
             Creature oldC = player.getActiveDavemon().get(0);
             Creature newC = player.getActiveDavemon().get(2);
@@ -783,7 +837,6 @@ public class JFrame extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         if(player.getActiveDavemon().size()>=4 && player.getActiveDavemon().get(3)!=null && player.getActiveDavemon().get(3).getHealth()>=0){
-            System.out.println("swapped to davemon 3");
             
             Creature oldC = player.getActiveDavemon().get(0);
             Creature newC = player.getActiveDavemon().get(3);
@@ -877,6 +930,14 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         initBoard(player.getLocation());
     }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        initBoard(player.getLocation());
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        initBoard(player.getLocation());
+    }//GEN-LAST:event_jButton19ActionPerformed
     
     public void removeFromActiveDavemonViaButton(int offset){
         try{
@@ -1084,6 +1145,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1120,9 +1182,13 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel rosterDavemon1Name;
     private javax.swing.JLabel rosterDavemon2Name;
     private javax.swing.JLabel rosterDavemon3Name;
+    private javax.swing.JPanel trainerDialogOutro;
+    private javax.swing.JLabel trainerDialogOutroFullImage;
     private javax.swing.JPanel trainerDialogPanel;
     private javax.swing.JLabel trainerDialogText;
     private javax.swing.JLabel trainerFullPic;
+    private javax.swing.JLabel trainerOutroText;
+    private javax.swing.JLabel trainerRewardText;
     private javax.swing.JLabel tranerFightLogo;
     // End of variables declaration//GEN-END:variables
 
@@ -1340,6 +1406,38 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setjPanel4(JPanel jPanel4) {
         this.jPanel4 = jPanel4;
+    }
+
+    public JLabel getTrainerOutroText() {
+        return trainerOutroText;
+    }
+
+    public void setTrainerOutroText(JLabel trainerOutroText) {
+        this.trainerOutroText = trainerOutroText;
+    }
+
+    public JLabel getTrainerRewardText() {
+        return trainerRewardText;
+    }
+
+    public void setTrainerRewardText(JLabel trainerRewardText) {
+        this.trainerRewardText = trainerRewardText;
+    }
+
+    public JLabel getTrainerDialogOutroFullImage() {
+        return trainerDialogOutroFullImage;
+    }
+
+    public void setTrainerDialogOutroFullImage(JLabel trainerDialogOutroFullImage) {
+        this.trainerDialogOutroFullImage = trainerDialogOutroFullImage;
+    }
+
+    public JPanel getTrainerDialogOutro() {
+        return trainerDialogOutro;
+    }
+
+    public void setTrainerDialogOutro(JPanel trainerDialogOutro) {
+        this.trainerDialogOutro = trainerDialogOutro;
     }
     
     

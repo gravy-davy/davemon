@@ -20,7 +20,7 @@ public class TrainerCreator {
             trainer.setFullLogo(Constant.TRAINER_CATER_FULL);
             trainer.setLogo(Constant.TRAINER_CATER_LOGO);
             trainer.setVictoryText("You'll get them next time!");
-            trainer.setDefeatText("Aw man, you got me.");
+            trainer.setDefeatText("Aw man, you got me. Take this Girapod I have, and put him to good use!");
             trainer.setIntroText("Hey, how's it going? I'm Cater.");
 
             Random rando = new Random();
