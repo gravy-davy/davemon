@@ -762,7 +762,7 @@ public class JFrame extends javax.swing.JFrame {
             createPlayer();
             // add creature
             CreatureCreator cc = new CreatureCreator();
-            Creature c = cc.getCreature("Infernapaws", 1);
+            Creature c = cc.getCreature("Tartulix", 1);
             Creature c1 = cc.getCreature("Hyeros", 1);
             player.addToActiveDavemon(c);
             player.addToActiveDavemon(c1);

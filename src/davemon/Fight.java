@@ -223,21 +223,26 @@ public class Fight {
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // the effect is just so it gets removed once the duration is over. it gets increased here on activation.
                 
-                int heal = move.getBaseAmount();
-                int newHealth = heal + attackingCreature.getHealth();
-                
-                if(newHealth>attackingCreature.getTempMaxHealth()){
-                    newHealth = attackingCreature.getTempMaxHealth();
-                }
-                
-                
-                attackingCreature.setHealth(newHealth);
-                flavorText = flavorText + attackingCreature.getName() + " used Heal on itself! ";
+                if(doesAlreadyHaveEffect("Poison", attackingCreature)){
+                    flavorText = flavorText + attackingCreature.getName() + " used Heal on itself but it did nothing! ";
+                }else{
+                    int heal = move.getBaseAmount();
+                    int newHealth = heal + attackingCreature.getHealth();
+
+                    if(newHealth>attackingCreature.getTempMaxHealth()){
+                        newHealth = attackingCreature.getTempMaxHealth();
+                    }
+
+
+                    attackingCreature.setHealth(newHealth);
+                    flavorText = flavorText + attackingCreature.getName() + " used Heal on itself! ";
+                }  
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             // special basic attacks go here
-        }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon")){
+        }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
+                move.getName().equalsIgnoreCase("Spark")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -270,7 +275,7 @@ public class Fight {
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             // special attacks w/ chance of end of turn effect here. stackables.
-        }else if(move.getName().equalsIgnoreCase("Fire claw")){
+        }else if(move.getName().equalsIgnoreCase("Fire claw") || move.getName().equalsIgnoreCase("Poisonous Bite")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 int dmg = rando.nextInt(attackingCreature.getTempSpecialAtk());

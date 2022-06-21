@@ -83,7 +83,7 @@ public class MoveCreator {
             move.setMaxUses(20);
             move.setBaseAmount(10);
             move.setType("Lightning");
-            move.setAccuracy(60);
+            move.setAccuracy(70);
             move.setDuration(5);
         }else if(moveName.equalsIgnoreCase("Fire claw")){
             move.setName("Fire claw");
@@ -96,6 +96,24 @@ public class MoveCreator {
             move.setEffectChance(30);
             move.setEffectAmount(6);
             move.setEffectName("Burn");
+        }else if(moveName.equalsIgnoreCase("Poisonous Bite")){
+            move.setName("Poisonous Bite");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(25);
+            move.setType("Poison");
+            move.setAccuracy(65);
+            move.setDuration(8);
+            move.setEffectChance(100);
+            move.setEffectAmount(10);
+            move.setEffectName("Poison");
+        }else if(moveName.equalsIgnoreCase("Spark")){
+            move.setName("Spark");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Lightning");
+            move.setAccuracy(60);
         }
      
         return move;

@@ -257,6 +257,36 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Tartulix")){
+            c.setEvolutionLevel(33);
+            c.setType("Lightning");
+            c.addToResistances("Lightning");
+            c.addToResistances("Poison");
+            c.addToWeaknesses("Metal");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(31 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(77);
+            c.setPhysicalDef(10);
+            c.setSpecialDef(13);
+            c.setPhysicalAtk(15);
+            c.setSpecialAtk(40);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_TARTULIX);
+            
+            Move m1 = mc.makeMove("Poisonous Bite");
+            Move m2 = mc.makeMove("Spark");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
