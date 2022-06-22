@@ -336,6 +336,18 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
+        }else if(move.getName().equalsIgnoreCase("Lunar tribute")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                double healthCut = ((double) move.getBaseAmount() / 100.0) * attackingCreature.getTempMaxHealth();
+                attackingCreature.setHealth(attackingCreature.getHealth()- (int) healthCut);
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " to clear all effects and dropped their health by " + (int) healthCut 
+                        + "!";          
+                attackingCreature.getEffects().clear();
+                defendingCreature.getEffects().clear();
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);

@@ -317,6 +317,36 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Lumipie")){
+            c.setEvolutionLevel(27);
+            c.setType("Light");
+            c.addToResistances("Light");
+            c.addToResistances("Mind");
+            c.addToWeaknesses("Dark");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(28 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(65);
+            c.setPhysicalDef(17);
+            c.setSpecialDef(30);
+            c.setPhysicalAtk(14);
+            c.setSpecialAtk(26);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_LUMIPIE);
+            
+            Move m1 = mc.makeMove("Light beam");
+            Move m2 = mc.makeMove("Lunar tribute");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
