@@ -316,7 +316,26 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
-            
+        }else if(move.getName().equalsIgnoreCase("Apex predator")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){
+                
+                int boost = 0;
+                double percentOfHpLeft = defendingCreature.getHealth() / defendingCreature.getMaxHealth();
+                
+                if(percentOfHpLeft>=.5){
+                    boost = 5;
+                }else if(percentOfHpLeft>=.25 && percentOfHpLeft<.5){
+                    boost = 10;
+                }else{
+                    boost = 20;
+                }
+                attackingCreature.setTempPhysicalAtk(attackingCreature.getPhysicalAtk()+boost);
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " and increased their attack by " + boost + "!";
+
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);

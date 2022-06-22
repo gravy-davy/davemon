@@ -287,6 +287,36 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Shardol")){
+            c.setEvolutionLevel(45);
+            c.setType("Water");
+            c.addToResistances("Water");
+            c.addToResistances("Fire");
+            c.addToWeaknesses("Lightning");
+            
+            c.setHealthPerLevel(3);
+            c.setHealth(42 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(70);
+            c.setPhysicalDef(30);
+            c.setSpecialDef(24);
+            c.setPhysicalAtk(21);
+            c.setSpecialAtk(19);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_SHARDOL);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Apex predator");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;

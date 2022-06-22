@@ -35,5 +35,6 @@ public class Constant {
     public static final ImageIcon CREATURE_HYEROS = new ImageIcon("assets/images/creature_hyeros.jpg");
     public static final ImageIcon CREATURE_INFERNAPAWS = new ImageIcon("assets/images/creature_infernapaws.jpg");
     public static final ImageIcon CREATURE_TARTULIX = new ImageIcon("assets/images/creature_tartulix.jpg");
+    public static final ImageIcon CREATURE_SHARDOL = new ImageIcon("assets/images/creature_shardol.jpg");
     
 }

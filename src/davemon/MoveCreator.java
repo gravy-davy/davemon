@@ -96,8 +96,8 @@ public class MoveCreator {
             move.setEffectChance(30);
             move.setEffectAmount(6);
             move.setEffectName("Burn");
-        }else if(moveName.equalsIgnoreCase("Poisonous Bite")){
-            move.setName("Poisonous Bite");
+        }else if(moveName.equalsIgnoreCase("Poisonous bite")){
+            move.setName("Poisonous bite");
             move.setTimesUsed(0);
             move.setMaxUses(20);
             move.setBaseAmount(25);
@@ -114,6 +114,13 @@ public class MoveCreator {
             move.setBaseAmount(30);
             move.setType("Lightning");
             move.setAccuracy(60);
+        }else if(moveName.equalsIgnoreCase("Apex predator")){
+            move.setName("Apex predator");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(20);
+            move.setType("Water");
+            move.setAccuracy(90);
         }
      
         return move;
