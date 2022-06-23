@@ -348,6 +348,29 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
+        }else if(move.getName().equalsIgnoreCase("Psych out")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + "! ";
+                int lowerSpecAmount = move.getBaseAmount();
+                if(defendingCreature.getWeaknesses().contains("Mind")){
+                    flavorText = flavorText + defendingCreature.getName() + " is vulnerable to its effects! ";
+                    lowerSpecAmount = lowerSpecAmount * 2;
+                }else if(defendingCreature.getResistances().contains("Mind")){
+                    flavorText = flavorText + defendingCreature.getName() + " is resistant to its effects! ";
+                    lowerSpecAmount = 0;
+                }
+
+                defendingCreature.setTempSpecialAtk(defendingCreature.getSpecialAtk()-lowerSpecAmount);
+                
+                if(defendingCreature.getTempSpecialAtk()<=0){
+                    defendingCreature.setTempSpecialAtk(1);
+                }
+                flavorText = flavorText + defendingCreature.getName() + " special attack reduced by " +  lowerSpecAmount + "! ";
+
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);

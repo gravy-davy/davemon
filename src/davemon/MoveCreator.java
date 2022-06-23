@@ -128,6 +128,13 @@ public class MoveCreator {
             move.setBaseAmount(10); // percentage of health to cut
             move.setType("Light");
             move.setAccuracy(90);
+        }else if(moveName.equalsIgnoreCase("Psych out")){
+            move.setName("Psych out");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10); // percentage of health to cut
+            move.setType("Mind");
+            move.setAccuracy(70);
         }
      
         return move;

@@ -347,6 +347,35 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Specacle")){
+            c.setEvolutionLevel(27);
+            c.setType("Mind");
+            c.addToResistances("Mind");
+            c.addToWeaknesses("Dark");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(34 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(109);
+            c.setPhysicalDef(23);
+            c.setSpecialDef(26);
+            c.setPhysicalAtk(20);
+            c.setSpecialAtk(23);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_SPECACLE);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Psych out");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
