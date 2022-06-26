@@ -242,7 +242,7 @@ public class Fight {
             }
             // special basic attacks go here
         }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
-                move.getName().equalsIgnoreCase("Spark")){
+                move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -266,6 +266,10 @@ public class Fight {
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
                     flavorText = flavorText + defendingCreature.getName() + " took " + totalDmg + " damage! ";
+                    if(move.getName().equalsIgnoreCase("Absorb life")){
+                        attackingCreature.setHealth(attackingCreature.getHealth()+(totalDmg/2));
+                        flavorText = flavorText + attackingCreature.getName() + " absorbed " + totalDmg/2 + " HP from their attack!";
+                    }
                 }else{
                     flavorText = flavorText + defendingCreature.getName() + " blocked the attack! ";
                 }
@@ -368,6 +372,32 @@ public class Fight {
                 }
                 flavorText = flavorText + defendingCreature.getName() + " special attack reduced by " +  lowerSpecAmount + "! ";
 
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
+        }else if(move.getName().equalsIgnoreCase("Enrage")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                attackingCreature.setTempPhysicalAtk(attackingCreature.getTempPhysicalAtk()+move.getBaseAmount());
+                attackingCreature.setHealth(attackingCreature.getHealth()-move.getBaseAmount());
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " to increase their physical attack by " + move.getBaseAmount()
+                        + " and decrease their health by " + move.getBaseAmount() + "!";
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
+        }else if(move.getName().equalsIgnoreCase("Execute")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                
+                double healthPercentage = defendingCreature.getHealth() / defendingCreature.getMaxHealth();
+                double threshold = move.getBaseAmount() / 100;
+                if(healthPercentage <= threshold){
+                    defendingCreature.setHealth(0);
+                    flavorText = flavorText + attackingCreature.getName() + " executed " + defendingCreature.getName() + "! ";
+                }else{
+                    flavorText = flavorText + defendingCreature.getName() + " doesn't have low enough HP to use this move! ";
+                }
+                
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }

@@ -376,6 +376,64 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Elazar")){
+            c.setEvolutionLevel(41);
+            c.setType("Dark");
+            c.addToResistances("Dark");
+            c.addToWeaknesses("Light");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(47 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(95);
+            c.setPhysicalDef(27);
+            c.setSpecialDef(30);
+            c.setPhysicalAtk(37);
+            c.setSpecialAtk(32);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_ELAZAR);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Execute");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Vultzel")){
+            c.setEvolutionLevel(41);
+            c.setType("Dark");
+            c.addToResistances("Dark");
+            c.addToWeaknesses("Light");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(36 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(145);
+            c.setPhysicalDef(23);
+            c.setSpecialDef(25);
+            c.setPhysicalAtk(40);
+            c.setSpecialAtk(40);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_VULTZEL);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Absorb life");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;

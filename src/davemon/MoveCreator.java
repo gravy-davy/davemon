@@ -132,9 +132,37 @@ public class MoveCreator {
             move.setName("Psych out");
             move.setTimesUsed(0);
             move.setMaxUses(20);
-            move.setBaseAmount(10); // percentage of health to cut
+            move.setBaseAmount(10); 
             move.setType("Mind");
             move.setAccuracy(70);
+        }else if(moveName.equalsIgnoreCase("Enrage")){
+            move.setName("Enrage");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10); 
+            move.setType("Physical");
+            move.setAccuracy(90);
+        }else if(moveName.equalsIgnoreCase("Fireball")){
+            move.setName("Fireball");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(40);
+            move.setType("Fire");
+            move.setAccuracy(60);
+        }else if(moveName.equalsIgnoreCase("Execute")){
+            move.setName("Execute");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(25);
+            move.setType("Dark");
+            move.setAccuracy(50);
+        }else if(moveName.equalsIgnoreCase("Absorb life")){
+            move.setName("Absorb life");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(35);
+            move.setType("Dark");
+            move.setAccuracy(65);
         }
      
         return move;
