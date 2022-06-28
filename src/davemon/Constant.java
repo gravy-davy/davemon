@@ -40,5 +40,6 @@ public class Constant {
     public static final ImageIcon CREATURE_SPECACLE = new ImageIcon("assets/images/creature_specacle.jpg");
     public static final ImageIcon CREATURE_ELAZAR = new ImageIcon("assets/images/creature_elazar.png");
     public static final ImageIcon CREATURE_VULTZEL = new ImageIcon("assets/images/creature_vultzel.jpg");
+    public static final ImageIcon CREATURE_VULF = new ImageIcon("assets/images/creature_vulf.jpg");
     
 }

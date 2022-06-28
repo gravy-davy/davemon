@@ -163,6 +163,20 @@ public class MoveCreator {
             move.setBaseAmount(35);
             move.setType("Dark");
             move.setAccuracy(65);
+        }else if(moveName.equalsIgnoreCase("Shatter")){
+            move.setName("Shatter");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Metal");
+            move.setAccuracy(72);
+        }else if(moveName.equalsIgnoreCase("Insane bolt")){
+            move.setName("Insane bolt");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(200);
+            move.setType("Lightning");
+            move.setAccuracy(20);
         }
      
         return move;

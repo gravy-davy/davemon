@@ -434,6 +434,35 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Vulf")){
+            c.setEvolutionLevel(44);
+            c.setType("Lightning");
+            c.addToResistances("Lightning");
+            c.addToWeaknesses("Metal");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(40 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(100);
+            c.setPhysicalDef(19);
+            c.setSpecialDef(28);
+            c.setPhysicalAtk(30);
+            c.setSpecialAtk(43);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_VULF);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Insane bolt");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
