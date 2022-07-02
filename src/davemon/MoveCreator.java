@@ -104,7 +104,7 @@ public class MoveCreator {
             move.setType("Poison");
             move.setAccuracy(65);
             move.setDuration(8);
-            move.setEffectChance(100);
+            move.setEffectChance(70);
             move.setEffectAmount(10);
             move.setEffectName("Poison");
         }else if(moveName.equalsIgnoreCase("Spark")){
@@ -163,7 +163,7 @@ public class MoveCreator {
             move.setBaseAmount(35);
             move.setType("Dark");
             move.setAccuracy(65);
-        }else if(moveName.equalsIgnoreCase("Shatter")){
+        }else if(moveName.equalsIgnoreCase("Shatter")){ // needs test
             move.setName("Shatter");
             move.setTimesUsed(0);
             move.setMaxUses(20);
@@ -177,6 +177,56 @@ public class MoveCreator {
             move.setBaseAmount(200);
             move.setType("Lightning");
             move.setAccuracy(20);
+        }else if(moveName.equalsIgnoreCase("Clear mind")){ // needs test, 20% heal
+            move.setName("Clear mind");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(20);
+            move.setType("Mind");
+            move.setAccuracy(80);
+        }else if(moveName.equalsIgnoreCase("Psywave")){ // needs test, just a special mind hit
+            move.setName("Psywave");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Mind");
+            move.setAccuracy(70);
+        }else if(moveName.equalsIgnoreCase("Venom fang")){ // needs test. basically poison chance hit with a dot as well.
+            move.setName("Venom fang");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(38);
+            move.setType("Poison");
+            move.setAccuracy(60);
+            move.setDuration(5);
+            move.setEffectChance(60);
+            move.setEffectAmount(10);
+            move.setEffectName("Venom");
+        }else if(moveName.equalsIgnoreCase("Blood curl")){ // needs test, doubles dmg if enemy has bleed effect
+            move.setName("Blood curl");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Dark");
+            move.setAccuracy(65);
+        }else if(moveName.equalsIgnoreCase("Electric current")){ // needs test. basically special lightning hit with chance to shock
+            move.setName("Electric current");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Lightning");
+            move.setAccuracy(60);
+            move.setDuration(5);
+            move.setEffectChance(60);
+            move.setEffectAmount(10);
+            move.setEffectName("Shock");
+        }else if(moveName.equalsIgnoreCase("Voltage overload")){ // needs test. basically special lightning hit with 20% chance to do 10 damage to self.
+            move.setName("Voltage overload");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(50);
+            move.setType("Lightning");
+            move.setAccuracy(65);
         }
      
         return move;

@@ -223,8 +223,8 @@ public class Fight {
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // the effect is just so it gets removed once the duration is over. it gets increased here on activation.
                 
-                if(doesAlreadyHaveEffect("Poison", attackingCreature)){
-                    flavorText = flavorText + attackingCreature.getName() + " used Heal on itself but it did nothing! ";
+                if(doesAlreadyHaveEffect("Poison", attackingCreature) || doesAlreadyHaveEffect("Venom", attackingCreature)){
+                    flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " on itself but it did nothing! ";
                 }else{
                     int heal = move.getBaseAmount();
                     int newHealth = heal + attackingCreature.getHealth();
@@ -235,14 +235,15 @@ public class Fight {
 
 
                     attackingCreature.setHealth(newHealth);
-                    flavorText = flavorText + attackingCreature.getName() + " used Heal on itself! ";
+                    flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " on itself! ";
                 }  
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             // special basic attacks go here
         }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
-                move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life")){
+                move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life") || 
+                move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -259,6 +260,19 @@ public class Fight {
                 }else if(defendingCreature.getResistances().contains(move.getType())){
                     dmg = dmg / 2;
                     flavorText = flavorText + defendingCreature.getName() + " is resistant to the attack! ";
+                }
+                
+                if(move.getName().equalsIgnoreCase("Blood curl") && doesAlreadyHaveEffect("Bleed", defendingCreature)){
+                    dmg = dmg * 2;
+                }
+                
+                if(move.getName().equalsIgnoreCase("Voltage overload")){
+                    int seedy = rando.nextInt(80);
+                    int chanceToZapSelf = rando.nextInt(20);
+                    if(chanceToZapSelf>=seedy){
+                        attackingCreature.setHealth(attackingCreature.getHealth()-10);
+                        flavorText = flavorText + attackingCreature.getName() + " hit themselves for 10 damage! ";
+                    }
                 }
                 
                 int def = rando.nextInt(defendingCreature.getTempSpecialDef());
@@ -279,7 +293,8 @@ public class Fight {
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             // special attacks w/ chance of end of turn effect here. stackables.
-        }else if(move.getName().equalsIgnoreCase("Fire claw") || move.getName().equalsIgnoreCase("Poisonous Bite")){
+        }else if(move.getName().equalsIgnoreCase("Fire claw") || move.getName().equalsIgnoreCase("Poisonous Bite") || move.getName().equalsIgnoreCase("Venom fang") || 
+                move.getName().equalsIgnoreCase("Electric current")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 int dmg = rando.nextInt(attackingCreature.getTempSpecialAtk());
@@ -458,6 +473,24 @@ public class Fight {
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + " and it backfired for " + move.getBaseAmount() + " damage! ";
                 attackingCreature.setHealth(attackingCreature.getHealth() - move.getBaseAmount());
             }
+        }else if(move.getName().equalsIgnoreCase("Clear mind")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                
+                if(doesAlreadyHaveEffect("Poison", attackingCreature) || doesAlreadyHaveEffect("Venom", attackingCreature)){
+                    flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " on itself but it did nothing! ";
+                }else{
+                    double heal = move.getBaseAmount() * attackingCreature.getTempMaxHealth();
+                    attackingCreature.setHealth(attackingCreature.getHealth() + (int)heal);
+
+                    if(attackingCreature.getHealth()>attackingCreature.getTempMaxHealth()){
+                        attackingCreature.setHealth(attackingCreature.getTempMaxHealth());
+                    }
+                    flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " and healed for " + (int)heal + "! ";
+                }
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
@@ -480,7 +513,7 @@ public class Fight {
     public void applyEndOfTurnEffects(Creature c){
         
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Bleed") || e.getName().equalsIgnoreCase("Burn")){
+            if(e.getName().equalsIgnoreCase("Bleed") || e.getName().equalsIgnoreCase("Burn") || e.getName().equalsIgnoreCase("Venom")){
                 c.setHealth(c.getHealth()-e.getValue());
             }
         }
