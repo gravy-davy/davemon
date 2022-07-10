@@ -243,7 +243,8 @@ public class Fight {
             // special basic attacks go here
         }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
                 move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life") || 
-                move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")){
+                move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")
+                || move.getName().equalsIgnoreCase("Wing slice")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -276,6 +277,15 @@ public class Fight {
                 }
                 
                 int def = rando.nextInt(defendingCreature.getTempSpecialDef());
+                
+                // pierce moves here
+                if(move.getName().equalsIgnoreCase("Wing slice")){
+                    int seed = rando.nextInt(100);
+                    if(seed<=10){
+                        def = 0;
+                    }
+                }
+                
                 int totalDmg = dmg - def;
                 if(totalDmg>0){
                     defendingCreature.setHealth(defendingCreature.getHealth() - totalDmg);
@@ -491,6 +501,15 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
+        }else if(move.getName().equalsIgnoreCase("Agility")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){ 
+                
+                attackingCreature.setTempSpeed(attackingCreature.getSpeed()+move.getBaseAmount());
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " and increased their speed by " + move.getBaseAmount() + "! ";
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
         }
         
         move.setTimesUsed(move.getTimesUsed()+1);
@@ -498,6 +517,17 @@ public class Fight {
         applyEndOfTurnEffects(attackingCreature);
         decrementActiveEffects(attackingCreature);
         moveSummary = flavorText;
+    }
+    
+    // can use this to count the burns, or 'wet' stacks for gnivia, for ex.
+    public int countTheEffect(Creature c, String effName){
+        int counter = 0;
+        for(Effect e : c.getEffects()){
+            if(e.getName().equalsIgnoreCase(effName)){
+                counter++;
+            }
+        }
+        return counter;
     }
     
     public Effect findEffectToBeReplaced(String effName, Creature creature){

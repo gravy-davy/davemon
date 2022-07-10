@@ -227,6 +227,20 @@ public class MoveCreator {
             move.setBaseAmount(50);
             move.setType("Lightning");
             move.setAccuracy(65);
+        }else if(moveName.equalsIgnoreCase("Agility")){ // needs test. basically just increases speed.
+            move.setName("Agility");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(40);
+            move.setType("Physical");
+            move.setAccuracy(80);
+        }else if(moveName.equalsIgnoreCase("Wing slice")){ // needs test. basically flying attack with chance to pierce.
+            move.setName("Wing slice");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Flying");
+            move.setAccuracy(73);
         }
      
         return move;
