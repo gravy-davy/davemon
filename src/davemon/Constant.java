@@ -14,8 +14,9 @@ public class Constant {
     public static final ImageIcon WALKING_UP_AVATAR = new ImageIcon("assets/images/avataaar_up.gif");
     public static final ImageIcon WALKING_DOWN_AVATAR = new ImageIcon("assets/images/avataaar_down.gif");
     
-    // map sizes should be 850 width and 912 height
+    // map sizes should be 850 width and 912 height. on the rpgmap tool, 40 squares by 40 squares. then export as png. 
     public static final ImageIcon MAP_TEST = new ImageIcon("assets/images/map_test.png");
+    public static final ImageIcon MAP_HOOLIGAN_STREET = new ImageIcon("assets/images/map_hooligan_street.png");
     
     // TRAINER full photos should be 275 width and 435 height
     public static final ImageIcon TRAINER_CATER_FULL = new ImageIcon("assets/images/trainer_cater_full.jpg");

@@ -1017,6 +1017,7 @@ public class JFrame extends javax.swing.JFrame {
      */
     public void initBoard(String location){
         // put it in the panel, like the board
+        player.setLocation(location);
         setVisible(false);
         board = new Board(this, location);
         setContentPane(board);  

@@ -77,7 +77,8 @@ public class Board extends JPanel implements ActionListener {
         // System.out.println("sprite x and y coords: " + sprite.getX() + " - " + sprite.getY());
         if(location.equalsIgnoreCase("Homestead")){
             g2d.drawImage(Constant.MAP_TEST.getImage(),0,0,this);
-            //g2d.drawImage(Constant.GRASS.getImage(), 300, 0, this);
+        }else if(location.equalsIgnoreCase("Hooligan Street")){
+            g2d.drawImage(Constant.MAP_HOOLIGAN_STREET.getImage(),0,0,this);
         }
         
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
@@ -140,6 +141,9 @@ public class Board extends JPanel implements ActionListener {
                 backToMain = true;
             }else if(sprite.getX()>=52 && sprite.getX()<=300 && sprite.getY()>=140 && sprite.getY()<=356){
                 jframe.openPanelFromWorld(jframe.getjPanel4());
+                backToMain = true;
+            }else if(sprite.getX()>=806 && sprite.getY()>=564 && sprite.getY()<=620){
+                jframe.initBoard("Hooligan Street");
                 backToMain = true;
             }
         }
