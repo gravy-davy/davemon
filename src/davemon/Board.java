@@ -81,6 +81,7 @@ public class Board extends JPanel implements ActionListener {
             g2d.drawImage(Constant.MAP_HOOLIGAN_STREET.getImage(),0,0,this);
         }
         
+        // can change position of sprite based on location
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
             sprite.getY(), this);
     }
@@ -145,6 +146,34 @@ public class Board extends JPanel implements ActionListener {
             }else if(sprite.getX()>=806 && sprite.getY()>=564 && sprite.getY()<=620){
                 jframe.initBoard("Hooligan Street");
                 backToMain = true;
+            }
+        }else if(location.equalsIgnoreCase("Hooligan Street")){
+            if(sprite.getX()>=132 && sprite.getX()<=162 && sprite.getY()>=478 && sprite.getY()<=490){
+                if(jframe.getPlayer().getGymBattlesCleared().contains(2)){
+                    System.out.println("already fought this trainer");
+                }else{
+                    trainer = tc.createTrainer("Lil Punk #1");
+                    setTrainerDialogPanel();
+                    backToMain = true;
+                }    
+            }else if(sprite.getX()>=274 && sprite.getX()<=316 && sprite.getY()>=478 && sprite.getY()<=490){
+                if(jframe.getPlayer().getGymBattlesCleared().contains(1)){
+                    System.out.println("already fought this trainer");
+                }else{
+                    trainer = tc.createTrainer("Cater");
+                    setTrainerDialogPanel();
+                    backToMain = true;
+                }    
+            }else if(sprite.getX()>=680 && sprite.getX()<=720 && sprite.getY()>=478 && sprite.getY()<=490){
+                if(jframe.getPlayer().getGymBattlesCleared().contains(1)){
+                    System.out.println("already fought this trainer");
+                }else{
+                    trainer = tc.createTrainer("Cater");
+                    setTrainerDialogPanel();
+                    backToMain = true;
+                }    
+            }else if(sprite.getX()>=122 && sprite.getX()<=316 && sprite.getY()>=694 && sprite.getY()<=830){
+                // wild fight  
             }
         }
         

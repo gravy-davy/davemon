@@ -244,7 +244,7 @@ public class Fight {
         }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
                 move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life") || 
                 move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")
-                || move.getName().equalsIgnoreCase("Wing slice")){
+                || move.getName().equalsIgnoreCase("Wing slice") || move.getName().equalsIgnoreCase("Fracture")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -282,8 +282,19 @@ public class Fight {
                 if(move.getName().equalsIgnoreCase("Wing slice")){
                     int seed = rando.nextInt(100);
                     if(seed<=10){
+                        flavorText = flavorText + defendingCreature.getName() + " had their DEF pierced! ";
                         def = 0;
                     }
+                }else if(move.getName().equalsIgnoreCase("Fracture")){
+                    defendingCreature.setTempPhysicalDef(defendingCreature.getTempPhysicalDef()-dmg/2);
+                    flavorText = flavorText + defendingCreature.getName() + " had their physical DEF lowered by " + dmg/2;
+                }
+                
+                if(defendingCreature.getTempPhysicalDef()<=0){
+                        defendingCreature.setTempPhysicalDef(1);
+                }
+                if(defendingCreature.getTempSpecialDef()<=0){
+                        defendingCreature.setTempSpecialDef(1);
                 }
                 
                 int totalDmg = dmg - def;

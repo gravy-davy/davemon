@@ -463,6 +463,96 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Cryzard")){
+            c.setEvolutionLevel(32);
+            c.setType("Metal");
+            c.addToResistances("Metal");
+            c.addToWeaknesses("Fire");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(37 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(120);
+            c.setPhysicalDef(24);
+            c.setSpecialDef(28);
+            c.setPhysicalAtk(25);
+            c.setSpecialAtk(25);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_CRYZARD);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Shatter");
+            Move m3 = mc.makeMove("Harden");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+        }else if(name.equalsIgnoreCase("Kinetile")){
+            c.setEvolutionLevel(32);
+            c.setType("Grass");
+            c.addToResistances("Grass");
+            c.addToResistances("Water");
+            c.addToWeaknesses("Fire");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(33 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(105);
+            c.setPhysicalDef(32);
+            c.setSpecialDef(22);
+            c.setPhysicalAtk(31);
+            c.setSpecialAtk(38);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_KINETILE);
+            
+            Move m1 = mc.makeMove("Bite");
+            Move m2 = mc.makeMove("Water gun");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Cidron")){
+            c.setEvolutionLevel(45);
+            c.setType("Poison");
+            c.addToResistances("Poison");
+            c.addToWeaknesses("Light");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(40 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(80);
+            c.setPhysicalDef(30);
+            c.setSpecialDef(32);
+            c.setPhysicalAtk(27);
+            c.setSpecialAtk(24);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_KINETILE);
+            
+            Move m1 = mc.makeMove("Poisonous bite");
+            Move m2 = mc.makeMove("Bite");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;

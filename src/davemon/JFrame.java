@@ -163,8 +163,18 @@ public class JFrame extends javax.swing.JFrame {
         });
 
         move3button.setText("Move3");
+        move3button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                move3buttonActionPerformed(evt);
+            }
+        });
 
         move4button.setText("Move4");
+        move4button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                move4buttonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Health: ");
 
@@ -784,8 +794,10 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_move1buttonActionPerformed
 
     private void move2buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move2buttonActionPerformed
-        board.playerAtk(1);
-        hasUsedBag = false;
+        if(player.getActiveDavemon().get(0).getMoveset().size()>=2){
+            board.playerAtk(1);
+            hasUsedBag = false;
+        }
     }//GEN-LAST:event_move2buttonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -938,6 +950,20 @@ public class JFrame extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         initBoard(player.getLocation());
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void move3buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move3buttonActionPerformed
+        if(player.getActiveDavemon().get(0).getMoveset().size()>=3){
+            board.playerAtk(2);
+            hasUsedBag = false;
+        }
+    }//GEN-LAST:event_move3buttonActionPerformed
+
+    private void move4buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move4buttonActionPerformed
+        if(player.getActiveDavemon().get(0).getMoveset().size()>=4){
+            board.playerAtk(3);
+            hasUsedBag = false;
+        }
+    }//GEN-LAST:event_move4buttonActionPerformed
     
     public void removeFromActiveDavemonViaButton(int offset){
         try{

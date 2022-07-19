@@ -289,11 +289,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Move3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move3buttonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="move4button">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move4"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move4buttonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

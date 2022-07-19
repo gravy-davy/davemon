@@ -7,6 +7,7 @@ public class MoveCreator {
     public Move makeMove(String moveName){
         
         Move move = new Move();
+        // creatures set types themselves. like setting a fireball to water type, for ex.
         
         if(moveName.equalsIgnoreCase("Confuse")){
             move.setName("Confuse"); // reduces accuracy of opponent
@@ -163,7 +164,7 @@ public class MoveCreator {
             move.setBaseAmount(35);
             move.setType("Dark");
             move.setAccuracy(65);
-        }else if(moveName.equalsIgnoreCase("Shatter")){ // needs test
+        }else if(moveName.equalsIgnoreCase("Shatter")){ // needs test. low damage pierce attack.
             move.setName("Shatter");
             move.setTimesUsed(0);
             move.setMaxUses(20);
@@ -241,7 +242,15 @@ public class MoveCreator {
             move.setBaseAmount(30);
             move.setType("Flying");
             move.setAccuracy(73);
+        }else if(moveName.equalsIgnoreCase("Fracture")){ // needs test. basically lowers enemy physical def by half dmg done.
+            move.setName("Fracture");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(20);
+            move.setType("Ice");
+            move.setAccuracy(70);
         }
+        // crystallize can be wet pop
      
         return move;
         
