@@ -160,15 +160,7 @@ public class Board extends JPanel implements ActionListener {
                 if(jframe.getPlayer().getGymBattlesCleared().contains(1)){
                     System.out.println("already fought this trainer");
                 }else{
-                    trainer = tc.createTrainer("Cater");
-                    setTrainerDialogPanel();
-                    backToMain = true;
-                }    
-            }else if(sprite.getX()>=680 && sprite.getX()<=720 && sprite.getY()>=478 && sprite.getY()<=490){
-                if(jframe.getPlayer().getGymBattlesCleared().contains(1)){
-                    System.out.println("already fought this trainer");
-                }else{
-                    trainer = tc.createTrainer("Cater");
+                    trainer = tc.createTrainer("Lil Punk #2");
                     setTrainerDialogPanel();
                     backToMain = true;
                 }    

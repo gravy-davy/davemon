@@ -21,11 +21,13 @@ public class Constant {
     // TRAINER full photos should be 275 width and 435 height
     public static final ImageIcon TRAINER_CATER_FULL = new ImageIcon("assets/images/trainer_cater_full.jpg");
     public static final ImageIcon TRAINER_PUNK_KID_1 = new ImageIcon("assets/images/trainer_lil_punk_full.jpg");
+    public static final ImageIcon TRAINER_PUNK_KID_2 = new ImageIcon("assets/images/trainer_lil_punk_2_full.jpg");
     
     // TRAINER logo photos should be 116 width and 106 height
     public static final ImageIcon TRAINER_WILD_LOGO = new ImageIcon("assets/images/trainer_wild_logo.png");
     public static final ImageIcon TRAINER_CATER_LOGO = new ImageIcon("assets/images/trainer_cater_logo.PNG");
     public static final ImageIcon TRAINER_PUNK_KID_1_LOGO = new ImageIcon("assets/images/trainer_lil_punk_logo.PNG");
+    public static final ImageIcon TRAINER_PUNK_KID_2_LOGO = new ImageIcon("assets/images/trainer_lil_punk_2_logo.PNG");
     
     // creature photos should be 225x225
     public static final ImageIcon CREATURE_UNIRU = new ImageIcon("assets/images/creature_uniru.jpg");
@@ -47,5 +49,6 @@ public class Constant {
     public static final ImageIcon CREATURE_CRYZARD = new ImageIcon("assets/images/creature_cryzard.png");
     public static final ImageIcon CREATURE_KINETILE = new ImageIcon("assets/images/creature_kinetile.jpg");
     public static final ImageIcon CREATURE_CIDRON = new ImageIcon("assets/images/creature_cidron.png");
+    public static final ImageIcon CREATURE_FASP = new ImageIcon("assets/images/creature_fasp.png");
     
 }

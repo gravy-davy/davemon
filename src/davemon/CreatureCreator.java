@@ -553,6 +553,36 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Fasp")){
+            c.setEvolutionLevel(40);
+            c.setType("Fire");
+            c.addToResistances("Poison");
+            c.addToResistances("Fire");
+            c.addToWeaknesses("Water");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(25 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(140);
+            c.setPhysicalDef(15);
+            c.setSpecialDef(15);
+            c.setPhysicalAtk(45);
+            c.setSpecialAtk(45);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_FASP);
+            
+            Move m1 = mc.makeMove("Poisonous bite");
+            Move m2 = mc.makeMove("Fire claw");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
