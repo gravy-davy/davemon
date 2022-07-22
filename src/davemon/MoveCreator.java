@@ -249,8 +249,25 @@ public class MoveCreator {
             move.setBaseAmount(20);
             move.setType("Ice");
             move.setAccuracy(70);
+        }else if(moveName.equalsIgnoreCase("Thorns")){ // needs test. basically gives you an effect that reflects 50% dmg, up to 20.
+            move.setName("Thorns");
+            move.setTimesUsed(0);
+            move.setMaxUses(10);
+            move.setBaseAmount(20); // maximum reflect amount. reflects half.
+            move.setType("Physical");
+            move.setAccuracy(90);
+            move.setDuration(3); // effect moves need duration
+        }else if(moveName.equalsIgnoreCase("Aegis")){ // needs test. basically a better harden
+            move.setName("Aegis");
+            move.setTimesUsed(0);
+            move.setMaxUses(10);
+            move.setBaseAmount(40);
+            move.setType("Physical");
+            move.setAccuracy(90);
+            move.setDuration(3); // effect moves need duration
         }
-        // crystallize can be wet pop
+        
+        // crystallize can be wet pop that does high dmg
      
         return move;
         

@@ -583,6 +583,40 @@ public class CreatureCreator {
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
+        }else if(name.equalsIgnoreCase("Tortoros")){
+            c.setEvolutionLevel(40);
+            c.setType("Water");
+            c.addToResistances("Water");
+            c.addToResistances("Light");
+            c.addToWeaknesses("Dark");
+            
+            c.setHealthPerLevel(4);
+            c.setHealth(75 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(40);
+            c.setPhysicalDef(75);
+            c.setSpecialDef(75);
+            c.setPhysicalAtk(40);
+            c.setSpecialAtk(40);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_TORTOROS);
+            
+            Move m1 = mc.makeMove("Water cannon");
+            Move m2 = mc.makeMove("Thorns");
+            Move m3 = mc.makeMove("Aegis");
+            Move m4 = mc.makeMove("Heal");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+            c.getMoveset().add(m4);
         }
         
         return c;

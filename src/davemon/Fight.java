@@ -44,6 +44,7 @@ public class Fight {
     public void attack(Creature attackingCreature, Creature defendingCreature, Move move){
         Random rando = new Random();
         String flavorText = "";
+        int defCurrHp = defendingCreature.getHealth();
         
         // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
         if(move.getName().equalsIgnoreCase("Bite")){
@@ -162,30 +163,35 @@ public class Fight {
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
             
-        }else if(move.getName().equalsIgnoreCase("Harden")){
+        }else if(move.getName().equalsIgnoreCase("Harden") || move.getName().equalsIgnoreCase("Thorns") || move.getName().equalsIgnoreCase("Aegis")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // the effect is just so it gets removed once the duration is over. it gets increased here on activation.
                 
-                if(!doesAlreadyHaveEffect("Harden", attackingCreature)){
+                if(!doesAlreadyHaveEffect(move.getName(), attackingCreature)){
                     Effect e = new Effect();
-                    e.setName("Harden");
+                    e.setName(move.getName());
                     e.setDuration(move.getDuration());
                     e.setValue(move.getBaseAmount());
                     attackingCreature.addEffect(e);
-                    attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
+                    if(move.getName().equalsIgnoreCase("Harden")){
+                        attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
+                    }else if(move.getName().equalsIgnoreCase("Aegis")){
+                        attackingCreature.setTempPhysicalDef(attackingCreature.getTempPhysicalDef()+move.getBaseAmount());
+                        attackingCreature.setTempSpecialDef(attackingCreature.getTempSpecialDef()+move.getBaseAmount());
+                    }
                 }else{
-                    Effect e = findEffectToBeReplaced("Harden", attackingCreature);
+                    Effect e = findEffectToBeReplaced(move.getName(), attackingCreature);
                     if(e!=null){
                         attackingCreature.getEffects().remove(e);
                     }
                     Effect eff = new Effect();
-                    eff.setName("Harden");
+                    eff.setName(move.getName());
                     eff.setDuration(move.getDuration());
                     eff.setValue(move.getBaseAmount());
                     attackingCreature.addEffect(eff);
                 }
-                flavorText = flavorText + attackingCreature.getName() + " used Harden on itself! ";
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " on itself! ";
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
@@ -523,10 +529,23 @@ public class Fight {
             }
         }
         
+        
         move.setTimesUsed(move.getTimesUsed()+1);
         // active status effects proc at the end of the attacking character's turn
         applyEndOfTurnEffects(attackingCreature);
         decrementActiveEffects(attackingCreature);
+        
+        if(doesAlreadyHaveEffect("Thorns", defendingCreature) && defendingCreature.getHealth()<defCurrHp){
+            System.out.println("creature with thorns lost hp");
+            int reflectDmg = (defCurrHp - defendingCreature.getHealth()) / 2;
+            // hard coding the max value here for now
+            if(reflectDmg > 20){
+                reflectDmg = 20;
+            }
+            System.out.println("reflect dmg = " + reflectDmg);
+            attackingCreature.setHealth(attackingCreature.getHealth()-reflectDmg);
+            flavorText = flavorText + attackingCreature.getName() + " took " + reflectDmg + " reflect damage!";
+        }
         moveSummary = flavorText;
     }
     
@@ -587,6 +606,9 @@ public class Fight {
             if(c.getEffects().contains(e)){
                 if(e.getName().equalsIgnoreCase("Harden")){
                     c.setTempPhysicalDef(c.getTempPhysicalDef()-e.getValue());
+                }else if(e.getName().equalsIgnoreCase("Aegis")){
+                    c.setTempPhysicalDef(c.getTempPhysicalDef()-e.getValue());
+                    c.setTempSpecialDef(c.getTempSpecialDef()-e.getValue());
                 }
                 c.getEffects().remove(e);
             }

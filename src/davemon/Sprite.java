@@ -30,7 +30,7 @@ public class Sprite {
     public void move() {
         
         // uncomment when allocating new map coordinates
-        System.out.println("x = " + x + " - y = " + y);
+        // System.out.println("x = " + x + " - y = " + y);
         x += dx;
         y += dy;
     }

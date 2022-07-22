@@ -377,6 +377,34 @@ public class Board extends JPanel implements ActionListener {
         jframe.getMove1button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(0).getName());
         jframe.getMove2button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(1).getName());
         
+        
+        try{
+            jframe.getMove3button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(2).getName());
+        }catch(Exception e){
+            jframe.getMove3button().setText("N/A");
+        }
+        try{
+            jframe.getMove4button().setText(jframe.getPlayer().getActiveDavemon().get(0).getMoveset().get(3).getName());
+        }catch(Exception e){
+            jframe.getMove4button().setText("N/A");
+        }
+        
+        try{
+            jframe.getjButton5().setText(jframe.getPlayer().getActiveDavemon().get(1).getName());
+        }catch(Exception e){
+            jframe.getjButton5().setText("N/A");
+        }
+        try{
+            jframe.getjButton6().setText(jframe.getPlayer().getActiveDavemon().get(2).getName());
+        }catch(Exception e){
+            jframe.getjButton6().setText("N/A");
+        }
+        try{
+            jframe.getjButton7().setText(jframe.getPlayer().getActiveDavemon().get(3).getName());
+        }catch(Exception e){
+            jframe.getjButton7().setText("N/A");
+        }
+        
         // enemy creature info on panel
         ImageIcon enemyImg = new ImageIcon(enemyCreature.getImage().getImage());
         jframe.getEnemyCreatureIcon().setIcon(enemyImg);

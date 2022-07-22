@@ -772,7 +772,7 @@ public class JFrame extends javax.swing.JFrame {
             createPlayer();
             // add creature
             CreatureCreator cc = new CreatureCreator();
-            Creature c = cc.getCreature("Vulf", 1);
+            Creature c = cc.getCreature("Tortoros", 75);
             Creature c1 = cc.getCreature("Elazar", 1);
             player.addToActiveDavemon(c);
             player.addToActiveDavemon(c1);
@@ -1466,7 +1466,29 @@ public class JFrame extends javax.swing.JFrame {
     public void setTrainerDialogOutro(JPanel trainerDialogOutro) {
         this.trainerDialogOutro = trainerDialogOutro;
     }
-    
-    
+
+    public JButton getjButton5() {
+        return jButton5;
+    }
+
+    public void setjButton5(JButton jButton5) {
+        this.jButton5 = jButton5;
+    }
+
+    public JButton getjButton6() {
+        return jButton6;
+    }
+
+    public void setjButton6(JButton jButton6) {
+        this.jButton6 = jButton6;
+    }
+
+    public JButton getjButton7() {
+        return jButton7;
+    }
+
+    public void setjButton7(JButton jButton7) {
+        this.jButton7 = jButton7;
+    }
     
 }
