@@ -391,16 +391,25 @@ public class Board extends JPanel implements ActionListener {
         
         try{
             jframe.getjButton5().setText(jframe.getPlayer().getActiveDavemon().get(1).getName());
+            if(jframe.getPlayer().getActiveDavemon().get(1).getHealth()<=0){
+                jframe.getjButton5().setText(jframe.getjButton5().getText()+" - KO");
+            }
         }catch(Exception e){
             jframe.getjButton5().setText("N/A");
         }
         try{
             jframe.getjButton6().setText(jframe.getPlayer().getActiveDavemon().get(2).getName());
+            if(jframe.getPlayer().getActiveDavemon().get(2).getHealth()<=0){
+                jframe.getjButton6().setText(jframe.getjButton6().getText()+" - KO");
+            }
         }catch(Exception e){
             jframe.getjButton6().setText("N/A");
         }
         try{
             jframe.getjButton7().setText(jframe.getPlayer().getActiveDavemon().get(3).getName());
+            if(jframe.getPlayer().getActiveDavemon().get(3).getHealth()<=0){
+                jframe.getjButton7().setText(jframe.getjButton7().getText()+" - KO");
+            }
         }catch(Exception e){
             jframe.getjButton7().setText("N/A");
         }
