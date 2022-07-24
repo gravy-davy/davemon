@@ -46,8 +46,17 @@ public class Fight {
         String flavorText = "";
         int defCurrHp = defendingCreature.getHealth();
         
+        if(doesAlreadyHaveEffect("Entangle", attackingCreature) || doesAlreadyHaveEffect("Crystallize", attackingCreature)){
+            // active status effects proc at the end of the attacking character's turn
+            applyEndOfTurnEffects(attackingCreature);
+            decrementActiveEffects(attackingCreature);
+            flavorText = attackingCreature.getName() + " is stunned and cannot perform any actions right now!";
+            moveSummary = flavorText;
+            return;
+        }
+        
         // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
-        if(move.getName().equalsIgnoreCase("Bite")){
+        if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -195,7 +204,9 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
-        }else if(move.getName().equalsIgnoreCase("Confuse") || move.getName().equalsIgnoreCase("Shock")){
+        }else if(move.getName().equalsIgnoreCase("Confuse") || move.getName().equalsIgnoreCase("Shock") || move.getName().equalsIgnoreCase("Ink") || 
+                move.getName().equalsIgnoreCase("Entangle") || move.getName().equalsIgnoreCase("Wet") || (move.getName().equalsIgnoreCase("Crystallize") && 
+                doesAlreadyHaveEffect("Wet", defendingCreature))){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
@@ -250,7 +261,8 @@ public class Fight {
         }else if(move.getName().equalsIgnoreCase("Light beam") || move.getName().equalsIgnoreCase("Water gun") || move.getName().equalsIgnoreCase("Water cannon") || 
                 move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life") || 
                 move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")
-                || move.getName().equalsIgnoreCase("Wing slice") || move.getName().equalsIgnoreCase("Fracture")){
+                || move.getName().equalsIgnoreCase("Wing slice") || move.getName().equalsIgnoreCase("Fracture") || move.getName().equalsIgnoreCase("Dark matter")
+                || move.getName().equalsIgnoreCase("Ice shard")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -280,6 +292,11 @@ public class Fight {
                         attackingCreature.setHealth(attackingCreature.getHealth()-10);
                         flavorText = flavorText + attackingCreature.getName() + " hit themselves for 10 damage! ";
                     }
+                }
+                
+                if(move.getName().equalsIgnoreCase("Ice shard") && doesAlreadyHaveEffect("Wet", defendingCreature)){
+                    dmg = dmg * 3;
+                    flavorText = flavorText + move.getName() + " damage tripled!";
                 }
                 
                 int def = rando.nextInt(defendingCreature.getTempSpecialDef());
@@ -321,7 +338,7 @@ public class Fight {
             }
             // special attacks w/ chance of end of turn effect here. stackables.
         }else if(move.getName().equalsIgnoreCase("Fire claw") || move.getName().equalsIgnoreCase("Poisonous Bite") || move.getName().equalsIgnoreCase("Venom fang") || 
-                move.getName().equalsIgnoreCase("Electric current")){
+                move.getName().equalsIgnoreCase("Electric current") || move.getName().equalsIgnoreCase("Chilling gust")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 int dmg = rando.nextInt(attackingCreature.getTempSpecialAtk());
@@ -573,7 +590,8 @@ public class Fight {
     public void applyEndOfTurnEffects(Creature c){
         
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Bleed") || e.getName().equalsIgnoreCase("Burn") || e.getName().equalsIgnoreCase("Venom")){
+            if(e.getName().equalsIgnoreCase("Bleed") || e.getName().equalsIgnoreCase("Burn") || e.getName().equalsIgnoreCase("Venom") || 
+                    e.getName().equalsIgnoreCase("Chill")){
                 c.setHealth(c.getHealth()-e.getValue());
             }
         }
@@ -618,7 +636,7 @@ public class Fight {
     
     public Effect checkForAccuracyDebuff(Creature c){
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Confuse")){
+            if(e.getName().equalsIgnoreCase("Confuse") || e.getName().equalsIgnoreCase("Ink") || e.getName().equalsIgnoreCase("Wet")){
                 return e;
             }
         }
@@ -634,8 +652,6 @@ public class Fight {
         return null;
     }
     
-    
-    // gotta check for confuses here
     public String hitOrMiss(Move move, Creature c){
         Random rando = new Random();
         Effect accDebuff = checkForAccuracyDebuff(c);

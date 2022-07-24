@@ -617,6 +617,75 @@ public class CreatureCreator {
             c.getMoveset().add(m2);
             c.getMoveset().add(m3);
             c.getMoveset().add(m4);
+        }else if(name.equalsIgnoreCase("Doomopus")){
+            c.setEvolutionLevel(40);
+            c.setType("Water");
+            c.addToResistances("Water");
+            c.addToResistances("Dark");
+            c.addToWeaknesses("Light");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(50 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(80);
+            c.setPhysicalDef(35);
+            c.setSpecialDef(50);
+            c.setPhysicalAtk(60);
+            c.setSpecialAtk(70);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_DOOMOPUS);
+            
+            Move m1 = mc.makeMove("Dark matter");
+            Move m2 = mc.makeMove("Ink");
+            Move m3 = mc.makeMove("Entangle");
+            Move m4 = mc.makeMove("Tentacle slap");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+            c.getMoveset().add(m4);
+        }else if(name.equalsIgnoreCase("Gnivia")){
+            c.setEvolutionLevel(40);
+            c.setType("Ice");
+            c.addToResistances("Water");
+            c.addToResistances("Ice");
+            c.addToWeaknesses("Fire");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(42 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(112);
+            c.setPhysicalDef(31);
+            c.setSpecialDef(38);
+            c.setPhysicalAtk(30);
+            c.setSpecialAtk(45);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_GNIVIA);
+            
+            Move m1 = mc.makeMove("Wet");
+            Move m2 = mc.makeMove("Ice shard");
+            Move m3 = mc.makeMove("Crystallize"); 
+            Move m4 = mc.makeMove("Chilling gust");
+            // needs a DOT ice move to make better use of crystallize
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+            c.getMoveset().add(m4);
         }
         
         return c;

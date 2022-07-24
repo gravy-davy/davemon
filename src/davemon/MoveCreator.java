@@ -29,7 +29,7 @@ public class MoveCreator {
             move.setEffectAmount(6);
             move.setEffectName("Bleed");
         }else if(moveName.equalsIgnoreCase("Bite")){
-            move.setName("Bite"); // makes opponent creature need to flip a coin when they attack
+            move.setName("Bite"); 
             move.setTimesUsed(0);
             move.setMaxUses(25);
             move.setBaseAmount(30);
@@ -249,7 +249,7 @@ public class MoveCreator {
             move.setBaseAmount(20);
             move.setType("Ice");
             move.setAccuracy(70);
-        }else if(moveName.equalsIgnoreCase("Thorns")){ // needs test. basically gives you an effect that reflects 50% dmg, up to 20.
+        }else if(moveName.equalsIgnoreCase("Thorns")){ // verified.
             move.setName("Thorns");
             move.setTimesUsed(0);
             move.setMaxUses(10);
@@ -257,7 +257,7 @@ public class MoveCreator {
             move.setType("Physical");
             move.setAccuracy(90);
             move.setDuration(3); // effect moves need duration
-        }else if(moveName.equalsIgnoreCase("Aegis")){ // needs test. basically a better harden
+        }else if(moveName.equalsIgnoreCase("Aegis")){ // verified.
             move.setName("Aegis");
             move.setTimesUsed(0);
             move.setMaxUses(10);
@@ -265,9 +265,71 @@ public class MoveCreator {
             move.setType("Physical");
             move.setAccuracy(90);
             move.setDuration(3); // effect moves need duration
+        }else if(moveName.equalsIgnoreCase("Ink")){ // needs test, reduces accuracy.
+            move.setName("Ink");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(40);
+            move.setType("Water");
+            move.setAccuracy(75);
+            move.setDuration(7);
+        }else if(moveName.equalsIgnoreCase("Entangle")){ // needs test, reduces stuns enemy. SHOULD have a move that breaks entangles.
+            move.setName("Entangle");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Physical");
+            move.setAccuracy(60);
+            move.setDuration(2);
+        }else if(moveName.equalsIgnoreCase("Tentacle slap")){ // needs test, just a physical attack.
+            move.setName("Tentacle slap"); 
+            move.setTimesUsed(0);
+            move.setMaxUses(25);
+            move.setBaseAmount(50);
+            move.setType("Physical");
+            move.setAccuracy(78);
+        }else if(moveName.equalsIgnoreCase("Dark matter")){ // damage.
+            move.setName("Dark matter");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(60);
+            move.setType("Dark");
+            move.setAccuracy(60);
+        }else if(moveName.equalsIgnoreCase("Wet")){ // needs test, effect that reduces accuracy.
+            move.setName("Wet");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Water");
+            move.setAccuracy(80);
+            move.setDuration(4);
+        }else if(moveName.equalsIgnoreCase("Ice shard")){ // needs test. triples damage if enemy is wet.
+            move.setName("Ice shard");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(25);
+            move.setType("Ice");
+            move.setAccuracy(75);
+        }else if(moveName.equalsIgnoreCase("Crystallize")){ // verified stun. just doesnt print anything to flavor text if no wet effect.
+            move.setName("Crystallize");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Ice");
+            move.setAccuracy(70);
+            move.setDuration(1);
+        }else if(moveName.equalsIgnoreCase("Chilling gust")){ // verified
+            move.setName("Chilling gust");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Ice");
+            move.setAccuracy(75);
+            move.setDuration(5);
+            move.setEffectChance(50);
+            move.setEffectAmount(5);
+            move.setEffectName("Chill");
         }
-        
-        // crystallize can be wet pop that does high dmg
      
         return move;
         
