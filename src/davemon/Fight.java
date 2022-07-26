@@ -46,7 +46,8 @@ public class Fight {
         String flavorText = "";
         int defCurrHp = defendingCreature.getHealth();
         
-        if(doesAlreadyHaveEffect("Entangle", attackingCreature) || doesAlreadyHaveEffect("Crystallize", attackingCreature)){
+        if(doesAlreadyHaveEffect("Entangle", attackingCreature) || doesAlreadyHaveEffect("Crystallize", attackingCreature) || 
+                doesAlreadyHaveEffect("Paralyzing blow", defendingCreature)){
             // active status effects proc at the end of the attacking character's turn
             applyEndOfTurnEffects(attackingCreature);
             decrementActiveEffects(attackingCreature);
@@ -56,7 +57,7 @@ public class Fight {
         }
         
         // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
-        if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap")){
+        if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap") || move.getName().equalsIgnoreCase("Karate kick")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -129,7 +130,7 @@ public class Fight {
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }
-        }else if(move.getName().equalsIgnoreCase("Stab")){
+        }else if(move.getName().equalsIgnoreCase("Stab") || move.getName().equalsIgnoreCase("Wild claw")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 int dmg = rando.nextInt(attackingCreature.getTempPhysicalAtk());
@@ -206,7 +207,7 @@ public class Fight {
             }
         }else if(move.getName().equalsIgnoreCase("Confuse") || move.getName().equalsIgnoreCase("Shock") || move.getName().equalsIgnoreCase("Ink") || 
                 move.getName().equalsIgnoreCase("Entangle") || move.getName().equalsIgnoreCase("Wet") || (move.getName().equalsIgnoreCase("Crystallize") && 
-                doesAlreadyHaveEffect("Wet", defendingCreature))){
+                doesAlreadyHaveEffect("Wet", defendingCreature)) || move.getName().equalsIgnoreCase("Paralyzing blow")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
@@ -541,6 +542,16 @@ public class Fight {
                 
                 attackingCreature.setTempSpeed(attackingCreature.getSpeed()+move.getBaseAmount());
                 flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " and increased their speed by " + move.getBaseAmount() + "! ";
+            }else{
+                flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
+            }
+        }else if(move.getName().equalsIgnoreCase("Screech")){
+            String hitOrMiss = hitOrMiss(move, attackingCreature);
+            if(hitOrMiss.equalsIgnoreCase("Hit")){    
+                defendingCreature.setTempPhysicalDef(defendingCreature.getTempPhysicalDef()-move.getBaseAmount());
+                defendingCreature.setTempSpecialDef(defendingCreature.getTempSpecialDef()-move.getBaseAmount());
+                flavorText = flavorText + attackingCreature.getName() + " used " + move.getName() + " and decreased " + defendingCreature.getName() + " DEF by " + 
+                        move.getBaseAmount() + "! ";
             }else{
                 flavorText = flavorText + attackingCreature.getName() + " missed their " + move.getName() + "! ";
             }

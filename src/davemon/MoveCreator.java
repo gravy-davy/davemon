@@ -280,7 +280,7 @@ public class MoveCreator {
             move.setBaseAmount(10);
             move.setType("Physical");
             move.setAccuracy(60);
-            move.setDuration(2);
+            move.setDuration(3);
         }else if(moveName.equalsIgnoreCase("Tentacle slap")){ // needs test, just a physical attack.
             move.setName("Tentacle slap"); 
             move.setTimesUsed(0);
@@ -329,6 +329,39 @@ public class MoveCreator {
             move.setEffectChance(50);
             move.setEffectAmount(5);
             move.setEffectName("Chill");
+        }else if(moveName.equalsIgnoreCase("Screech")){ // needs testing, lowers enemy physical/special def.
+            move.setName("Screech");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(30);
+            move.setType("Mind");
+            move.setAccuracy(70);
+        }else if(moveName.equalsIgnoreCase("Wild claw")){
+            move.setName("Wild claw");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(40); 
+            move.setType("Physical");
+            move.setAccuracy(65);
+            move.setDuration(3);
+            move.setEffectChance(50);
+            move.setEffectAmount(8);
+            move.setEffectName("Bleed");
+        }else if(moveName.equalsIgnoreCase("Paralyzing blow")){ // needs test, reduces stuns enemy. SHOULD have a move that breaks entangles.
+            move.setName("Paralyzing blow");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(10);
+            move.setType("Physical");
+            move.setAccuracy(70);
+            move.setDuration(2);
+        }else if(moveName.equalsIgnoreCase("Karate kick")){
+            move.setName("Karate kick"); 
+            move.setTimesUsed(0);
+            move.setMaxUses(25);
+            move.setBaseAmount(50);
+            move.setType("Physical");
+            move.setAccuracy(65);
         }
      
         return move;

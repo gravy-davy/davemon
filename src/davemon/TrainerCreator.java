@@ -61,7 +61,7 @@ public class TrainerCreator {
             trainer = new Trainer();
             trainer.setActiveDavemon(new ArrayList<>());
             trainer.setName("Lil Punk #2");
-            trainer.setId(2);
+            trainer.setId(3);
             trainer.setFullLogo(Constant.TRAINER_PUNK_KID_2);
             trainer.setLogo(Constant.TRAINER_PUNK_KID_2_LOGO);
             trainer.setVictoryText("Told you, didn't even have to try honestly.");
@@ -77,6 +77,30 @@ public class TrainerCreator {
             trainer.addToActiveDavemon(c3);
             Creature c2;
             c2 = cc.getCreature("Fasp", rando.nextInt(3)+1);
+            trainer.addToActiveDavemon(c2);
+            
+            trainer.setRewardCreature(c2);
+            trainer.setRewardMoney(50);
+        }else if(name.equalsIgnoreCase("Luis")){
+            trainer = new Trainer();
+            trainer.setActiveDavemon(new ArrayList<>());
+            trainer.setName("Luis");
+            trainer.setId(4);
+            trainer.setFullLogo(Constant.TRAINER_PUNK_KID_2);
+            trainer.setLogo(Constant.TRAINER_PUNK_KID_2_LOGO);
+            trainer.setVictoryText("Told you, didn't even have to try honestly.");
+            trainer.setDefeatText("Nahhh you got lucky, I wasn't even trying. Take my Fasp and go, you heard?");
+            trainer.setIntroText("Good evening, a fine gentleman like yourself wishes to challenge me? Very well!");
+
+            Random rando = new Random();
+            Creature c1;
+            c1 = cc.getCreature("Karate Kat", rando.nextInt(3)+1);
+            trainer.addToActiveDavemon(c1);
+            Creature c3;
+            c3 = cc.getCreature("Tartulix", rando.nextInt(3)+1);
+            trainer.addToActiveDavemon(c3);
+            Creature c2;
+            c2 = cc.getCreature("Tortoros", rando.nextInt(3)+1);
             trainer.addToActiveDavemon(c2);
             
             trainer.setRewardCreature(c2);

@@ -680,12 +680,75 @@ public class CreatureCreator {
             Move m2 = mc.makeMove("Ice shard");
             Move m3 = mc.makeMove("Crystallize"); 
             Move m4 = mc.makeMove("Chilling gust");
-            // needs a DOT ice move to make better use of crystallize
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
             c.getMoveset().add(m3);
             c.getMoveset().add(m4);
+        }else if(name.equalsIgnoreCase("Karate Kat")){
+            c.setEvolutionLevel(40);
+            c.setType("Physical");
+            c.addToResistances("Flying");
+            c.addToResistances("Mind");
+            c.addToWeaknesses("Water");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(47 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(165);
+            c.setPhysicalDef(40);
+            c.setSpecialDef(22);
+            c.setPhysicalAtk(58);
+            c.setSpecialAtk(22);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_KARATE_KAT);
+            
+            Move m1 = mc.makeMove("Wild claw");
+            Move m2 = mc.makeMove("Paralyzing blow");
+            Move m3 = mc.makeMove("Karate kick"); 
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+        }else if(name.equalsIgnoreCase("Quackzilla")){
+            c.setEvolutionLevel(40);
+            c.setType("Flying");
+            c.addToResistances("Flying");
+            c.addToWeaknesses("Metal");
+            
+            c.setHealthPerLevel(2);
+            c.setHealth(60 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(120);
+            c.setPhysicalDef(47);
+            c.setSpecialDef(53);
+            c.setPhysicalAtk(48);
+            c.setSpecialAtk(40);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_QUACKZILLA);
+            
+            Move m1 = mc.makeMove("Wing slice");
+            Move m2 = mc.makeMove("Screech");
+            // needs another move prolly
+            Move m3 = mc.makeMove("Karate kick"); 
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
         }
         
         return c;
