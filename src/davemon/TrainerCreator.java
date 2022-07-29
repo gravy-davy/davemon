@@ -97,7 +97,7 @@ public class TrainerCreator {
             c1 = cc.getCreature("Karate Kat", rando.nextInt(3)+1);
             trainer.addToActiveDavemon(c1);
             Creature c3;
-            c3 = cc.getCreature("Tartulix", rando.nextInt(3)+1);
+            c3 = cc.getCreature("Quackzilla", rando.nextInt(3)+1);
             trainer.addToActiveDavemon(c3);
             Creature c2;
             c2 = cc.getCreature("Tortoros", rando.nextInt(3)+1);

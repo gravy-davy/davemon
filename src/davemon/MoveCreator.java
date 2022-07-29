@@ -362,6 +362,31 @@ public class MoveCreator {
             move.setBaseAmount(50);
             move.setType("Physical");
             move.setAccuracy(65);
+        }else if(moveName.equalsIgnoreCase("Beak bite")){
+            move.setName("Beak bite"); 
+            move.setTimesUsed(0);
+            move.setMaxUses(25);
+            move.setBaseAmount(40);
+            move.setType("Physical");
+            move.setAccuracy(75);
+        }else if(moveName.equalsIgnoreCase("Lightning lord's current")){ // needs test. basically special lightning hit with chance to shock
+            move.setName("Lightning lord's current");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(60);
+            move.setType("Lightning");
+            move.setAccuracy(65);
+            move.setDuration(5);
+            move.setEffectChance(65);
+            move.setEffectAmount(30);
+            move.setEffectName("Shock");
+        }else if(moveName.equalsIgnoreCase("Tail slap")){ // needs test, just a physical attack.
+            move.setName("Tail slap"); 
+            move.setTimesUsed(0);
+            move.setMaxUses(25);
+            move.setBaseAmount(45);
+            move.setType("Physical");
+            move.setAccuracy(80);
         }
      
         return move;

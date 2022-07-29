@@ -57,7 +57,8 @@ public class Fight {
         }
         
         // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
-        if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap") || move.getName().equalsIgnoreCase("Karate kick")){
+        if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap") || move.getName().equalsIgnoreCase("Karate kick") || 
+                move.getName().equalsIgnoreCase("Beak bite") || move.getName().equalsIgnoreCase("Tail slap")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -263,7 +264,7 @@ public class Fight {
                 move.getName().equalsIgnoreCase("Spark") || move.getName().equalsIgnoreCase("Fireball") || move.getName().equalsIgnoreCase("Absorb life") || 
                 move.getName().equalsIgnoreCase("Psywave") || move.getName().equalsIgnoreCase("Blood curl") || move.getName().equalsIgnoreCase("Voltage overload")
                 || move.getName().equalsIgnoreCase("Wing slice") || move.getName().equalsIgnoreCase("Fracture") || move.getName().equalsIgnoreCase("Dark matter")
-                || move.getName().equalsIgnoreCase("Ice shard")){
+                || move.getName().equalsIgnoreCase("Ice shard") || move.getName().equalsIgnoreCase("Lightning lord's current")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -286,7 +287,7 @@ public class Fight {
                     dmg = dmg * 2;
                 }
                 
-                if(move.getName().equalsIgnoreCase("Voltage overload")){
+                if(move.getName().equalsIgnoreCase("Voltage overload") || move.getName().equalsIgnoreCase("Lightning lord's current")){
                     int seedy = rando.nextInt(80);
                     int chanceToZapSelf = rando.nextInt(20);
                     if(chanceToZapSelf>=seedy){

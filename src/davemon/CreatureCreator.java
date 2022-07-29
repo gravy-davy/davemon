@@ -590,7 +590,7 @@ public class CreatureCreator {
             c.addToResistances("Light");
             c.addToWeaknesses("Dark");
             
-            c.setHealthPerLevel(4);
+            c.setHealthPerLevel(5);
             c.setHealth(75 + (level*c.getHealthPerLevel()));
             c.setMaxHealth(c.getHealth());
             c.setSpeed(40);
@@ -743,8 +743,39 @@ public class CreatureCreator {
             
             Move m1 = mc.makeMove("Wing slice");
             Move m2 = mc.makeMove("Screech");
-            // needs another move prolly
-            Move m3 = mc.makeMove("Karate kick"); 
+            Move m3 = mc.makeMove("Beak bite"); 
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
+            c.getMoveset().add(m3);
+        }else if(name.equalsIgnoreCase("Giant eel")){
+            c.setEvolutionLevel(40);
+            c.setType("Water");
+            c.addToResistances("Water");
+            c.addToResistances("Lightning");
+            c.addToWeaknesses("Ice");
+            
+            c.setHealthPerLevel(4);
+            c.setHealth(70 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(110);
+            c.setPhysicalDef(60);
+            c.setSpecialDef(60);
+            c.setPhysicalAtk(60);
+            c.setSpecialAtk(60);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_GIANT_EEL);
+            
+            Move m1 = mc.makeMove("Voltage overload");
+            Move m2 = mc.makeMove("Lightning lord's current");
+            Move m3 = mc.makeMove("Tail slap"); 
             
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
