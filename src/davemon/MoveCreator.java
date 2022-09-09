@@ -387,6 +387,21 @@ public class MoveCreator {
             move.setBaseAmount(45);
             move.setType("Physical");
             move.setAccuracy(80);
+        }else if(moveName.equalsIgnoreCase("Tongue flick")){ // needs test, just an accurate physical attack.
+            move.setName("Tongue flick"); 
+            move.setTimesUsed(0);
+            move.setMaxUses(25);
+            move.setBaseAmount(15);
+            move.setType("Physical");
+            move.setAccuracy(90);
+        }else if(moveName.equalsIgnoreCase("Pollen gust")){ // needs test, reduces accuracy.
+            move.setName("Pollen gust");
+            move.setTimesUsed(0);
+            move.setMaxUses(20);
+            move.setBaseAmount(20);
+            move.setType("Light");
+            move.setAccuracy(70);
+            move.setDuration(5);
         }
      
         return move;

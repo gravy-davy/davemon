@@ -56,4 +56,5 @@ public class Constant {
     public static final ImageIcon CREATURE_KARATE_KAT = new ImageIcon("assets/images/creature_karate_cat.jpg");
     public static final ImageIcon CREATURE_QUACKZILLA = new ImageIcon("assets/images/creature_quackzilla.png");
     public static final ImageIcon CREATURE_GIANT_EEL = new ImageIcon("assets/images/creature_giant_eel.jpg");
+    public static final ImageIcon CREATURE_SNUGGLEWOMP = new ImageIcon("assets/images/creature_snugglewomp.jpg");
 }

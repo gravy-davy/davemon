@@ -58,7 +58,7 @@ public class Fight {
         
         // can use some ifs for other moves with the same exact flow. like other basic physical attacks.
         if(move.getName().equalsIgnoreCase("Bite") || move.getName().equalsIgnoreCase("Tentacle slap") || move.getName().equalsIgnoreCase("Karate kick") || 
-                move.getName().equalsIgnoreCase("Beak bite") || move.getName().equalsIgnoreCase("Tail slap")){
+                move.getName().equalsIgnoreCase("Beak bite") || move.getName().equalsIgnoreCase("Tail slap") || move.getName().equalsIgnoreCase("Tongue flick")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 // hit
@@ -208,7 +208,7 @@ public class Fight {
             }
         }else if(move.getName().equalsIgnoreCase("Confuse") || move.getName().equalsIgnoreCase("Shock") || move.getName().equalsIgnoreCase("Ink") || 
                 move.getName().equalsIgnoreCase("Entangle") || move.getName().equalsIgnoreCase("Wet") || (move.getName().equalsIgnoreCase("Crystallize") && 
-                doesAlreadyHaveEffect("Wet", defendingCreature)) || move.getName().equalsIgnoreCase("Paralyzing blow")){
+                doesAlreadyHaveEffect("Wet", defendingCreature)) || move.getName().equalsIgnoreCase("Paralyzing blow") || move.getName().equalsIgnoreCase("Pollen gust")){
             String hitOrMiss = hitOrMiss(move, attackingCreature);
             if(hitOrMiss.equalsIgnoreCase("Hit")){
                 
@@ -648,7 +648,7 @@ public class Fight {
     
     public Effect checkForAccuracyDebuff(Creature c){
         for(Effect e : c.getEffects()){
-            if(e.getName().equalsIgnoreCase("Confuse") || e.getName().equalsIgnoreCase("Ink") || e.getName().equalsIgnoreCase("Wet")){
+            if(e.getName().equalsIgnoreCase("Confuse") || e.getName().equalsIgnoreCase("Ink") || e.getName().equalsIgnoreCase("Wet") || e.getName().equalsIgnoreCase("Pollen gust")){
                 return e;
             }
         }

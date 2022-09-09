@@ -780,6 +780,36 @@ public class CreatureCreator {
             c.getMoveset().add(m1);
             c.getMoveset().add(m2);
             c.getMoveset().add(m3);
+        }else if(name.equalsIgnoreCase("Snugglewomp")){
+            c.setEvolutionLevel(40);
+            c.setType("Flying");
+            c.addToResistances("Flying");
+            c.addToResistances("Light");
+            c.addToWeaknesses("Lightning");
+            
+            c.setHealthPerLevel(1);
+            c.setHealth(35 + (level*c.getHealthPerLevel()));
+            c.setMaxHealth(c.getHealth());
+            c.setSpeed(94);
+            c.setPhysicalDef(10);
+            c.setSpecialDef(20);
+            c.setPhysicalAtk(15);
+            c.setSpecialAtk(25);
+            
+            c.setTempSpecialAtk(c.getSpecialAtk());
+            c.setTempPhysicalAtk(c.getPhysicalAtk());
+            c.setTempMaxHealth(c.getMaxHealth());
+            c.setTempPhysicalDef(c.getPhysicalDef());
+            c.setTempSpecialDef(c.getSpecialDef());
+            c.setTempSpeed(c.getSpeed());
+            
+            c.setImage(Constant.CREATURE_SNUGGLEWOMP);
+            
+            Move m1 = mc.makeMove("Tongue flick");
+            Move m2 = mc.makeMove("Pollen gust");
+            
+            c.getMoveset().add(m1);
+            c.getMoveset().add(m2);
         }
         
         return c;
